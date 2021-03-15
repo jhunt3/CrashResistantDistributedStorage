@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import shared.comm.CommModule;
 import shared.messages.KVMsg;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.Socket;
 import java.security.MessageDigest;
@@ -11,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import static shared.messages.KVMessage.StatusType.*;
 
@@ -76,20 +78,33 @@ public class KVStore extends Thread implements KVCommInterface {
 		connectCorrServer(key, "put");
 
 		// 2. Forward request to server
-		this.clientComm.sendMsg(PUT, key, value, null);
-		KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
+		long timeout = 20000; // timeout = 20 s
+		long t = System.currentTimeMillis();
+		long f = t+timeout;
 
-		// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
-		while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
-			this.metadata = replyMsg.getMetadata();
+		while(System.currentTimeMillis() < f) {
+			try {
+				this.clientComm.sendMsg(PUT, key, value, null);
+				KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
+				// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
+				while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
+					this.metadata = replyMsg.getMetadata();
 
-			connectCorrServer(key, "put");
+					connectCorrServer(key, "put");
 
-			this.clientComm.sendMsg(PUT, key, value, null);
-			replyMsg = (KVMsg) clientComm.receiveMsg();
+					this.clientComm.sendMsg(PUT, key, value, null);
+					replyMsg = (KVMsg) clientComm.receiveMsg();
+				}
+
+				return replyMsg;
+
+			} catch (IOException ioe) { // Server failed. Try connecting to another server in the metadata
+				this.connRandomServer();
+			}
 		}
 
-		return replyMsg;
+		throw new Exception("Timeout! Could not connect to any servers for PUT request");
+
 	}
 
 	/**
@@ -105,20 +120,34 @@ public class KVStore extends Thread implements KVCommInterface {
 		connectCorrServer(key, "get");
 
 		// 2. Forward request to server
-		this.clientComm.sendMsg(GET, key, "", null);
-		KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
+		long timeout = 20000; // timeout = 20 s
+		long t = System.currentTimeMillis();
+		long f = t+timeout;
 
-		// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
-		while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
-			this.metadata = replyMsg.getMetadata();
+		while(System.currentTimeMillis() < f) {
+			try {
+				this.clientComm.sendMsg(GET, key, "", null);
+				KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
 
-			connectCorrServer(key, "get");
+				// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
+				while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
+					this.metadata = replyMsg.getMetadata();
 
-			this.clientComm.sendMsg(GET, key, "", null);
-			replyMsg = (KVMsg) clientComm.receiveMsg();
+					connectCorrServer(key, "get");
+
+					this.clientComm.sendMsg(GET, key, "", null);
+					replyMsg = (KVMsg) clientComm.receiveMsg();
+				}
+
+				return replyMsg;
+
+			} catch (IOException ioe) { // Server failed. Try connecting to another server in the metadata
+				this.connRandomServer();
+			}
 		}
 
-		return replyMsg;
+		throw new Exception("Timeout! Could not connect to any servers for GET request");
+
 	}
 
 	/**
@@ -182,6 +211,34 @@ public class KVStore extends Thread implements KVCommInterface {
 
 		}
 
+	}
+
+	/**
+	 * Disconnect from the current server and try connecting to another server (random) listed in the local metadata
+	 */
+	private void connRandomServer() {
+		this.disconnect();
+
+		long timeout = 5000; // timeout = 5 s
+		long t = System.currentTimeMillis();
+		long f = t+timeout;
+
+		while(System.currentTimeMillis() < f) {
+			HashMap<String, String> working_metadata = this.metadata.get(1);
+			Random r = new Random();
+			String[] server_info = (String[]) working_metadata.keySet().toArray();
+			String random_addr_port = server_info[r.nextInt(server_info.length)];
+			String address = random_addr_port.split(":")[0];
+			int port = Integer.parseInt(random_addr_port.split(":")[1]);
+
+			this.address = address;
+			this.port = port;
+			try {
+				this.connect();
+			} catch (Exception e) {
+				continue;
+			}
+		}
 	}
 
 }
