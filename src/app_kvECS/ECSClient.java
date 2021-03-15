@@ -42,7 +42,7 @@ public class ECSClient implements IECSClient, Watcher {
     final ZooKeeper zk = new ZooKeeper("localhost:2181", 3000, this);
     private Socket clientSocket;
     private CommModule clientComm;
-    private HashMap<String, String> metadata;
+    private List<HashMap<String, String>> metadata = new ArrayList<HashMap<String,String>>();
     public ECSClient(String configfile) throws KeeperException, IOException{
         try {
             System.out.println("Config File Name:");
@@ -423,7 +423,7 @@ public class ECSClient implements IECSClient, Watcher {
         //inodes.add(inode);
         Process proc;
         String scriptPath = System.getProperty("user.dir")+"/src/app_kvECS/startnode.sh";
-        String serverPath = System.getProperty("user.dir")+"/m2-server.jar";
+        String serverPath = System.getProperty("user.dir")+"/m3-server.jar";
 
         String[] cmd = {"sh", scriptPath, node.getNodeHost(),serverPath,String.valueOf(node.getNodePort()),name};
         for (int j = 0; j<6;j++) {
@@ -540,7 +540,7 @@ public class ECSClient implements IECSClient, Watcher {
             inodes.add(inode);
             Process proc;
             String scriptPath = System.getProperty("user.dir")+"/src/app_kvECS/startnode.sh";
-            String serverPath = System.getProperty("user.dir")+"/m2-server.jar";
+            String serverPath = System.getProperty("user.dir")+"/m3-server.jar";
 
             String[] cmd = {"sh", scriptPath, node.getNodeHost(),serverPath,String.valueOf(node.getNodePort()),name};
             for (int j = 0; j<6;j++) {
@@ -612,7 +612,7 @@ public class ECSClient implements IECSClient, Watcher {
                 this.clientComm = new CommModule(this.clientSocket, null);
 
                 //Init node
-                this.clientComm.sendAdminMsg(null, INIT_SERVER, metadata, name);
+                this.clientComm.sendAdminMsg(null, INIT_SERVER, this.metadata, name);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (replyMsg.getStatus() != INIT_SERVER_SUCCESS) {
                     System.out.println("Init server failed: " + name);
@@ -685,7 +685,7 @@ public class ECSClient implements IECSClient, Watcher {
                 System.out.println(host+":"+String.valueOf(port));
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
-                this.clientComm.sendAdminMsg(null, UPDATE, metadata, null);
+                this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, null);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (replyMsg.getStatus() != UPDATE_SUCCESS) {
                     System.out.println(name + " metadata update failed");
@@ -744,7 +744,7 @@ public class ECSClient implements IECSClient, Watcher {
                         //update successor metadata
                         this.clientSocket = new Socket(succhost, succport);
                         this.clientComm = new CommModule(this.clientSocket, null);
-                        this.clientComm.sendAdminMsg(null, UPDATE, metadata, null);
+                        this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, null);
                         KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                         System.out.println("Replied: " + replyMsg.getStatus());
                         this.clientSocket = null;
@@ -821,7 +821,7 @@ public class ECSClient implements IECSClient, Watcher {
                             //update successor metadata
                             this.clientSocket = new Socket(succhost, succport);
                             this.clientComm = new CommModule(this.clientSocket, null);
-                            this.clientComm.sendAdminMsg(null, UPDATE, metadata, null);
+                            this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, null);
                             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                             System.out.println("Replied: " + replyMsg.getStatus());
                             this.clientSocket = null;
@@ -895,7 +895,7 @@ public class ECSClient implements IECSClient, Watcher {
 //            logger.info(mkey + " -> " + this.metadata.get(mkey));
 //        }
         // Lookup hashmap to find the appropriate server
-        for (HashMap.Entry<String,String> map : this.metadata.entrySet()) {
+        for (HashMap.Entry<String,String> map : this.metadata.get(1).entrySet()) {
 
             String addr_port = map.getKey();
             String range = map.getValue();
@@ -930,7 +930,8 @@ public class ECSClient implements IECSClient, Watcher {
 
     private void calc_metadata(List<ECSNode> nodeList) {
 
-        HashMap<String, String> newMetadata = new HashMap<String,String>();
+        HashMap<String, String> newReadMetadata = new HashMap<String,String>();
+        HashMap<String, String> newWriteMetadata = new HashMap<String,String>();
 
         // 1. Create a list of hashes and a map of {hashes -> addr:port}
         List<BigInteger> serverHashList = new ArrayList<BigInteger>();
@@ -946,19 +947,36 @@ public class ECSClient implements IECSClient, Watcher {
         // 2. Sort list of hashes
         Collections.sort(serverHashList);
 
-        // 3. Now, build metadata by giving to each server the range between its position (inclusive) and that of
-        // its predecessor (exclusive) in the sorted serverHashList
+        // 3. Now, build the write metadata by giving to each server the range between its position (inclusive) and
+        // that of its predecessor (exclusive) in the sorted serverHashList. The read metadata is between the server
+        // position (inclusive) and the position of the predecessor of the predecessor of its predecessor (exclusive)
         for (int i=0; i<serverHashList.size(); i++) {
 
             // Predecessor is the last element if i==0
-            int predec;
+            int predec, pp_predec;
             if (i==0) {
                 predec = serverHashList.size() - 1;
             } else {
                 predec = i-1;
             }
+
+            if (serverHashList.size() > 3) {
+                if (i == 0) {
+                    pp_predec = serverHashList.size() - 3;
+                } else if (i == 1) {
+                    pp_predec = serverHashList.size() - 2;
+                } else if (i == 2) {
+                    pp_predec = serverHashList.size() - 1;
+                } else {
+                    pp_predec = i - 3;
+                }
+            } else {
+                pp_predec = i;
+            }
+
             BigInteger server_pos = serverHashList.get(i);
             BigInteger server_predecessor_pos = serverHashList.get(predec);
+            BigInteger server_pp_predecessor_pos = serverHashList.get(pp_predec);
 
             if (i==0) { // The exact predecessor position is excluded from the range
                 server_predecessor_pos = server_predecessor_pos.add(BigInteger.ONE);
@@ -966,13 +984,21 @@ public class ECSClient implements IECSClient, Watcher {
                 server_predecessor_pos = server_predecessor_pos.subtract(BigInteger.ONE);
             }
 
-            String addr_port = serverHashMap.get(server_pos);
-            String range = server_predecessor_pos.toString(16) + ":" + server_pos.toString(16);
+            if (i==0||i==1||i==2) { // The exact predecessor position is excluded from the range
+                server_pp_predecessor_pos = server_pp_predecessor_pos.add(BigInteger.ONE);
+            } else {
+                server_pp_predecessor_pos = server_pp_predecessor_pos.subtract(BigInteger.ONE);
+            }
 
-            newMetadata.put(addr_port, range);
+            String addr_port = serverHashMap.get(server_pos);
+            String write_range = server_predecessor_pos.toString(16) + ":" + server_pos.toString(16);
+            String read_range = server_pp_predecessor_pos.toString(16) + ":" + server_pos.toString(16);
+
+            newWriteMetadata.put(addr_port, write_range);
+            newReadMetadata.put(addr_port, read_range);
         }
 
-        this.metadata = newMetadata;
+        this.metadata = Arrays.asList(newReadMetadata, newWriteMetadata);
         
     }
 

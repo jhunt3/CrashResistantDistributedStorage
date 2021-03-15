@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 
 import static shared.messages.KVMessage.StatusType;
 import static shared.messages.KVMessage.StatusType.*;
@@ -141,7 +142,7 @@ public class CommModule implements ICommModule, Runnable {
      * @throws IOException
      */
     @Override
-    public void sendMsg(StatusType status, String key, String value, HashMap<String,String> metadata) throws IOException {
+    public void sendMsg(StatusType status, String key, String value, List<HashMap<String,String>> metadata) throws IOException {
         KVMsg msg = new KVMsg(status, key, value, metadata);
         this.output.writeObject(msg);
         this.output.flush();
@@ -185,9 +186,9 @@ public class CommModule implements ICommModule, Runnable {
 
                     case GET:
 
-                        if (!this.server.inRange(key)) { // This server is not responsible for this key. Send updated metadata to KVStore
+                        if (!this.server.inRange(key,"get")) { // This server is not responsible for this key. Send updated metadata to KVStore
                             out_status = SERVER_NOT_RESPONSIBLE;
-                            HashMap<String,String> out_metadata = this.server.getMetadata();
+                            List<HashMap<String,String>> out_metadata = this.server.getMetadata();
                             return new KVMsg(out_status, key, null, out_metadata);
                         } else {
                             out_value = this.server.getKV(key);
@@ -209,10 +210,10 @@ public class CommModule implements ICommModule, Runnable {
                             logger.debug("PUT request being served");
                             if (key_len < 1 || key_len > 20 || val_len > 122880) { // Size constraints are violated
                                 out_status = PUT_ERROR;
-                            } else if (!this.server.inRange(key)) { // This server is not responsible for this key. Send updated metadata to KVStore
+                            } else if (!this.server.inRange(key,"put")) { // This server is not responsible for this key. Send updated metadata to KVStore
                                 logger.debug("Not in range");
                                 out_status = SERVER_NOT_RESPONSIBLE;
-                                HashMap<String,String> out_metadata = this.server.getMetadata();
+                                List<HashMap<String,String>> out_metadata = this.server.getMetadata();
                                 return new KVMsg(out_status, key, null, out_metadata);
                             } else {
                                 logger.debug("In range");
@@ -250,7 +251,7 @@ public class CommModule implements ICommModule, Runnable {
         }
     }
 
-    public void sendAdminMsg(String kvServer, StatusType status, HashMap<String,String> metadata, String range) {
+    public void sendAdminMsg(String kvServer, StatusType status, List<HashMap<String,String>> metadata, String range) {
         // send admin msg to ECS or server
         KVAdminMsg adminMsg = new KVAdminMsg(kvServer, status, metadata, range);
         try {

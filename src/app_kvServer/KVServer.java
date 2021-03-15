@@ -43,7 +43,7 @@ public class KVServer extends Thread implements IKVServer{
 	private boolean running; // Shutdown (false), or running (true)
 
 	// Additional
-	private HashMap<String, String> metadata;
+	private List<HashMap<String, String>> metadata;
 	public List<Object> dataToFlush = new ArrayList<Object>(); // consists of key objects to be deleted
 	private ZooKeeper zk;
 	private String serverName;
@@ -87,7 +87,7 @@ public class KVServer extends Thread implements IKVServer{
 //	}
 
 	@Override
-	public void initKVServer(HashMap<String, String> metadata, String name){
+	public void initKVServer(List<HashMap<String, String>> metadata, String name){
 		this.metadata = metadata;
 	}
 
@@ -228,7 +228,7 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	@Override
-	public void update(HashMap<String, String> metadata) {
+	public void update(List<HashMap<String, String>> metadata) {
 		this.metadata = metadata;
 	}
 
@@ -248,7 +248,7 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	@Override
-	public boolean inRange(String key) {
+	public boolean inRange(String key, String mode) {
 		// Get key MD5 hash value as an integer (key_hash)
 		logger.debug("Checking if it's in range");
 		BigInteger keyHash = getKeyHash(key);
@@ -257,12 +257,19 @@ public class KVServer extends Thread implements IKVServer{
 		
 		logger.debug("Got hostname and port -> " + addr);
 
-		String range = this.metadata.get(addr);
+		HashMap<String,String> working_metadata = null;
+		if (mode == "put") {
+			working_metadata = this.metadata.get(1);
+		} else if (mode == "get") {
+			working_metadata = this.metadata.get(0);
+		}
+
+		String range = working_metadata.get(addr);
 
 		logger.debug("Got metadata range: " + range);
 
-		for (String mkey: this.metadata.keySet()) {
-			logger.debug(mkey + " -> " + this.metadata.get(mkey));
+		for (String mkey: working_metadata.keySet()) {
+			logger.debug(mkey + " -> " + working_metadata.get(mkey));
 		}
 
 		BigInteger rangeStart = new BigInteger("0" + range.split(":")[0], 16);
@@ -285,7 +292,7 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	@Override
-	public HashMap<String, String> getMetadata() {
+	public List<HashMap<String, String>> getMetadata() {
 		return this.metadata;
 	}
 

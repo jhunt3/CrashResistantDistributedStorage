@@ -1,7 +1,10 @@
 package shared.messages;
 
 import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class KVMsg implements KVMessage, Serializable {
 
@@ -9,7 +12,7 @@ public class KVMsg implements KVMessage, Serializable {
     private StatusType status;
     private String key;
     private String value;
-    private HashMap<String,String> metadata = null;
+    private List<HashMap<String,String>> metadata = new ArrayList<HashMap<String,String>>();
 
     /**
      * @param status Request status
@@ -23,7 +26,7 @@ public class KVMsg implements KVMessage, Serializable {
     }
 
     // Constructor overloading for when it is necessary to send the metadata from the server to KVStore
-    public KVMsg(StatusType status, String key, String value, HashMap<String,String> metadata) {
+    public KVMsg(StatusType status, String key, String value, List<HashMap<String,String>> metadata) {
         this.status = status;
         this.key = key;
         this.value = value;
@@ -54,7 +57,7 @@ public class KVMsg implements KVMessage, Serializable {
         return this.status;
     }
 
-    public HashMap<String,String> getMetadata() { return this.metadata; }
+    public List<HashMap<String,String>> getMetadata() { return this.metadata; }
 
     @Override
     public boolean isAdminMessage() {

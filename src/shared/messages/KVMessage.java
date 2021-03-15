@@ -1,6 +1,9 @@
 package shared.messages;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public interface KVMessage {
 	
@@ -46,7 +49,10 @@ public interface KVMessage {
 		UPDATE_FAILED,
 		FLUSH,
 		FLUSH_SUCCESS,
-		FLUSH_FAILED
+		FLUSH_FAILED,
+
+		// Coordinator messages
+		PUT_COORDINATOR
 	}
 
 
@@ -56,7 +62,7 @@ public interface KVMessage {
 	 * @return the metadata map that maps the server ip:port (string) to the hash range it is
 	 * responsible for (represented as a string range_start:range_end)
 	 */
-	public HashMap<String,String> getMetadata();
+	public List<HashMap<String,String>> getMetadata();
 
 	/**
 	 *

@@ -8,7 +8,9 @@ import java.math.BigInteger;
 import java.net.Socket;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static shared.messages.KVMessage.StatusType.*;
 
@@ -20,7 +22,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	private int port;
 	private Socket clientSocket;
 	private CommModule clientComm;
-	private HashMap<String, String> metadata;
+	private List<HashMap<String, String>> metadata;
 
 	/**
 	 * Initialize KVStore with address and port of KVServer.
@@ -30,8 +32,13 @@ public class KVStore extends Thread implements KVCommInterface {
 	public KVStore(String address, int port) {
 		this.address = address;
 		this.port = port;
-		this.metadata = new HashMap<String,String>();
-		metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+		this.metadata = new ArrayList<>();
+		HashMap<String,String> read_metadata = new HashMap<String,String>();
+		HashMap<String,String> write_metadata = new HashMap<String,String>();
+		read_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+		write_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+		this.metadata.add(read_metadata);
+		this.metadata.add(write_metadata);
 	}
 
 	/**
@@ -66,7 +73,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	public KVMsg put(String key, String value) throws Exception {
 
 		// 1. Connect to appropriate server based on key hash value
-		connectCorrServer(key);
+		connectCorrServer(key, "put");
 
 		// 2. Forward request to server
 		this.clientComm.sendMsg(PUT, key, value, null);
@@ -76,7 +83,7 @@ public class KVStore extends Thread implements KVCommInterface {
 		while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
 			this.metadata = replyMsg.getMetadata();
 
-			connectCorrServer(key);
+			connectCorrServer(key, "put");
 
 			this.clientComm.sendMsg(PUT, key, value, null);
 			replyMsg = (KVMsg) clientComm.receiveMsg();
@@ -95,7 +102,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	public KVMsg get(String key) throws Exception {
 
 		// 1. Connect to appropriate server based on key hash value
-		connectCorrServer(key);
+		connectCorrServer(key, "get");
 
 		// 2. Forward request to server
 		this.clientComm.sendMsg(GET, key, "", null);
@@ -105,7 +112,7 @@ public class KVStore extends Thread implements KVCommInterface {
 		while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
 			this.metadata = replyMsg.getMetadata();
 
-			connectCorrServer(key);
+			connectCorrServer(key, "get");
 
 			this.clientComm.sendMsg(GET, key, "", null);
 			replyMsg = (KVMsg) clientComm.receiveMsg();
@@ -118,8 +125,9 @@ public class KVStore extends Thread implements KVCommInterface {
 	 * Given the key value, this function performs a map lookup to determine the appropriate server to route the client
 	 * request to, and connects to this appropriate server (and disconnects the previous server connection)
 	 * @param key Key value.
+	 * @param mode Read - put or write - get.   
 	 */
-	private void connectCorrServer(String key) {
+	private void connectCorrServer(String key, String mode) {
 
 		// Get key MD5 hash value as an integer (key_hash)
 		MessageDigest md5 = null;
@@ -133,7 +141,14 @@ public class KVStore extends Thread implements KVCommInterface {
 		BigInteger key_hash = new BigInteger(1, digest);
 
 		// Lookup hashmap to find the appropriate server
-		for (HashMap.Entry<String,String> map : this.metadata.entrySet()) {
+		HashMap<String,String> working_metadata = null;
+		if (mode == "put") {
+			working_metadata = this.metadata.get(1);
+		} else if (mode == "get") {
+			working_metadata = this.metadata.get(0);
+		}
+		
+		for (HashMap.Entry<String,String> map : working_metadata.entrySet()) {
 
 			String addr_port = map.getKey();
 			String range = map.getValue();

@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.List;
 
 public interface IKVServer {
     public enum CacheStrategy {
@@ -18,7 +19,7 @@ public interface IKVServer {
      * i.e., all client requests are rejected with an SERVER_STOPPED error message; ECS requests have to be processed.
      * @param metadata Updated metadata provided by ECS
      */
-    public void initKVServer(HashMap<String, String> metadata, String serverName);
+    public void initKVServer(List<HashMap<String, String>> metadata, String serverName);
 
     /**
      * Starts the KVServer, all client requests and all ECS requests are processed.
@@ -70,7 +71,7 @@ public interface IKVServer {
     /**
      * Updates the metadata
      */
-    public void update(HashMap<String, String> metadata);
+    public void update(List<HashMap<String, String>> metadata);
 
     /**
      * Given a string key, return the MD5 Hash value of the key as a BigInterger
@@ -80,14 +81,15 @@ public interface IKVServer {
     /**
      * Returns a boolean indicating if the given key is in this storage server's range
      * @param key String key input from user
+     * @param mode Read - get, Write - put
      */
-    public boolean inRange(String key);
+    public boolean inRange(String key, String mode);
 
     /**
      * @return Return updated metadata hashmap to the client upon request to a key that is not
      * within the range of this server
      */
-    public HashMap<String,String> getMetadata();
+    public List<HashMap<String,String>> getMetadata();
 
     /**
      * Get the port number of the server
