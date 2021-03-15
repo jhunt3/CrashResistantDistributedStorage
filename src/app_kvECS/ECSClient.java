@@ -78,7 +78,7 @@ public class ECSClient implements IECSClient, Watcher {
         }
         //Look at zookeeper to intialize contructors
         try {
-            List<String> attendance = zk.getChildren("/keeper", true);
+            List<String> attendance = zk.getChildren("/keeper", false);
             for (int i = 0; i< attendance.size();i++){
                 System.out.println("Found: "+attendance.get(i));
                 byte[] locData = zk.getData("/keeper/"+attendance.get(i),false, null);
@@ -103,12 +103,30 @@ public class ECSClient implements IECSClient, Watcher {
 
 
     }
-
     public void process(WatchedEvent event) {
+        System.out.println(event.getState());
         if (event.getState() == Watcher.Event.KeeperState.SyncConnected) {
             isConnected.countDown();
         }
+        try {
+            zk.getChildren("/keeper", nodeWatch);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
+    Watcher nodeWatch=new Watcher(){
+        @Override
+        public void process(WatchedEvent watchedEvent) {
+            System.out.println("change in nodes");
+            System.out.println(watchedEvent.getState());
+            try {
+                zk.getChildren("/keeper", nodeWatch);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    };
+
 
     public void run() throws Exception {
         while(!stop) {
@@ -711,14 +729,14 @@ public class ECSClient implements IECSClient, Watcher {
         long t = System.currentTimeMillis();
         long f = t+timeout;
         while(System.currentTimeMillis()<f) {
-            List<String> attendance = zk.getChildren("/keeper",true);
+            List<String> attendance = zk.getChildren("/keeper",false);
             if(attendance.size()== count){
 
                 return true;
             }
 
         }
-        int present = zk.getChildren("/keeper",true).size();
+        int present = zk.getChildren("/keeper",false).size();
         System.out.println("Wanted: "+String.valueOf(count)+ " Got: "+String.valueOf(present));
         return false;
     }
