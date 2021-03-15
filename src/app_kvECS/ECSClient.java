@@ -978,7 +978,7 @@ public class ECSClient implements IECSClient, Watcher {
                 predec = i-1;
             }
 
-            if (serverHashList.size() > 3) {
+            if (serverHashList.size() >= 3) {
                 if (i == 0) {
                     pp_predec = serverHashList.size() - 3;
                 } else if (i == 1) {
@@ -988,7 +988,8 @@ public class ECSClient implements IECSClient, Watcher {
                 } else {
                     pp_predec = i - 3;
                 }
-            } else {
+            } else { // If there are less than 3 servers, pp_predec is the position of the server itself -> read_metadata
+                     // covers the entire ring
                 pp_predec = i;
             }
 
@@ -996,17 +997,9 @@ public class ECSClient implements IECSClient, Watcher {
             BigInteger server_predecessor_pos = serverHashList.get(predec);
             BigInteger server_pp_predecessor_pos = serverHashList.get(pp_predec);
 
-            if (i==0) { // The exact predecessor position is excluded from the range
-                server_predecessor_pos = server_predecessor_pos.add(BigInteger.ONE);
-            } else {
-                server_predecessor_pos = server_predecessor_pos.subtract(BigInteger.ONE);
-            }
-
-            if (i==0||i==1||i==2) { // The exact predecessor position is excluded from the range
-                server_pp_predecessor_pos = server_pp_predecessor_pos.add(BigInteger.ONE);
-            } else {
-                server_pp_predecessor_pos = server_pp_predecessor_pos.subtract(BigInteger.ONE);
-            }
+            // The exact predecessor position is excluded from the range
+            server_predecessor_pos = server_predecessor_pos.add(BigInteger.ONE);
+            server_pp_predecessor_pos = server_pp_predecessor_pos.add(BigInteger.ONE);
 
             String addr_port = serverHashMap.get(server_pos);
             String write_range = server_predecessor_pos.toString(16) + ":" + server_pos.toString(16);
