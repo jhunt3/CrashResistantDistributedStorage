@@ -49,10 +49,7 @@ public interface KVMessage {
 		UPDATE_FAILED,
 		FLUSH,
 		FLUSH_SUCCESS,
-		FLUSH_FAILED,
-
-		// Coordinator messages
-		PUT_COORDINATOR
+		FLUSH_FAILED
 	}
 
 
