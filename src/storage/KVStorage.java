@@ -17,11 +17,22 @@ import java.util.Objects;
 public class KVStorage {
     private static final Logger logger = Logger.getRootLogger();
     private final String fileName;
+    private final String fileNameReplica_1;
+    private final String fileNameReplica_2;
     private final File storage;
+    private final File replica_1;
+    private final File replica_2;
 
     public KVStorage(String strategy, int cacheSize, String storageName){
+        // file names
         this.fileName = storageName + ".json";
+        this.fileNameReplica_1 = storageName + "_replica_1.json";
+        this.fileNameReplica_2 = storageName + "_replica_2.json";
+
+        // files/storages
         this.storage = new File(fileName);
+        this.replica_1 = new File(fileNameReplica_1);
+        this.replica_2 = new File(fileNameReplica_2);
         initializeStorage();
     }
 
@@ -40,6 +51,16 @@ public class KVStorage {
             } else {
                 logger.info("File already exists.");
             }
+            if (replica_1.createNewFile()) {
+                logger.info("File created: " + replica_1.getName());
+            } else {
+                logger.info("File already exists.");
+            }
+            if (replica_2.createNewFile()) {
+                logger.info("File created: " + replica_2.getName());
+            } else {
+                logger.info("File already exists.");
+            }
         } catch (IOException e) {
             logger.error("An error occurred.");
             e.printStackTrace();
@@ -48,7 +69,7 @@ public class KVStorage {
 
     public synchronized void initializeStorage(){
         if (!storageExists()){
-            logger.info("Creating Storage File");
+            logger.info("Creating Storage Files");
             createStorageFile();
         }
     }
@@ -89,7 +110,7 @@ public class KVStorage {
     }
 
     /**
-     * Get a value from a key in the storage
+     * Get a value from a key in the storage; checks all three storage files
      * @param key key in key-value pair
      * @return return value of associated key if exists
      *         return null otherwise
@@ -97,11 +118,18 @@ public class KVStorage {
     public synchronized String get(String key){
         logger.info("Get: key = " + key);
 
-        // TODO Check cache
         JSONObject kvObject = getKVObject();
+        JSONObject replica_1Object = getReplicaObject("replica_1");
+        JSONObject replica_2Object = getReplicaObject("replica_2");
+
         if (inStorage(kvObject, key)){
             return (String) kvObject.get(key);
+        } else if (inStorage(replica_1Object, key)){
+            return (String) replica_1Object.get(key);
+        } else if (inStorage(replica_2Object, key)){
+            return (String) replica_2Object.get(key);
         }
+
         return null;
     }
 
@@ -116,6 +144,65 @@ public class KVStorage {
         JSONObject kvObject = getKVObject();
 
         // update
+        putKVHelper(key, value, kvObject, fileName);
+    }
+
+    public synchronized void flushData(List<Object> dataToFlush) throws Exception{
+        if (dataToFlush!=null) {
+            for (Object key : dataToFlush) {
+                String keyStr = key.toString();
+                try {
+                    this.put(keyStr, null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+            }
+        }
+    }
+
+    /**
+     * Clear the storage of KV database
+     */
+    public synchronized void clearKVStorage(){
+        logger.info("Clearing KV Storage...");
+
+        // TODO clear cache
+        try (FileWriter file = new FileWriter(fileName)) {
+            file.write("{}");
+            file.flush();
+        } catch (IOException e) {
+            logger.error("Unable to clear database");
+        }
+    }
+
+    // Replication (Milestone 3)
+
+    /**
+     * Call this function inside predecessorChanges() to put key/val into replica storage files
+     * @param key key to insert
+     * @param value value to insert
+     * @param replica_name name of the replica storage file (replica_1, or replica_2)
+     */
+    public synchronized void replicaPutKV(String key, String value, String replica_name) throws Exception {
+
+        JSONObject kvObject = getReplicaObject(replica_name);
+
+        String fileName;
+        if (replica_name.equals("replica_1")){
+            fileName = this.fileNameReplica_1;
+        } else {
+            fileName = this.fileNameReplica_2;
+        }
+
+        // update
+        putKVHelper(key, value, kvObject, fileName);
+    }
+
+    /**
+     * Reused code in both replicaPutKV and putKV functions
+     */
+    private void putKVHelper(String key, String value, JSONObject kvObject, String fileName) throws Exception {
         if (value != null && !value.equals("") && !value.equals("null")){
             logger.info("Put: key = " + key + ", value = " + value);
 
@@ -150,37 +237,32 @@ public class KVStorage {
                 throw new Exception(e.toString());
             }
         }
-
-        // TODO update cache
-
-    }
-
-    public synchronized void flushData(List<Object> dataToFlush) throws Exception{
-        if (dataToFlush!=null) {
-            for (Object key : dataToFlush) {
-                String keyStr = key.toString();
-                try {
-                    this.put(keyStr, null);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    throw e;
-                }
-            }
-        }
     }
 
     /**
-     * Clear the storage of KV database
+     * Fetch replica objects for read (get) function
      */
-    public synchronized void clearKVStorage(){
-        logger.info("Clearing KV Storage...");
-
-        // TODO clear cache
-        try (FileWriter file = new FileWriter(fileName)) {
-            file.write("{}");
-            file.flush();
-        } catch (IOException e) {
-            logger.error("Unable to clear database");
+    public synchronized JSONObject getReplicaObject(String replicaName){
+        if (replicaName.equals("replica_1")){
+            if (this.replica_1.exists()){
+                try{
+                    JSONParser parser = new JSONParser();
+                    return (JSONObject) parser.parse(new FileReader(fileNameReplica_1));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        } else if (replicaName.equals("replica_2")){
+            if (this.replica_2.exists()){
+                try{
+                    JSONParser parser = new JSONParser();
+                    return (JSONObject) parser.parse(new FileReader(fileNameReplica_2));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
         }
+        return new JSONObject();
     }
 }
+
