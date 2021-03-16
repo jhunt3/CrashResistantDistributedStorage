@@ -1,5 +1,7 @@
 package shared.messages;
 
+import org.json.simple.JSONObject;
+
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -13,6 +15,8 @@ public class KVMsg implements KVMessage, Serializable {
     private String key;
     private String value;
     private List<HashMap<String,String>> metadata = new ArrayList<HashMap<String,String>>();
+    public String hostPort;
+    public JSONObject obj;
 
     /**
      * @param status Request status
@@ -31,6 +35,15 @@ public class KVMsg implements KVMessage, Serializable {
         this.key = key;
         this.value = value;
         this.metadata = metadata;
+    }
+
+    // Constructor overloading for when it is necessary to send host and port info from the server to KVStore
+    public KVMsg(StatusType status, String key, String value, String hostPort, JSONObject obj) {
+        this.status = status;
+        this.key = key;
+        this.value = value;
+        this.hostPort = hostPort; // "host:port" -> of coordinator
+        this.obj = obj; // updated key values
     }
 
     /**

@@ -49,7 +49,11 @@ public interface KVMessage {
 		UPDATE_FAILED,
 		FLUSH,
 		FLUSH_SUCCESS,
-		FLUSH_FAILED
+		FLUSH_FAILED,
+
+		// Additional Replication Commands
+		PROPAGATE, // Call by coordinator servers to replication servers
+		PROPAGATE_ADMIN // Sent by ECS after update is called and acknowledged by all nodes
 	}
 
 
