@@ -71,7 +71,7 @@ public interface IKVServer {
     /**
      * Updates the metadata
      */
-    public void update(List<HashMap<String, String>> metadata);
+    public void update(List<HashMap<String, String>> metadata, List<String> hashList);
 
     /**
      * Given a string key, return the MD5 Hash value of the key as a BigInterger

@@ -48,8 +48,7 @@ public class KVServer extends Thread implements IKVServer{
 	private KVStore store;
 
 	// Replication
-	private List<String> predecessors;
-	private List<String> successors;
+	private List<String> hashList;
 
 	/**
 	 * Start KV Server at given port
@@ -225,9 +224,9 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	@Override
-	public void update(List<HashMap<String, String>> metadata) {
+	public void update(List<HashMap<String, String>> metadata, List<String> hashList) {
 		this.metadata = metadata;
-		this.updateLists();
+		this.hashList = hashlist;
 	}
 
 	private BigInteger getKeyHash(String key){
@@ -441,18 +440,24 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	// Replication (Milestone 3)
+	/**
+	 * Propagates changes to successor nodes (Invoked after add/remove node, and putKV)
+	 * 1. Set up two commModules that connect to its two successors based on hashList
+	 * 2. Send KVMsg to the nodes with PROPAGATE StatusType and key(s)/value(s) to update
+	 * 3. Capture response
+	 */
 	public void propagateChanges(JSONObject obj){
-
 	}
 
-	public void predecessorChanges(){
+	/**
+	 * Called on replica nodes; updates the appropriate replica.json given obj and predecessor's host:port
+	 * 1. Loop through hashList to see which replica file corresponds to the predecessor
+	 * 2. Loop through obj to insert key(s)/val(s) or delete key/val from replica_n.json
+	 * 3. Capture response
+	 */
+	public void predecessorChanges(String predecessorHostPort, JSONObject obj){
 
 	}
-
-	public void updateLists(){
-
-	}
-
 
 	/**
 	 * Main entry point for the KVServer application.
