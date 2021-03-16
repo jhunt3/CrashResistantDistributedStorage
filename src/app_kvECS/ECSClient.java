@@ -767,7 +767,7 @@ public class ECSClient implements IECSClient, Watcher {
                 System.out.println(host+":"+String.valueOf(port));
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
-                this.clientComm.sendAdminMsg(null, PROPAGATE_ADMIN, this.metadata, null);
+                this.clientComm.sendAdminMsg(null, PROPAGATE_ADMIN, this.metadata, this.hashList,null);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (replyMsg.getStatus() != UPDATE_SUCCESS) {
                     System.out.println(name + " metadata update failed");
@@ -847,7 +847,10 @@ public class ECSClient implements IECSClient, Watcher {
                         replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                         System.out.println("Replied: " + replyMsg.getStatus());
                     }
-                    UpdateAllNodesMeta();
+                    if(UpdateAllNodesMeta()){
+                        System.out.println("Update nodes successful");
+                        PropagateAllNodes();
+                    }
 //                    this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null);
 //                    replyMsg = (KVAdminMsg) clientComm.receiveMsg();
 //
