@@ -125,25 +125,11 @@ public class ECSClient implements IECSClient, Watcher {
 
             try {
                 List<String> attendance=zk.getChildren("/keeper", nodeWatch);
+
                 if(attendance.size()<activeServers.size()){
                     System.out.println("Unexpected server loss");
-                    for (int i = 0; i<activeServers.size();i++) {
-                        //System.out.println("See: "+activeServers.get(i).getNodeName());
-                        boolean found=false;
-                        for (int j = 0; j < attendance.size(); j++) {
-                            if (activeServers.get(i).getNodeName().equals(attendance.get(j))) {
-                                System.out.println("Found server to remove");
-                                //removingNode = activeServers.get(i);
-                                found=true;
+                    handleCrash();
 
-                            }
-                        }
-                        if(found==false) {
-                            activeServers.remove(i);
-                            calc_metadata(activeServers);
-                            UpdateAllNodesMeta();
-                        }
-                    }
 
                 }else if(attendance.size()==activeServers.size()){
                     System.out.println("Normal number of servers found");
@@ -155,7 +141,121 @@ public class ECSClient implements IECSClient, Watcher {
             }
         }
     };
+    public void handleCrash() throws Exception {
+        List<String> attendance=zk.getChildren("/keeper", false);
+        List<ECSNode> crashedServers=new ArrayList<ECSNode>();
+        //Get list of unexpectedly missing nodes
+        for (int i = 0; i<activeServers.size();i++) {
+            //System.out.println("See: "+activeServers.get(i).getNodeName());
+            boolean found=false;
+            for (int j = 0; j < attendance.size(); j++) {
+                if (activeServers.get(i).getNodeName().equals(attendance.get(j))) {
+                    System.out.println("Found server to remove");
+                    //removingNode = activeServers.get(i);
+                    found=true;
 
+                }
+            }
+            if(found==false) {
+                crashedServers.add(activeServers.get(i));
+                activeServers.remove(i);
+            }
+        }
+        //How many consecutive crashed servers ahead of a uncrashed server
+        int consecutiveCrashed=0;
+        //whether current node in hashlist has crashed
+        boolean crashed=false;
+        boolean start=false;//Start becomes true when an uncrashed server is found
+        int ringOffset=0;//the location of the first uncrashed server found
+        int ringIndex=0;//variable to track travel around hash ring starting at the first uncrashed server found
+
+        //Start going through hashlist
+        for (int i=0;i< hashList.size()+1;i++){
+            ringIndex=(i+ringOffset)%hashList.size();
+            crashed=false;
+            for(int j=0;j<crashedServers.size();j++){
+                if (hashList.get(ringIndex).equals(crashedServers.get(j).getNodeName())){
+                    consecutiveCrashed++;
+                    crashed=true;
+                    break;
+                }
+            }
+
+            //only occurs if current node is not crashed
+            if(!crashed) {
+                if(!start){
+                    //first uncrashed node is found, start the recovery
+                    start=true;
+                    ringOffset=i;//index of first uncrashed node
+                    i=0;//reset counter
+                    consecutiveCrashed=0;
+                    continue;
+                }
+                String addr;
+                int port;
+                //Find node info
+                for(int j=0;j<activeServers.size();j++){
+                    if (hashList.get(ringIndex).equals(activeServers.get(j).getNodeName())){
+                        //connect to server
+                        addr = activeServers.get(j).getNodeHost();
+                        port = activeServers.get(j).getNodePort();
+                        this.clientSocket = new Socket(addr, port);
+                        this.clientComm = new CommModule(this.clientSocket, null);
+
+                        //recover based on number of consecutive crashed nodes predecessing
+                        if (consecutiveCrashed == 1) {
+
+                            logger.debug("Recovering 1 consecutive crashed server.");
+                            this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_2");
+                            KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                            if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS){
+                                logger.error("Crashed data not recovered");
+                            }
+
+
+                        } else if (consecutiveCrashed == 2) {
+                            logger.debug("Recovering 2 consecutive crashed servers.");
+                            this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_2");
+                            KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                            if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS){
+                                logger.error("Crashed data 2 not recovered");
+                            }
+                            this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_1");
+                            replyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                            if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS) {
+                                logger.error("Crashed data 1 not recovered");
+                            }
+                        } else {
+                            logger.debug("Unrecoverable crash occurred, more than 2 consecutive servers on hash ring crashed.");
+                            logger.debug("Attempting to recover as much as possible.");
+                            this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_2");
+                            KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                            if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS){
+                                logger.error("Crashed data 2 not recovered");
+                            }
+                            this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_1");
+                            replyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                            if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS) {
+                                logger.error("Crashed data 1 not recovered");
+                            }
+
+                        }
+                        this.clientSocket = null;
+                        this.clientComm.closeConnection();
+                        consecutiveCrashed = 0;
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        calc_metadata(activeServers);
+        UpdateAllNodesMeta();
+        addNode("FIFO",10);
+
+
+    }
 
     public void run() throws Exception {
         while(!stop) {
@@ -769,13 +869,13 @@ public class ECSClient implements IECSClient, Watcher {
                 this.clientComm = new CommModule(this.clientSocket, null);
                 this.clientComm.sendAdminMsg(null, PROPAGATE_ADMIN, this.metadata, this.hashList,null);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
-                if (replyMsg.getStatus() != UPDATE_SUCCESS) {
-                    System.out.println(name + " metadata update failed");
+                if (replyMsg.getStatus() != PROPAGATE_SUCCESS) {
+                    System.out.println(name + " propagation failed");
                     successful=false;
                 }
             }catch(Exception e){
                 String name = activeServers.get(i).getNodeName();
-                System.out.println("Exception while updating metadata: "+name);
+                System.out.println("Exception while propagating: "+name);
                 successful=false;
             }
         }

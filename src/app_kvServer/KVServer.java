@@ -442,7 +442,7 @@ public class KVServer extends Thread implements IKVServer{
 	// Replication (Milestone 3)
 	// call on commModule from adminMsg StatusType PROPAGATE_ADMIN
 	public void propagateOnAdminMsg(){
-		propagateChanges(this.server.KVObject);
+		//propagateChanges(this.server.KVObject);
 	}
 
 	/**

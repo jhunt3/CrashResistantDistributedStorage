@@ -248,14 +248,13 @@ public class CommModule implements ICommModule, Runnable {
                         break;
 
 
-                    case PROPAGATE_ADMIN:
-                        this.server.propagateOnAdminMsg();
-                        out_status = PROPAGATE_SUCCESS;
 
-                        break;
 
                     default:
                         break;
+
+
+
 
                 }
             }
@@ -353,6 +352,15 @@ public class CommModule implements ICommModule, Runnable {
                         break;
                     }
                     outStatus = FLUSH_SUCCESS;
+
+                case PROPAGATE_ADMIN:
+                    this.server.propagateOnAdminMsg();
+                    outStatus = PROPAGATE_SUCCESS;
+
+                    break;
+                case MERGE_REPLICA:
+                    this.server.mergeReplica(adminMsg.getRange());
+                    outStatus=MERGE_REPLICA_SUCCESS;
                 default:
                     break;
             }
