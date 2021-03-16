@@ -67,7 +67,7 @@ public class CommModule implements ICommModule, Runnable {
                             System.out.println("received adminmsg");
                             KVAdminMsg in_msg = (KVAdminMsg) msg;
                             KVAdminMsg out_msg = adminServe(in_msg);
-                            sendAdminMsg(null, out_msg.getStatus(), null, null);
+                            sendAdminMsg(null, out_msg.getStatus(), null, null, null);
                         } catch (Exception e){
                             logger.info("Server found an exception when receiving/processing/sending message! " + e);
                             isOpen = false;
@@ -253,9 +253,9 @@ public class CommModule implements ICommModule, Runnable {
         }
     }
 
-    public void sendAdminMsg(String kvServer, StatusType status, List<HashMap<String,String>> metadata, String range) {
+    public void sendAdminMsg(String kvServer, StatusType status, List<HashMap<String,String>> metadata, List<String> hashList, String range) {
         // send admin msg to ECS or server
-        KVAdminMsg adminMsg = new KVAdminMsg(kvServer, status, metadata, range);
+        KVAdminMsg adminMsg = new KVAdminMsg(kvServer, status, metadata, hashList, range);
         try {
             this.output.writeObject(adminMsg);
             this.output.flush();
@@ -329,7 +329,7 @@ public class CommModule implements ICommModule, Runnable {
                         outStatus = UPDATE_FAILED;
                         break;
                     }
-                    this.server.update(adminMsg.getMetadata());
+                    this.server.update(adminMsg.getMetadata(), adminMsg.getHashList());
                     outStatus = UPDATE_SUCCESS;
                     break;
                 case FLUSH:
@@ -343,7 +343,7 @@ public class CommModule implements ICommModule, Runnable {
                 default:
                     break;
             }
-            return new KVAdminMsg(null, outStatus, null, null);
+            return new KVAdminMsg(null, outStatus, null, null, null);
         }
         return null;
     }

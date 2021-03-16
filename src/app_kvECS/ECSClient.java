@@ -44,6 +44,7 @@ public class ECSClient implements IECSClient, Watcher {
     private Socket clientSocket;
     private CommModule clientComm;
     private List<HashMap<String, String>> metadata = new ArrayList<HashMap<String,String>>();
+    private List<String> hashList = new ArrayList<String>();
     public ECSClient(String configfile) throws KeeperException, IOException{
         try {
             System.out.println("Config File Name:");
@@ -351,7 +352,7 @@ public class ECSClient implements IECSClient, Watcher {
             int port = activeServers.get(i).getNodePort();
             this.clientSocket = new Socket(host, port);
             this.clientComm = new CommModule(this.clientSocket, null);
-            this.clientComm.sendAdminMsg(null, START, null, null);
+            this.clientComm.sendAdminMsg(null, START, null, null, null);
             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
             if(replyMsg.getStatus()!=START_SUCCESS){
                 allsuccess=false;
@@ -371,7 +372,7 @@ public class ECSClient implements IECSClient, Watcher {
             int port = activeServers.get(i).getNodePort();
             this.clientSocket = new Socket(host, port);
             this.clientComm = new CommModule(this.clientSocket, null);
-            this.clientComm.sendAdminMsg(null, STOP, null, null);
+            this.clientComm.sendAdminMsg(null, STOP, null, null, null);
             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
             if(replyMsg.getStatus()!=STOP_SUCCESS){
                 allsuccess=false;
@@ -392,7 +393,7 @@ public class ECSClient implements IECSClient, Watcher {
                 System.out.println("Shutting down: " + name);
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
-                this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null);
+                this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null, null);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 this.clientSocket = null;
                 this.clientComm.closeConnection();
@@ -430,7 +431,7 @@ public class ECSClient implements IECSClient, Watcher {
             System.out.println("Shutting down: "+name);
             this.clientSocket = new Socket(host, port);
             this.clientComm = new CommModule(this.clientSocket, null);
-            this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null);
+            this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null, null);
             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
             if(replyMsg.getStatus()!=SHUTDOWN_SUCCESS){
                 //allsuccess=false;
@@ -515,7 +516,7 @@ public class ECSClient implements IECSClient, Watcher {
             this.clientComm = new CommModule(this.clientSocket, null);
 
             //Init node
-            this.clientComm.sendAdminMsg(null, INIT_SERVER, this.metadata, name);
+            this.clientComm.sendAdminMsg(null, INIT_SERVER, this.metadata, this.hashList, name);
             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
             if (replyMsg.getStatus() != INIT_SERVER_SUCCESS) {
                 System.out.println("Init server failed: " + name);
@@ -523,7 +524,7 @@ public class ECSClient implements IECSClient, Watcher {
 
 
             //Start node
-            this.clientComm.sendAdminMsg(null, START, null, null);
+            this.clientComm.sendAdminMsg(null, START, null, null, null);
             replyMsg = (KVAdminMsg) clientComm.receiveMsg();
             if (replyMsg.getStatus() != START_SUCCESS) {
                 System.out.println("Server start failed: " + name);
@@ -546,7 +547,7 @@ public class ECSClient implements IECSClient, Watcher {
                 //Getting the range of new node so successor will move data to it
                 String[] newNode = getNodeByKey(host + ":" + String.valueOf(port));
                 System.out.println(host + ":" + String.valueOf(port) + "  " + newNode[1]);
-                this.clientComm.sendAdminMsg(host + ":" + port, MOVE_DATA, null, newNode[1]);
+                this.clientComm.sendAdminMsg(host + ":" + port, MOVE_DATA, null, null, newNode[1]);
                 KVAdminMsg succreplyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (succreplyMsg.getStatus() == MOVE_DATA_SUCCESS) {
                     System.out.println("data moved");
@@ -659,7 +660,7 @@ public class ECSClient implements IECSClient, Watcher {
                 this.clientComm = new CommModule(this.clientSocket, null);
 
                 //Init node
-                this.clientComm.sendAdminMsg(null, INIT_SERVER, this.metadata, name);
+                this.clientComm.sendAdminMsg(null, INIT_SERVER, this.metadata, this.hashList, name);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (replyMsg.getStatus() != INIT_SERVER_SUCCESS) {
                     System.out.println("Init server failed: " + name);
@@ -667,7 +668,7 @@ public class ECSClient implements IECSClient, Watcher {
 
 
                 //Start node
-                this.clientComm.sendAdminMsg(null, START, null, null);
+                this.clientComm.sendAdminMsg(null, START, null, null, null);
                 replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (replyMsg.getStatus() != START_SUCCESS) {
                     System.out.println("Server start failed: " + name);
@@ -698,7 +699,7 @@ public class ECSClient implements IECSClient, Watcher {
                 //Getting the range of new node so successor will move data to it
                 String[] newNode=getNodeByKey(host+":"+String.valueOf(port));
                 System.out.println(succhost+":"+String.valueOf(succport)+"  "+newNode[1]);
-                this.clientComm.sendAdminMsg(host+":"+port, MOVE_DATA, null, newNode[1]);
+                this.clientComm.sendAdminMsg(host+":"+port, MOVE_DATA, null, null, newNode[1]);
                 KVAdminMsg succreplyMsg = null;
                 try {
                     succreplyMsg = (KVAdminMsg) clientComm.receiveMsg();
@@ -737,7 +738,7 @@ public class ECSClient implements IECSClient, Watcher {
                 System.out.println(host+":"+String.valueOf(port));
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
-                this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, null);
+                this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, this.hashList, null);
                 KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (replyMsg.getStatus() != UPDATE_SUCCESS) {
                     System.out.println(name + " metadata update failed");
@@ -798,7 +799,7 @@ public class ECSClient implements IECSClient, Watcher {
                         //update successor metadata
                         this.clientSocket = new Socket(succhost, succport);
                         this.clientComm = new CommModule(this.clientSocket, null);
-                        this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, null);
+                        this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, this.hashList, null);
                         KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                         System.out.println("Replied: " + replyMsg.getStatus());
                         this.clientSocket = null;
@@ -814,7 +815,7 @@ public class ECSClient implements IECSClient, Watcher {
                     KVAdminMsg replyMsg = null;
 
                     if(succ!=null) {
-                        this.clientComm.sendAdminMsg(succhost+":"+succport, MOVE_DATA, null, removeRange);
+                        this.clientComm.sendAdminMsg(succhost+":"+succport, MOVE_DATA, null, null, removeRange);
                         replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                         System.out.println("Replied: " + replyMsg.getStatus());
                     }
@@ -875,7 +876,7 @@ public class ECSClient implements IECSClient, Watcher {
                             //update successor metadata
                             this.clientSocket = new Socket(succhost, succport);
                             this.clientComm = new CommModule(this.clientSocket, null);
-                            this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, null);
+                            this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, this.hashList, null);
                             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                             System.out.println("Replied: " + replyMsg.getStatus());
                             this.clientSocket = null;
@@ -891,11 +892,11 @@ public class ECSClient implements IECSClient, Watcher {
                         KVAdminMsg replyMsg = null;
 
                         if(succ!=null) {
-                            this.clientComm.sendAdminMsg(activeServers.get(i).getNodeHost()+":"+String.valueOf(activeServers.get(i).getNodePort()), MOVE_DATA, null, succ[1]);
+                            this.clientComm.sendAdminMsg(activeServers.get(i).getNodeHost()+":"+String.valueOf(activeServers.get(i).getNodePort()), MOVE_DATA, null, null, succ[1]);
                             replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                             System.out.println("Replied: " + replyMsg.getStatus());
                         }
-                        this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null);
+                        this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null, null);
                         replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                         if(replyMsg.getStatus()!=SHUTDOWN_SUCCESS){
                             //allsuccess=false;
@@ -1002,7 +1003,14 @@ public class ECSClient implements IECSClient, Watcher {
         // 2. Sort list of hashes
         Collections.sort(serverHashList);
 
-        // 3. Now, build the write metadata by giving to each server the range between its position (inclusive) and
+        // 3. Build hashList: list of server identifiers (addr:port) sorted by server hash value - ascending order
+        this.hashList.clear();
+        for (int i=0; i<serverHashList.size(); i++) {
+            String addr_port = serverHashMap.get(serverHashList.get(i));
+            this.hashList.add(addr_port);
+        }
+
+        // 4. Now, build the write metadata by giving to each server the range between its position (inclusive) and
         // that of its predecessor (exclusive) in the sorted serverHashList. The read metadata is between the server
         // position (inclusive) and the position of the predecessor of the predecessor of its predecessor (exclusive)
         for (int i=0; i<serverHashList.size(); i++) {

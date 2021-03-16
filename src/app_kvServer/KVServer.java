@@ -226,7 +226,7 @@ public class KVServer extends Thread implements IKVServer{
 	@Override
 	public void update(List<HashMap<String, String>> metadata, List<String> hashList) {
 		this.metadata = metadata;
-		this.hashList = hashlist;
+		this.hashList = hashList;
 	}
 
 	private BigInteger getKeyHash(String key){
