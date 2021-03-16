@@ -38,6 +38,7 @@ public class ECSClient implements IECSClient, Watcher {
     private List<ECSNode> idleServers = new ArrayList<ECSNode>();
     public List<ECSNode> activeServers = new ArrayList<ECSNode>();
     private List<ECSNode> activatingServers = new ArrayList<ECSNode>();
+    private ECSNode removingNode = null;
     private CountDownLatch isConnected = new CountDownLatch(1);
     final ZooKeeper zk = new ZooKeeper("localhost:2181", 3000, this);
     private Socket clientSocket;
@@ -118,9 +119,35 @@ public class ECSClient implements IECSClient, Watcher {
         @Override
         public void process(WatchedEvent watchedEvent) {
             System.out.println("change in nodes");
-            System.out.println(watchedEvent.getState());
+            //System.out.println(watchedEvent.getState());
+
             try {
-                zk.getChildren("/keeper", nodeWatch);
+                List<String> attendance=zk.getChildren("/keeper", nodeWatch);
+                if(attendance.size()<activeServers.size()){
+                    System.out.println("Unexpected server loss");
+                    for (int i = 0; i<activeServers.size();i++) {
+                        //System.out.println("See: "+activeServers.get(i).getNodeName());
+                        boolean found=false;
+                        for (int j = 0; j < attendance.size(); j++) {
+                            if (activeServers.get(i).getNodeName().equals(attendance.get(j))) {
+                                System.out.println("Found server to remove");
+                                //removingNode = activeServers.get(i);
+                                found=true;
+
+                            }
+                        }
+                        if(found==false) {
+                            activeServers.remove(i);
+                            calc_metadata(activeServers);
+                            UpdateAllNodesMeta();
+                        }
+                    }
+
+                }else if(attendance.size()==activeServers.size()){
+                    System.out.println("Normal number of servers found");
+                }else{
+                    System.out.println("Too many servers found");
+                }
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -742,11 +769,13 @@ public class ECSClient implements IECSClient, Watcher {
     }
     public boolean removeNode(String name){
         List<ECSNode> thServers = new ArrayList<ECSNode>();
+
         thServers.addAll(activeServers);
         for (int i = 0; i<activeServers.size();i++){
             //System.out.println("See: "+activeServers.get(i).getNodeName());
             if (thServers.get(i).getNodeName().equals(name)){
                 System.out.println("Found server to remove");
+                removingNode = thServers.get(i);
                 thServers.remove(i);
                 String removeRange = getNodeByKey(activeServers.get(i).getNodeHost() + ":" + String.valueOf(activeServers.get(i).getNodePort()))[1];
                 //recalculate metadata
