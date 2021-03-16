@@ -31,10 +31,8 @@ public class KVServer extends Thread implements IKVServer{
 	private final int port;
 	private final int cacheSize;
 	private ServerSocket serverSocket;
-	private String hostname;
+	private final String hostname;
 
-	// Storage
-	private final String strategy;
 	private final KVStorage storage;
 
 	// Flags
@@ -45,13 +43,13 @@ public class KVServer extends Thread implements IKVServer{
 	// Additional
 	private List<HashMap<String, String>> metadata;
 	public List<Object> dataToFlush = new ArrayList<Object>(); // consists of key objects to be deleted
-	private ZooKeeper zk;
 	private String serverName;
-	private CountDownLatch isConnected = new CountDownLatch(1);
-	private Socket clientSocket;
-	private CommModule clientComm;
+	private final CountDownLatch isConnected = new CountDownLatch(1);
 	private KVStore store;
 
+	// Replication
+	private List<String> predecessors;
+	private List<String> successors;
 
 	/**
 	 * Start KV Server at given port
@@ -67,7 +65,7 @@ public class KVServer extends Thread implements IKVServer{
 		this.hostname = "127.0.0.1";
 		this.port = port;
 		this.cacheSize = cacheSize;
-		this.strategy = strategy;
+		// Storage
 
 		//String storageName = this.hostname + this.port;
 		this.serverName=name;
@@ -132,10 +130,9 @@ public class KVServer extends Thread implements IKVServer{
 		JSONObject kvObject = this.storage.getKVObject();
 		String host = sendTo.split(":")[0];
 		int port = Integer.parseInt(sendTo.split(":")[1]);
-		//KVStore store = new KVStore(host,port);
-		//store.connect();
-		this.clientSocket = new Socket(host, port);
-		this.clientComm = new CommModule(this.clientSocket, null);
+
+		Socket clientSocket = new Socket(host, port);
+		CommModule clientComm = new CommModule(clientSocket, null);
 		logger.debug("Host: "+host);
 		logger.debug("Port: "+String.valueOf(port));
 		logger.debug("Range: "+range);
@@ -170,7 +167,7 @@ public class KVServer extends Thread implements IKVServer{
 				logger.debug("KVPair: " + keyStr+":"+value);
 
 				try {
-					this.clientComm.sendMsg(PUT, keyStr, value, null);
+					clientComm.sendMsg(PUT, keyStr, value, null);
 					KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
 					if (replyMsg.getStatus() != PUT_SUCCESS) {
 						System.out.println("Move data failure");
@@ -187,9 +184,9 @@ public class KVServer extends Thread implements IKVServer{
 
 		this.flushData();
 		logger.debug("Finished flush data");
-		this.clientSocket = null;
+		clientSocket = null;
 		logger.debug("Closing conn");
-		this.clientComm.closeConnection();
+		clientComm.closeConnection();
 		logger.debug("Closed conn");
 		this.unLockWrite();
 
@@ -230,6 +227,7 @@ public class KVServer extends Thread implements IKVServer{
 	@Override
 	public void update(List<HashMap<String, String>> metadata) {
 		this.metadata = metadata;
+		this.updateLists();
 	}
 
 	private BigInteger getKeyHash(String key){
@@ -380,10 +378,10 @@ public class KVServer extends Thread implements IKVServer{
 
 		this.running = initializeServer();
 		try {
-			zk = new ZooKeeper("localhost:2181", 3000, new Watcher() {
+			ZooKeeper zk = new ZooKeeper("localhost:2181", 3000, new Watcher() {
 				@Override
 				public void process(WatchedEvent event) {
-					if (event.getState() == Watcher.Event.KeeperState.SyncConnected) {
+					if (event.getState() == Event.KeeperState.SyncConnected) {
 						isConnected.countDown();
 					}
 				}
@@ -441,6 +439,20 @@ public class KVServer extends Thread implements IKVServer{
 					"Unable to close socket on port: " + port, e);
 		}
 	}
+
+	// Replication (Milestone 3)
+	public void propagateChanges(JSONObject obj){
+
+	}
+
+	public void predecessorChanges(){
+
+	}
+
+	public void updateLists(){
+
+	}
+
 
 	/**
 	 * Main entry point for the KVServer application.

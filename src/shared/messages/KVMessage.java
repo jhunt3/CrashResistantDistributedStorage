@@ -49,7 +49,10 @@ public interface KVMessage {
 		UPDATE_FAILED,
 		FLUSH,
 		FLUSH_SUCCESS,
-		FLUSH_FAILED
+		FLUSH_FAILED,
+
+		// Additional Replication Commands
+		PROPAGATE,
 	}
 
 

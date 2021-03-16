@@ -13,6 +13,8 @@ public class KVMsg implements KVMessage, Serializable {
     private String key;
     private String value;
     private List<HashMap<String,String>> metadata = new ArrayList<HashMap<String,String>>();
+    public int port;
+    public String host;
 
     /**
      * @param status Request status
@@ -31,6 +33,15 @@ public class KVMsg implements KVMessage, Serializable {
         this.key = key;
         this.value = value;
         this.metadata = metadata;
+    }
+
+    // Constructor overloading for when it is necessary to send host and port info from the server to KVStore
+    public KVMsg(StatusType status, String key, String value, String host, int port) {
+        this.status = status;
+        this.key = key;
+        this.value = value;
+        this.host = host;
+        this.port = port;
     }
 
     /**

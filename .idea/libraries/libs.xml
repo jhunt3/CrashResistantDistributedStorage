@@ -1,0 +1,44 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/audience-annotations-0.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/zookeeper-prometheus-metrics-3.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/zookeeper-3.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/snappy-java-1.1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-transport-native-unix-common-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/simpleclient-0.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jetty-util-9.4.24.v20191120.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jetty-servlet-9.4.24.v20191120.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/simpleclient_common-0.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/slf4j-api-1.7.25.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-resolver-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/simpleclient_servlet-0.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jetty-http-9.4.24.v20191120.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/junit-4.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-buffer-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-codec-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-handler-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jetty-io-9.4.24.v20191120.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/json-simple-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-lang-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-common-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/commons-cli-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/zookeeper-jute-3.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jackson-core-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/simpleclient_hotspot-0.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/javax.servlet-api-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jline-2.14.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jackson-databind-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/metrics-core-3.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jetty-server-9.4.24.v20191120.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-transport-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jetty-security-9.4.24.v20191120.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/netty-transport-native-epoll-4.1.50.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jackson-annotations-2.10.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/slf4j-log4j12-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
