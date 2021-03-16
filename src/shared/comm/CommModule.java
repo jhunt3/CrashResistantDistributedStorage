@@ -84,7 +84,7 @@ public class CommModule implements ICommModule, Runnable {
                     }
 
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 try {
@@ -102,16 +102,15 @@ public class CommModule implements ICommModule, Runnable {
 
     /**
      * @return Message read in the objectInputStream
-     * @throws IOException
      */
     @Override
-    public KVMessage receiveMsg() throws IOException{
+    public KVMessage receiveMsg() throws IOException, Exception {
         KVMessage msg = null;
 
         try {
             msg = (KVMessage) this.input.readObject();
         } catch (Exception e) {
-            logger.error("No message.");
+            throw new Exception("No message received at Comm Module.");
         }
 
         if (msg != null){

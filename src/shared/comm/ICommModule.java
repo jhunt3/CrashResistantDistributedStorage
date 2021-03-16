@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ICommModule {
 
-    public KVMessage receiveMsg() throws IOException, ClassNotFoundException;
+    public KVMessage receiveMsg() throws IOException, ClassNotFoundException, Exception;
 
     public void sendMsg(KVMessage.StatusType status, String key, String value, List<HashMap<String,String>> metadata) throws IOException;
 

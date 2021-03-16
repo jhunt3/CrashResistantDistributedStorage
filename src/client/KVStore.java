@@ -73,7 +73,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public KVMsg put(String key, String value) throws Exception {
-		//System.out.println("Start PUT -> " + this.address + ":" + String.valueOf(this.port));
+		System.out.println("Start PUT -> " + this.address + ":" + String.valueOf(this.port));
 
 		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
@@ -84,23 +84,30 @@ public class KVStore extends Thread implements KVCommInterface {
 			try {
 				this.clientComm.sendMsg(PUT, key, value, null);
 				KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
-				// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
-				while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
-					//System.out.println("PUT Server not responsible - stale metadata");
-					this.metadata = replyMsg.getMetadata();
 
-					connectCorrServer(key, "put");
+				if (replyMsg != null) {
+					// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
+					while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
+						//System.out.println("PUT Server not responsible - stale metadata");
+						this.metadata = replyMsg.getMetadata();
 
-					this.clientComm.sendMsg(PUT, key, value, null);
-					replyMsg = (KVMsg) clientComm.receiveMsg();
+						connectCorrServer(key, "put");
+
+						this.clientComm.sendMsg(PUT, key, value, null);
+						replyMsg = (KVMsg) clientComm.receiveMsg();
+					}
+
+					System.out.println("End PUT -> " + this.address + ":" + String.valueOf(this.port));
+
+					return replyMsg;
+				} else {
+					System.out.println("Server did not reply to PUT! Trying to connect to a different server");
+					throw new Exception("Server did not reply! Trying to connect to a different server");
 				}
-
-				//System.out.println("End PUT -> " + this.address + ":" + String.valueOf(this.port));
-
-				return replyMsg;
-
-			} catch (IOException ioe) { // Server failed. Try connecting to another server in the metadata
-				this.connRandomServer();
+				
+			} catch (Exception e) { // Server failed. Try connecting to another server in the metadata
+				this.connRandomServer(this.address, this.port);
+				System.out.println("PUT to new server (Server had failed) -> " + this.address + ":" + String.valueOf(this.port));
 			}
 		}
 
@@ -116,7 +123,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public KVMsg get(String key) throws Exception {
-		//System.out.println("Start GET -> " + this.address + ":" + String.valueOf(this.port));
+		System.out.println("Start GET -> " + this.address + ":" + String.valueOf(this.port));
 
 		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
@@ -128,23 +135,29 @@ public class KVStore extends Thread implements KVCommInterface {
 				this.clientComm.sendMsg(GET, key, "", null);
 				KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
 
-				// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
-				while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
-					//System.out.println("GET Server not responsible - stale metadata");
-					this.metadata = replyMsg.getMetadata();
+				if (replyMsg != null) {
+					// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
+					while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
+						//System.out.println("GET Server not responsible - stale metadata");
+						this.metadata = replyMsg.getMetadata();
 
-					connectCorrServer(key, "get");
+						connectCorrServer(key, "get");
 
-					this.clientComm.sendMsg(GET, key, "", null);
-					replyMsg = (KVMsg) clientComm.receiveMsg();
+						this.clientComm.sendMsg(GET, key, "", null);
+						replyMsg = (KVMsg) clientComm.receiveMsg();
+					}
+
+					System.out.println("End GET -> " + this.address + ":" + String.valueOf(this.port));
+
+					return replyMsg;
+				} else {
+					System.out.println("Server did not reply to GET! Trying to connect to a different server");
+					throw new Exception("Server did not reply! Trying to connect to a different server");
 				}
 
-				//System.out.println("End GET -> " + this.address + ":" + String.valueOf(this.port));
-
-				return replyMsg;
-
-			} catch (IOException ioe) { // Server failed. Try connecting to another server in the metadata
-				this.connRandomServer();
+			} catch (Exception e) { // Server failed. Try connecting to another server in the metadata
+				this.connRandomServer(this.address, this.port);
+				System.out.println("GET to new server (Server had failed) -> " + this.address + ":" + String.valueOf(this.port));
 			}
 		}
 
@@ -223,7 +236,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	/**
 	 * Disconnect from the current server and try connecting to another server (random) listed in the local metadata
 	 */
-	private void connRandomServer() {
+	private void connRandomServer(String failed_addr, int failed_port) {
 		this.disconnect();
 
 		long timeout = 5000; // timeout = 5 s
@@ -233,17 +246,19 @@ public class KVStore extends Thread implements KVCommInterface {
 		while(System.currentTimeMillis() < f) {
 			HashMap<String, String> working_metadata = this.metadata.get(1);
 			Random r = new Random();
-			String[] server_info = (String[]) working_metadata.keySet().toArray();
+			String[] server_info = working_metadata.keySet().toArray(new String[working_metadata.size()]);
 			String random_addr_port = server_info[r.nextInt(server_info.length)];
 			String address = random_addr_port.split(":")[0];
 			int port = Integer.parseInt(random_addr_port.split(":")[1]);
 
-			this.address = address;
-			this.port = port;
-			try {
-				this.connect();
-			} catch (Exception e) {
-				continue;
+			if ((!address.equals(failed_addr)) || (port!=failed_port)) { // Dont try to reconnect to the failed server
+				this.address = address;
+				this.port = port;
+				try {
+					this.connect();
+				} catch (Exception e) {
+					continue;
+				}
 			}
 		}
 	}
