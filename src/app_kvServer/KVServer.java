@@ -466,6 +466,13 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	/**
+	 * MergeReplica merges the given replica_name.json to this server's storage
+	 */
+	public void mergeReplica(String replica_name){
+
+	}
+
+	/**
 	 * Main entry point for the KVServer application.
 	 * @param args contains the port number at args[0].
 	 */
