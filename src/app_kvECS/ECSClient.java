@@ -344,7 +344,7 @@ public class ECSClient implements IECSClient, Watcher {
 
     }
     @Override
-    public boolean start() throws IOException {
+    public boolean start() throws Exception {
         boolean allsuccess=true;
         for(int i=0;i<activeServers.size();i++) {
             String host=activeServers.get(i).getNodeHost();
@@ -363,7 +363,7 @@ public class ECSClient implements IECSClient, Watcher {
     }
 
     @Override
-    public boolean stop() throws IOException {
+    public boolean stop() throws Exception {
 
         boolean allsuccess=true;
         for(int i=0;i<activeServers.size();i++) {
@@ -382,7 +382,7 @@ public class ECSClient implements IECSClient, Watcher {
         return allsuccess;
     }
 
-    public boolean shutdown_server(String name) throws IOException {
+    public boolean shutdown_server(String name) throws Exception {
         //boolean allsuccess=true;
         for(int i=0;i<activeServers.size();i++) {
             if (activeServers.get(i).getNodeName().equals(name)) {
@@ -420,7 +420,7 @@ public class ECSClient implements IECSClient, Watcher {
     }
 
     @Override
-    public boolean shutdown() throws IOException {
+    public boolean shutdown() throws Exception {
         //boolean allsuccess=true;
         for(int i=0;i<activeServers.size();i++) {
 
@@ -556,6 +556,8 @@ public class ECSClient implements IECSClient, Watcher {
                 this.clientSocket = null;
                 this.clientComm.closeConnection();
             }catch (IOException e){
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -697,7 +699,12 @@ public class ECSClient implements IECSClient, Watcher {
                 String[] newNode=getNodeByKey(host+":"+String.valueOf(port));
                 System.out.println(succhost+":"+String.valueOf(succport)+"  "+newNode[1]);
                 this.clientComm.sendAdminMsg(host+":"+port, MOVE_DATA, null, newNode[1]);
-                KVAdminMsg succreplyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                KVAdminMsg succreplyMsg = null;
+                try {
+                    succreplyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 if (succreplyMsg.getStatus() == MOVE_DATA_SUCCESS) {
                     System.out.println("data moved");
                 }
