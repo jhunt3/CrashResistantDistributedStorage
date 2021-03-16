@@ -79,7 +79,7 @@ public class ECSClient implements IECSClient, Watcher {
         }
         //Look at zookeeper to intialize contructors
         try {
-            List<String> attendance = zk.getChildren("/keeper", false);
+            List<String> attendance = zk.getChildren("/keeper", nodeWatch);
             for (int i = 0; i< attendance.size();i++){
                 System.out.println("Found: "+attendance.get(i));
                 byte[] locData = zk.getData("/keeper/"+attendance.get(i),false, null);
@@ -109,11 +109,11 @@ public class ECSClient implements IECSClient, Watcher {
         if (event.getState() == Watcher.Event.KeeperState.SyncConnected) {
             isConnected.countDown();
         }
-        try {
-            zk.getChildren("/keeper", nodeWatch);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            zk.getChildren("/keeper", nodeWatch);
+//        }catch(Exception e) {
+//            e.printStackTrace();
+//        }
     }
     Watcher nodeWatch=new Watcher(){
         @Override
