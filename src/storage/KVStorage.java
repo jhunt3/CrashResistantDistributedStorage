@@ -18,10 +18,8 @@ public class KVStorage {
     private static final Logger logger = Logger.getRootLogger();
     private final String fileName;
     private final File storage;
-    private ICache cache;
 
     public KVStorage(String strategy, int cacheSize, String storageName){
-        cache = null;
         this.fileName = storageName + ".json";
         this.storage = new File(fileName);
         initializeStorage();

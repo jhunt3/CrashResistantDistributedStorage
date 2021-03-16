@@ -237,6 +237,9 @@ public class CommModule implements ICommModule, Runnable {
                         }
 
                         break;
+                    // case PROPAGATE:
+                    // 0. msg.hostPort -> host, port; msg.obj -> jsonObject
+                    // 1. this.server.predecessorChanges(hostPort, jsonObject)
 
                     default:
                         break;

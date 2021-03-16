@@ -42,7 +42,7 @@ public class KVMsg implements KVMessage, Serializable {
         this.status = status;
         this.key = key;
         this.value = value;
-        this.hostPort = hostPort; // "host:port"
+        this.hostPort = hostPort; // "host:port" -> of coordinator
         this.obj = obj; // updated key values
     }
 

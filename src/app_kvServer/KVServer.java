@@ -440,6 +440,11 @@ public class KVServer extends Thread implements IKVServer{
 	}
 
 	// Replication (Milestone 3)
+	// call on commModule from adminMsg StatusType PROPAGATE_ADMIN
+	public void propagateOnAdminMsg(){
+		propagateChanges(this.server.KVObject);
+	}
+
 	/**
 	 * Propagates changes to successor nodes (Invoked after add/remove node, and putKV)
 	 * 1. Set up two commModules that connect to its two successors based on hashList
@@ -448,6 +453,7 @@ public class KVServer extends Thread implements IKVServer{
 	 */
 	public void propagateChanges(JSONObject obj){
 	}
+
 
 	/**
 	 * Called on replica nodes; updates the appropriate replica.json given obj and predecessor's host:port
