@@ -73,11 +73,9 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public KVMsg put(String key, String value) throws Exception {
+		//System.out.println("Start PUT -> " + this.address + ":" + String.valueOf(this.port));
 
-		// 1. Connect to appropriate server based on key hash value
-		connectCorrServer(key, "put");
-
-		// 2. Forward request to server
+		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
 		long t = System.currentTimeMillis();
 		long f = t+timeout;
@@ -88,6 +86,7 @@ public class KVStore extends Thread implements KVCommInterface {
 				KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
 				// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
 				while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
+					//System.out.println("PUT Server not responsible - stale metadata");
 					this.metadata = replyMsg.getMetadata();
 
 					connectCorrServer(key, "put");
@@ -95,6 +94,8 @@ public class KVStore extends Thread implements KVCommInterface {
 					this.clientComm.sendMsg(PUT, key, value, null);
 					replyMsg = (KVMsg) clientComm.receiveMsg();
 				}
+
+				//System.out.println("End PUT -> " + this.address + ":" + String.valueOf(this.port));
 
 				return replyMsg;
 
@@ -115,11 +116,9 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public KVMsg get(String key) throws Exception {
+		//System.out.println("Start GET -> " + this.address + ":" + String.valueOf(this.port));
 
-		// 1. Connect to appropriate server based on key hash value
-		connectCorrServer(key, "get");
-
-		// 2. Forward request to server
+		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
 		long t = System.currentTimeMillis();
 		long f = t+timeout;
@@ -131,6 +130,7 @@ public class KVStore extends Thread implements KVCommInterface {
 
 				// If we get a SERVER_NOT_RESPONSIBLE reply, we need to update the metadata and retry
 				while (replyMsg.getStatus() == SERVER_NOT_RESPONSIBLE) {
+					//System.out.println("GET Server not responsible - stale metadata");
 					this.metadata = replyMsg.getMetadata();
 
 					connectCorrServer(key, "get");
@@ -138,6 +138,8 @@ public class KVStore extends Thread implements KVCommInterface {
 					this.clientComm.sendMsg(GET, key, "", null);
 					replyMsg = (KVMsg) clientComm.receiveMsg();
 				}
+
+				//System.out.println("End GET -> " + this.address + ":" + String.valueOf(this.port));
 
 				return replyMsg;
 
@@ -172,10 +174,15 @@ public class KVStore extends Thread implements KVCommInterface {
 		// Lookup hashmap to find the appropriate server
 		HashMap<String,String> working_metadata = null;
 		if (mode == "put") {
+			//System.out.println("PUT metadata");
 			working_metadata = this.metadata.get(1);
 		} else if (mode == "get") {
+			//System.out.println("GET metadata");
 			working_metadata = this.metadata.get(0);
 		}
+
+		//working_metadata.entrySet().forEach(entry->{System.out.println(entry.getKey() + " " + entry.getValue());});
+		//System.out.println("Key hash: " + key_hash.toString(16));
 		
 		for (HashMap.Entry<String,String> map : working_metadata.entrySet()) {
 

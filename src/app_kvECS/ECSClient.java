@@ -929,6 +929,7 @@ public class ECSClient implements IECSClient, Watcher {
     }
 
     private void calc_metadata(List<ECSNode> nodeList) {
+	//System.out.println("Updating metadata");
 
         HashMap<String, String> newReadMetadata = new HashMap<String,String>();
         HashMap<String, String> newWriteMetadata = new HashMap<String,String>();
