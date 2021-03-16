@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import ecs.IECSNode;
 import ecs.ECSNode;
 
@@ -562,7 +563,11 @@ public class ECSClient implements IECSClient, Watcher {
             }
         }
         activeServers.add(node);
-        UpdateAllNodesMeta();
+        if(UpdateAllNodesMeta()){
+                System.out.println("Update nodes successful");
+                PropagateAllNodes();
+        }
+
         inode = (IECSNode) node;
         return inode;
     }
@@ -751,7 +756,30 @@ public class ECSClient implements IECSClient, Watcher {
         }
         return successful;
     }
-
+    private boolean PropagateAllNodes(){
+        boolean successful=true;
+        for(int i=0;i<activeServers.size();i++){
+            try {
+                String host = activeServers.get(i).getNodeHost();
+                int port = activeServers.get(i).getNodePort();
+                String name = activeServers.get(i).getNodeName();
+                System.out.println(host+":"+String.valueOf(port));
+                this.clientSocket = new Socket(host, port);
+                this.clientComm = new CommModule(this.clientSocket, null);
+                this.clientComm.sendAdminMsg(null, PROPAGATE_ADMIN, this.metadata, null);
+                KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
+                if (replyMsg.getStatus() != UPDATE_SUCCESS) {
+                    System.out.println(name + " metadata update failed");
+                    successful=false;
+                }
+            }catch(Exception e){
+                String name = activeServers.get(i).getNodeName();
+                System.out.println("Exception while updating metadata: "+name);
+                successful=false;
+            }
+        }
+        return successful;
+    }
     @Override
     public Collection<IECSNode> setupNodes(int count, String cacheStrategy, int cacheSize) {
 
