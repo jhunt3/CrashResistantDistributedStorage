@@ -2,6 +2,7 @@ package shared.comm;
 
 import app_kvServer.KVServer;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
 import shared.messages.KVAdminMsg;
 import shared.messages.KVMessage;
 import shared.messages.KVMsg;
@@ -237,9 +238,21 @@ public class CommModule implements ICommModule, Runnable {
                         }
 
                         break;
-                    // case PROPAGATE:
-                    // 0. msg.hostPort -> host, port; msg.obj -> jsonObject
-                    // 1. this.server.predecessorChanges(hostPort, jsonObject)
+
+                    case PROPAGATE:
+                        String hostPort = msg.hostPort;
+                        JSONObject obj = msg.obj;
+                        this.server.predecessorChanges(hostPort, obj);
+                        out_status = PROPAGATE_SUCCESS;
+
+                        break;
+
+
+                    case PROPAGATE_ADMIN:
+                        this.server.propagateOnAdminMsg();
+                        out_status = PROPAGATE_SUCCESS;
+
+                        break;
 
                     default:
                         break;
