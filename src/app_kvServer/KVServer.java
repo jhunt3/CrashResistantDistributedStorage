@@ -449,7 +449,9 @@ public class KVServer extends Thread implements IKVServer{
 	 * 3. Capture response
 	 */
 	public void propagateChanges(JSONObject obj) throws Exception {
+		logger.debug("Getting successors");
 		List<String> successors = getSuccessors();
+		logger.debug("Got successors");
 		String successor1 = successors.get(0);
 		String successor2 = successors.get(1);
 
@@ -464,8 +466,8 @@ public class KVServer extends Thread implements IKVServer{
 
 		Socket socket2 = new Socket(host2, port2);
 		CommModule commMod2 = new CommModule(socket2, null);
-
-		if (obj != null){
+		logger.debug(obj);
+		if (obj != null && !obj.isEmpty()){
 			commMod1.sendPropagateMsg(PROPAGATE, null, obj);
 			commMod2.sendPropagateMsg(PROPAGATE, null, obj);
 			KVMsg replyMsg1 = (KVMsg) commMod1.receiveMsg();
@@ -513,7 +515,7 @@ public class KVServer extends Thread implements IKVServer{
 	public List<String> getSuccessors(){
 		String hostPort = this.hostname + ":" + this.port;
 		int currServerIndex = this.hashList.indexOf(hostPort);
-		return Arrays.asList(this.hashList.get(currServerIndex+1), this.hashList.get(currServerIndex+2));
+		return Arrays.asList(this.hashList.get((currServerIndex+1)%this.hashList.size()), this.hashList.get((currServerIndex+2)%this.hashList.size()));
 	}
 
 	public List<String> getPredecessors(){

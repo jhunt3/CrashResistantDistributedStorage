@@ -70,7 +70,7 @@ public class CommModule implements ICommModule, Runnable {
                             KVAdminMsg out_msg = adminServe(in_msg);
                             sendAdminMsg(null, out_msg.getStatus(), null, null, null);
                         } catch (Exception e){
-                            logger.info("Server found an exception when receiving/processing/sending message! " + e);
+                            logger.info("Server found an exception when receiving/processing/sending admin message! " + e);
                             isOpen = false;
                         }
                     } else {

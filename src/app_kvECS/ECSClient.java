@@ -152,7 +152,7 @@ public class ECSClient implements IECSClient, Watcher {
             boolean found=false;
             for (int j = 0; j < attendance.size(); j++) {
                 if (activeServers.get(i).getNodeName().equals(attendance.get(j))) {
-                    System.out.println("Found server to remove");
+                    //System.out.println("Found crashed server to remove");
                     //removingNode = activeServers.get(i);
                     found=true;
                     break;
@@ -160,6 +160,7 @@ public class ECSClient implements IECSClient, Watcher {
                 }
             }
             if(found==false) {
+                System.out.println("Found crashed server to remove: "+activeServers.get(i).getNodeName());
                 crashedServers.add(activeServers.get(i));
                 activeServers.remove(i);
             }
@@ -173,7 +174,7 @@ public class ECSClient implements IECSClient, Watcher {
         int ringIndex=0;//variable to track travel around hash ring starting at the first uncrashed server found
 
         //Start going through hashlist
-        for (int i=0;i< hashList.size()+1;i++){
+        for (int i=0;i< hashList.size();i++){
             ringIndex=(i+ringOffset)%hashList.size();
             crashed=false;
             for(int j=0;j<crashedServers.size();j++){
@@ -186,15 +187,16 @@ public class ECSClient implements IECSClient, Watcher {
 
             //only occurs if current node is not crashed
             if(!crashed) {
-                if (consecutiveCrashed==0){
-                    continue;
-                }
+
                 if(!start){
                     //first uncrashed node is found, start the recovery
                     start=true;
                     ringOffset=i;//index of first uncrashed node
                     i=0;//reset counter
                     consecutiveCrashed=0;
+                    continue;
+                }
+                if (consecutiveCrashed==0){
                     continue;
                 }
                 String addr;
