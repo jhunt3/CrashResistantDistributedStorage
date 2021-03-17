@@ -623,7 +623,7 @@ public class ECSClient implements IECSClient, Watcher {
         calc_metadata(thServers);
 
         try {
-            System.out.println(host+":"+String.valueOf(port));
+            logger.debug(host+":"+String.valueOf(port));
             this.clientSocket = new Socket(host, port);
             this.clientComm = new CommModule(this.clientSocket, null);
 
@@ -658,7 +658,7 @@ public class ECSClient implements IECSClient, Watcher {
 
                 //Getting the range of new node so successor will move data to it
                 String[] newNode = getNodeByKey(host + ":" + String.valueOf(port));
-                System.out.println(host + ":" + String.valueOf(port) + "  " + newNode[1]);
+                logger.debug(host + ":" + String.valueOf(port) + "  " + newNode[1]);
                 this.clientComm.sendAdminMsg(host + ":" + port, MOVE_DATA, null, null, newNode[1]);
                 KVAdminMsg succreplyMsg = (KVAdminMsg) clientComm.receiveMsg();
                 if (succreplyMsg.getStatus() == MOVE_DATA_SUCCESS) {
@@ -768,7 +768,7 @@ public class ECSClient implements IECSClient, Watcher {
             calc_metadata(thServers);
 
             try {
-                System.out.println(host+":"+String.valueOf(port));
+                logger.debug(host+":"+String.valueOf(port));
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
 
@@ -848,7 +848,7 @@ public class ECSClient implements IECSClient, Watcher {
                 String host = activeServers.get(i).getNodeHost();
                 int port = activeServers.get(i).getNodePort();
                 String name = activeServers.get(i).getNodeName();
-                System.out.println(host+":"+String.valueOf(port));
+                logger.debug(host+":"+String.valueOf(port));
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
                 this.clientComm.sendAdminMsg(null, UPDATE, this.metadata, this.hashList, null);
@@ -873,7 +873,7 @@ public class ECSClient implements IECSClient, Watcher {
                 String host = activeServers.get(i).getNodeHost();
                 int port = activeServers.get(i).getNodePort();
                 String name = activeServers.get(i).getNodeName();
-                System.out.println(host+":"+String.valueOf(port));
+                logger.debug(host+":"+String.valueOf(port));
                 this.clientSocket = new Socket(host, port);
                 this.clientComm = new CommModule(this.clientSocket, null);
                 this.clientComm.sendAdminMsg(null, PROPAGATE_ADMIN, this.metadata, this.hashList,null);
