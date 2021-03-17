@@ -155,6 +155,7 @@ public class ECSClient implements IECSClient, Watcher {
                     System.out.println("Found server to remove");
                     //removingNode = activeServers.get(i);
                     found=true;
+                    break;
 
                 }
             }
@@ -185,6 +186,9 @@ public class ECSClient implements IECSClient, Watcher {
 
             //only occurs if current node is not crashed
             if(!crashed) {
+                if (consecutiveCrashed==0){
+                    continue;
+                }
                 if(!start){
                     //first uncrashed node is found, start the recovery
                     start=true;
