@@ -1192,7 +1192,12 @@ public class ECSClient implements IECSClient, Watcher {
         }
 
         this.metadata = Arrays.asList(newReadMetadata, newWriteMetadata);
-        
+
+	System.out.println("New write metadata:");
+	this.metadata.get(1).entrySet().forEach(entry->{System.out.println(entry.getKey() + " " + entry.getValue());});
+	System.out.println("New sorted server list:");
+        System.out.println(this.hashList);
+
     }
 
     private BigInteger computeHash(String val) {
