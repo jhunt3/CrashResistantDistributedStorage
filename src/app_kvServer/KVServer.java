@@ -462,8 +462,8 @@ public class KVServer extends Thread implements IKVServer{
 		int port1 = Integer.parseInt(successor1.split(":")[1]);
 
 		String host2 = successor2.split(":")[0];
-		int port2 = Integer.parseInt(successor1.split(":")[1]);
-
+		int port2 = Integer.parseInt(successor2.split(":")[1]);
+		logger.debug("Propagating to: "+successor1+" "+successor2);
 		Socket socket1 = new Socket(host1, port1);
 		CommModule commMod1 = new CommModule(socket1, null);
 
@@ -471,8 +471,8 @@ public class KVServer extends Thread implements IKVServer{
 		CommModule commMod2 = new CommModule(socket2, null);
 		logger.debug(obj);
 		if (obj != null && !obj.isEmpty()){
-			commMod1.sendPropagateMsg(PROPAGATE, null, obj);
-			commMod2.sendPropagateMsg(PROPAGATE, null, obj);
+			commMod1.sendPropagateMsg(PROPAGATE, this.hostname+":"+String.valueOf(this.port), obj);
+			commMod2.sendPropagateMsg(PROPAGATE, this.hostname+":"+String.valueOf(this.port), obj);
 			KVMsg replyMsg1 = (KVMsg) commMod1.receiveMsg();
 			KVMsg replyMsg2 = (KVMsg) commMod2.receiveMsg();
 			if (replyMsg1.getStatus() != PROPAGATE_SUCCESS) {
@@ -494,8 +494,12 @@ public class KVServer extends Thread implements IKVServer{
 	public void predecessorChanges(String predecessorHostPort, JSONObject obj) throws Exception {
 		logger.debug("Getting Predecessors");
 		List<String> predecessors = getPredecessors();
+		logger.debug("Predecessors:");
+		logger.debug(predecessors);
+		logger.debug("Looking for "+predecessorHostPort);
 		int index = predecessors.indexOf(predecessorHostPort);
 		String replicaName;
+		logger.debug("Index of predecessor: "+String.valueOf(index));
 		if (index == 0){
 			replicaName = "replica_1";
 		} else {
@@ -525,6 +529,8 @@ public class KVServer extends Thread implements IKVServer{
 
 	public List<String> getPredecessors(){
 		String hostPort = this.hostname + ":" + this.port;
+		logger.debug("Looking for "+hostPort);
+		logger.debug(this.hashList);
 		int currServerIndex = this.hashList.indexOf(hostPort);
 
 		int listLength = hashList.size();
@@ -532,10 +538,10 @@ public class KVServer extends Thread implements IKVServer{
 		int replica2Index = currServerIndex - 1;
 
 		if (replica1Index < 0){
-			replica1Index = (listLength - 1) + replica1Index;
+			replica1Index = (listLength) + replica1Index;
 		}
 		if (replica2Index < 0){
-			replica2Index = (listLength - 1) + replica2Index;
+			replica2Index = (listLength) + replica2Index;
 		}
 
 		return Arrays.asList(this.hashList.get(replica1Index), this.hashList.get(replica2Index));
