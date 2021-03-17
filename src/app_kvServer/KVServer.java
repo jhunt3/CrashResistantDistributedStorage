@@ -329,6 +329,9 @@ public class KVServer extends Thread implements IKVServer{
 	@Override
 	public void putKV(String key, String value) throws Exception{
 		storage.put(key, value);
+		JSONObject obj = new JSONObject();
+		obj.put(key, value);
+		propagateChanges(obj);
 	}
 
 	private boolean isRunning() {
