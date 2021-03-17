@@ -80,8 +80,9 @@ public class KVServer extends Thread implements IKVServer{
 //	}
 
 	@Override
-	public void initKVServer(List<HashMap<String, String>> metadata, String name){
+	public void initKVServer(List<HashMap<String, String>> metadata, List<String> hashList,String name){
 		this.metadata = metadata;
+		this.hashList=hashList;
 	}
 
 	@Override

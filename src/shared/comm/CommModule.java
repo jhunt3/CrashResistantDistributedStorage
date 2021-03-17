@@ -310,7 +310,7 @@ public class CommModule implements ICommModule, Runnable {
                         outStatus = INIT_SERVER_FAILED;
                         break;
                     }
-                    this.server.initKVServer(adminMsg.getMetadata(), adminMsg.getRange());
+                    this.server.initKVServer(adminMsg.getMetadata(), adminMsg.getHashList(), adminMsg.getRange());
                     outStatus = INIT_SERVER_SUCCESS;
                     break;
                 case START:

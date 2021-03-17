@@ -19,7 +19,7 @@ public interface IKVServer {
      * i.e., all client requests are rejected with an SERVER_STOPPED error message; ECS requests have to be processed.
      * @param metadata Updated metadata provided by ECS
      */
-    public void initKVServer(List<HashMap<String, String>> metadata, String serverName);
+    public void initKVServer(List<HashMap<String, String>> metadata, List<String> hashList, String serverName);
 
     /**
      * Starts the KVServer, all client requests and all ECS requests are processed.

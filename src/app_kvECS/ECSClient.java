@@ -174,11 +174,15 @@ public class ECSClient implements IECSClient, Watcher {
         int ringIndex=0;//variable to track travel around hash ring starting at the first uncrashed server found
 
         //Start going through hashlist
-        for (int i=0;i< hashList.size();i++){
+        for (int i=0;i< hashList.size()+1;i++){
             ringIndex=(i+ringOffset)%hashList.size();
             crashed=false;
+            logger.error("Looking at: "+hashList.get(ringIndex));
             for(int j=0;j<crashedServers.size();j++){
-                if (hashList.get(ringIndex).equals(crashedServers.get(j).getNodeName())){
+                String addrport=crashedServers.get(j).getNodeHost()+":"+String.valueOf(crashedServers.get(j).getNodePort());
+                logger.error("Compare to: "+addrport);
+                if (hashList.get(ringIndex).equals(addrport)){
+                    logger.error("crashed");
                     consecutiveCrashed++;
                     crashed=true;
                     break;
@@ -187,8 +191,9 @@ public class ECSClient implements IECSClient, Watcher {
 
             //only occurs if current node is not crashed
             if(!crashed) {
-
+                logger.error("Not crashed");
                 if(!start){
+                    logger.error("Found first uncrashed server");
                     //first uncrashed node is found, start the recovery
                     start=true;
                     ringOffset=i;//index of first uncrashed node
@@ -202,8 +207,9 @@ public class ECSClient implements IECSClient, Watcher {
                 String addr;
                 int port;
                 //Find node info
+                logger.error("Entering recovery stage");
                 for(int j=0;j<activeServers.size();j++){
-                    if (hashList.get(ringIndex).equals(activeServers.get(j).getNodeName())){
+                    if (hashList.get(ringIndex).equals(activeServers.get(j).getNodeHost()+":"+String.valueOf(activeServers.get(j).getNodePort()))){
                         //connect to server
                         addr = activeServers.get(j).getNodeHost();
                         port = activeServers.get(j).getNodePort();
@@ -213,7 +219,7 @@ public class ECSClient implements IECSClient, Watcher {
                         //recover based on number of consecutive crashed nodes predecessing
                         if (consecutiveCrashed == 1) {
 
-                            logger.debug("Recovering 1 consecutive crashed server.");
+                            logger.error("Recovering 1 consecutive crashed server.");
                             this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_2");
                             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                             if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS){
@@ -222,7 +228,7 @@ public class ECSClient implements IECSClient, Watcher {
 
 
                         } else if (consecutiveCrashed == 2) {
-                            logger.debug("Recovering 2 consecutive crashed servers.");
+                            logger.error("Recovering 2 consecutive crashed servers.");
                             this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_2");
                             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                             if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS){
@@ -234,8 +240,8 @@ public class ECSClient implements IECSClient, Watcher {
                                 logger.error("Crashed data 1 not recovered");
                             }
                         } else {
-                            logger.debug("Unrecoverable crash occurred, more than 2 consecutive servers on hash ring crashed.");
-                            logger.debug("Attempting to recover as much as possible.");
+                            logger.error("Unrecoverable crash occurred, more than 2 consecutive servers on hash ring crashed.");
+                            logger.error("Attempting to recover as much as possible.");
                             this.clientComm.sendAdminMsg(null, MERGE_REPLICA, null, null, "replica_2");
                             KVAdminMsg replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                             if(replyMsg.getStatus()!=MERGE_REPLICA_SUCCESS){
@@ -260,9 +266,9 @@ public class ECSClient implements IECSClient, Watcher {
 
         calc_metadata(activeServers);
         UpdateAllNodesMeta();
-        for(int i=0;i<crashedServers.size();i++) {
-            addNode("FIFO", 10);
-        }
+//        for(int i=0;i<crashedServers.size();i++) {
+//            addNode("FIFO", 10);
+//        }
         zk.getChildren("/keeper", nodeWatch);
 
 
@@ -652,7 +658,7 @@ public class ECSClient implements IECSClient, Watcher {
             try {
                 String succhost = succ[0].split(":")[0];
                 int succport = Integer.parseInt(succ[0].split(":")[1]);
-
+                UpdateAllNodesMeta();
                 this.clientSocket = new Socket(succhost, succport);
                 this.clientComm = new CommModule(this.clientSocket, null);
 
@@ -1229,7 +1235,7 @@ public class ECSClient implements IECSClient, Watcher {
             e.printStackTrace();
         }
         try {
-            new LogSetup("logs/ecs.log", Level.INFO);
+            new LogSetup("logs/ecs.log", Level.ERROR);
             if(args.length != 1) {
                 System.out.println("Error! Invalid number of arguments!");
                 System.out.println("Usage: ECSClient <ecs.config>!");
