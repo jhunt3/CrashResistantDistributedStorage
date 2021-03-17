@@ -68,7 +68,7 @@ public class KVStorage {
     }
 
     public synchronized void initializeStorage(){
-        if (!storageExists()){
+        if (!storageExists() || !replica_1.exists() || !replica_2.exists()){
             logger.info("Creating Storage Files");
             createStorageFile();
         }
