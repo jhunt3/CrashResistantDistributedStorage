@@ -17,14 +17,10 @@ import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
-import static shared.messages.KVMessage.StatusType.PUT;
-import static shared.messages.KVMessage.StatusType.PUT_SUCCESS;
+import static shared.messages.KVMessage.StatusType.*;
 
 public class KVServer extends Thread implements IKVServer{
 	private static final Logger logger = Logger.getRootLogger();
@@ -227,6 +223,7 @@ public class KVServer extends Thread implements IKVServer{
 	public void update(List<HashMap<String, String>> metadata, List<String> hashList) {
 		this.metadata = metadata;
 		this.hashList = hashList;
+		this.flushReplicas();
 	}
 
 	private BigInteger getKeyHash(String key){
@@ -441,8 +438,8 @@ public class KVServer extends Thread implements IKVServer{
 
 	// Replication (Milestone 3)
 	// call on commModule from adminMsg StatusType PROPAGATE_ADMIN
-	public void propagateOnAdminMsg(){
-		//propagateChanges(this.server.KVObject);
+	public void propagateOnAdminMsg() throws Exception {
+		this.propagateChanges(this.storage.getKVObject());
 	}
 
 	/**
@@ -451,7 +448,35 @@ public class KVServer extends Thread implements IKVServer{
 	 * 2. Send KVMsg to the nodes with PROPAGATE StatusType and key(s)/value(s) to update
 	 * 3. Capture response
 	 */
-	public void propagateChanges(JSONObject obj){
+	public void propagateChanges(JSONObject obj) throws Exception {
+		List<String> successors = getSuccessors();
+		String successor1 = successors.get(0);
+		String successor2 = successors.get(1);
+
+		String host1 = successor1.split(":")[0];
+		int port1 = Integer.parseInt(successor1.split(":")[1]);
+
+		String host2 = successor2.split(":")[0];
+		int port2 = Integer.parseInt(successor1.split(":")[1]);
+
+		Socket socket1 = new Socket(host1, port1);
+		CommModule commMod1 = new CommModule(socket1, null);
+
+		Socket socket2 = new Socket(host2, port2);
+		CommModule commMod2 = new CommModule(socket2, null);
+
+		if (obj != null){
+			commMod1.sendPropagateMsg(PROPAGATE, null, obj);
+			commMod2.sendPropagateMsg(PROPAGATE, null, obj);
+			KVMsg replyMsg1 = (KVMsg) commMod1.receiveMsg();
+			KVMsg replyMsg2 = (KVMsg) commMod2.receiveMsg();
+			if (replyMsg1.getStatus() != PROPAGATE_SUCCESS) {
+				System.out.println("Propagation to first successor of" + this.serverName + "failed.");
+			}
+			if (replyMsg2.getStatus() != PROPAGATE_SUCCESS){
+				System.out.println("Propagation to second successor of" + this.serverName + "failed.");
+			}
+		}
 	}
 
 
@@ -461,15 +486,55 @@ public class KVServer extends Thread implements IKVServer{
 	 * 2. Loop through obj to insert key(s)/val(s) or delete key/val from replica_n.json
 	 * 3. Capture response
 	 */
-	public void predecessorChanges(String predecessorHostPort, JSONObject obj){
+	public void predecessorChanges(String predecessorHostPort, JSONObject obj) throws Exception {
+		List<String> predecessors = getPredecessors();
+		int index = predecessors.indexOf(predecessorHostPort);
+		String replicaName;
+		if (index == 0){
+			replicaName = "replica_1";
+		} else {
+			replicaName = "replica_2";
+		}
 
+		for (Object key : obj.keySet()){
+			String keyStr = key.toString();
+			String valStr = obj.get(key).toString();
+			this.storage.replicaPutKV(keyStr, valStr, replicaName);
+		}
 	}
 
 	/**
 	 * MergeReplica merges the given replica_name.json to this server's storage
 	 */
-	public void mergeReplica(String replica_name){
+	public void mergeReplica(String replica_name) throws Exception {
+		this.storage.mergeReplica(replica_name);
+	}
 
+	public List<String> getSuccessors(){
+		String hostPort = this.hostname + ":" + this.port;
+		int currServerIndex = this.hashList.indexOf(hostPort);
+		return Arrays.asList(this.hashList.get(currServerIndex+1), this.hashList.get(currServerIndex+2));
+	}
+
+	public List<String> getPredecessors(){
+		String hostPort = this.hostname + ":" + this.port;
+		int currServerIndex = this.hashList.indexOf(hostPort);
+
+		int listLength = hashList.size();
+		int replica1Index = currServerIndex - 2;
+		int replica2Index = currServerIndex - 1;
+
+		if (replica1Index < 0){
+			replica1Index = (listLength - 1) - replica1Index;
+		}
+		if (replica2Index < 0){
+			replica2Index = (listLength - 1) - replica2Index;
+		}
+
+		return Arrays.asList(this.hashList.get(replica1Index), this.hashList.get(replica2Index));
+	}
+	public void flushReplicas(){
+		this.storage.flushReplicas();
 	}
 
 	/**
@@ -480,7 +545,7 @@ public class KVServer extends Thread implements IKVServer{
 
 		try {
 			new LogSetup("logs/server.log", Level.ALL);
-			if(args.length != 4) {
+			if (args.length != 4) {
 				System.out.println("Error! Invalid number of arguments!");
 				System.out.println("Usage: Server <port>!");
 			} else {
@@ -488,7 +553,7 @@ public class KVServer extends Thread implements IKVServer{
 				int cacheSize = Integer.parseInt(args[1]);
 				String strategy = args[2];
 				String name = args[3];
-				KVServer kvServer = new KVServer(port, cacheSize, strategy,name);
+				KVServer kvServer = new KVServer(port, cacheSize, strategy, name);
 				kvServer.setStop();
 				kvServer.start(); // begin thread
 			}
