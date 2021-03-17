@@ -54,7 +54,10 @@ public interface KVMessage {
 		// Additional Replication Commands
 		PROPAGATE, // Call by coordinator servers to replication servers
 		PROPAGATE_SUCCESS,
-		PROPAGATE_ADMIN // Sent by ECS after update is called and acknowledged by all nodes
+		PROPAGATE_ADMIN, // Sent by ECS after update is called and acknowledged by all nodes
+
+		MERGE_REPLICA,
+		MERGE_REPLICA_SUCCESS
 	}
 
 
