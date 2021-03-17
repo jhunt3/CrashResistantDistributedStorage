@@ -106,8 +106,9 @@ public class KVStore extends Thread implements KVCommInterface {
 				}
 				
 			} catch (Exception e) { // Server failed. Try connecting to another server in the metadata
+				System.out.println("Server " + this.address + ":" + String.valueOf(this.port) + " did not reply to PUT! Trying to connect to new server");
 				this.connRandomServer(this.address, this.port);
-				System.out.println("PUT to new server (Server had failed) -> " + this.address + ":" + String.valueOf(this.port));
+				System.out.println("PUT to new server -> " + this.address + ":" + String.valueOf(this.port));
 			}
 		}
 
@@ -156,8 +157,9 @@ public class KVStore extends Thread implements KVCommInterface {
 				}
 
 			} catch (Exception e) { // Server failed. Try connecting to another server in the metadata
+				System.out.println("Server " + this.address + ":" + String.valueOf(this.port) + " did not reply to GET! Trying to connect to new server");
 				this.connRandomServer(this.address, this.port);
-				System.out.println("GET to new server (Server had failed) -> " + this.address + ":" + String.valueOf(this.port));
+				System.out.println("GET to new server -> " + this.address + ":" + String.valueOf(this.port));
 			}
 		}
 
@@ -243,19 +245,22 @@ public class KVStore extends Thread implements KVCommInterface {
 		long t = System.currentTimeMillis();
 		long f = t+timeout;
 
+		HashMap<String, String> working_metadata = this.metadata.get(1);
+		String[] server_info = working_metadata.keySet().toArray(new String[working_metadata.size()]);
+
+		int server_idx = 0;
 		while(System.currentTimeMillis() < f) {
-			HashMap<String, String> working_metadata = this.metadata.get(1);
-			Random r = new Random();
-			String[] server_info = working_metadata.keySet().toArray(new String[working_metadata.size()]);
-			String random_addr_port = server_info[r.nextInt(server_info.length)];
-			String address = random_addr_port.split(":")[0];
-			int port = Integer.parseInt(random_addr_port.split(":")[1]);
+			String server_addr_port = server_info[server_idx];
+			server_idx = (server_idx+1)%server_info.length;
+			String address = server_addr_port.split(":")[0];
+			int port = Integer.parseInt(server_addr_port.split(":")[1]);
 
 			if ((!address.equals(failed_addr)) || (port!=failed_port)) { // Dont try to reconnect to the failed server
 				this.address = address;
 				this.port = port;
 				try {
 					this.connect();
+					return;
 				} catch (Exception e) {
 					continue;
 				}

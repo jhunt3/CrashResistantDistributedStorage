@@ -122,7 +122,7 @@ public class CommModule implements ICommModule, Runnable {
                 } else {
                     logger.info("Message received by client ->" + " Status: " + kvMsg.getStatus() + " Key: " + kvMsg.getKey() + " Value: " + kvMsg.getValue());
                 }
-            }else {
+            } else {
                 KVAdminMsg kvAdminMsg = (KVAdminMsg) msg;
                 if (this.server != null){
                     logger.info("Message received by server ->" + " Status: " + kvAdminMsg.getStatus());
@@ -258,14 +258,8 @@ public class CommModule implements ICommModule, Runnable {
 
                         break;
 
-
-
-
                     default:
                         break;
-
-
-
 
                 }
             }
