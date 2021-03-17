@@ -489,6 +489,7 @@ public class KVServer extends Thread implements IKVServer{
 	 * 3. Capture response
 	 */
 	public void predecessorChanges(String predecessorHostPort, JSONObject obj) throws Exception {
+		logger.debug("Getting Predecessors");
 		List<String> predecessors = getPredecessors();
 		int index = predecessors.indexOf(predecessorHostPort);
 		String replicaName;
@@ -497,6 +498,7 @@ public class KVServer extends Thread implements IKVServer{
 		} else {
 			replicaName = "replica_2";
 		}
+		logger.debug("Server Stuff");
 
 		for (Object key : obj.keySet()){
 			String keyStr = key.toString();
@@ -527,10 +529,10 @@ public class KVServer extends Thread implements IKVServer{
 		int replica2Index = currServerIndex - 1;
 
 		if (replica1Index < 0){
-			replica1Index = (listLength - 1) - replica1Index;
+			replica1Index = (listLength - 1) + replica1Index;
 		}
 		if (replica2Index < 0){
-			replica2Index = (listLength - 1) - replica2Index;
+			replica2Index = (listLength - 1) + replica2Index;
 		}
 
 		return Arrays.asList(this.hashList.get(replica1Index), this.hashList.get(replica2Index));

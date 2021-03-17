@@ -118,7 +118,11 @@ public class CommModule implements ICommModule, Runnable {
             if (!msg.isAdminMessage()){
                 KVMsg kvMsg = (KVMsg) msg;
                 if (this.server != null) {
-                    logger.info("Message received by server ->" + " Status: " + kvMsg.getStatus() + " Key: " + kvMsg.getKey() + " Value: " + kvMsg.getValue());
+                    if(kvMsg.getStatus()==PROPAGATE){
+                        logger.info("Message received by server ->" + " Status: " + kvMsg.getStatus());
+                    }else {
+                        logger.info("Message received by server ->" + " Status: " + kvMsg.getStatus() + " Key: " + kvMsg.getKey() + " Value: " + kvMsg.getValue());
+                    }
                 } else {
                     logger.info("Message received by client ->" + " Status: " + kvMsg.getStatus() + " Key: " + kvMsg.getKey() + " Value: " + kvMsg.getValue());
                 }
@@ -176,16 +180,21 @@ public class CommModule implements ICommModule, Runnable {
 
         if (msg != null) {
 	    logger.debug("In serve");
-
+            String key=null;
+            String value=null;
+            int key_len=-1;
+            int val_len=-1;
             KVMessage.StatusType status = msg.getStatus();
-            String key = msg.getKey();
-            String value = msg.getValue();
-
+            if(status!=PROPAGATE) {
+                key = msg.getKey();
+                value = msg.getValue();
+                key_len = key.getBytes(StandardCharsets.UTF_8).length;
+                val_len = key.getBytes(StandardCharsets.UTF_8).length;
+            }
             KVMessage.StatusType out_status = null;
             String out_value = null;
 
-            int key_len = key.getBytes(StandardCharsets.UTF_8).length;
-            int val_len = key.getBytes(StandardCharsets.UTF_8).length;
+
 
 	    logger.debug("Checking if stopped or write locked");
 
@@ -251,8 +260,10 @@ public class CommModule implements ICommModule, Runnable {
                         break;
 
                     case PROPAGATE:
+                        logger.debug("Case propagate");
                         String hostPort = msg.hostPort;
                         JSONObject obj = msg.obj;
+                        logger.debug("Passing to server");
                         this.server.predecessorChanges(hostPort, obj);
                         out_status = PROPAGATE_SUCCESS;
 
