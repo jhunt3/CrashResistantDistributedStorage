@@ -120,7 +120,7 @@ public class ECSClient implements IECSClient, Watcher {
     Watcher nodeWatch=new Watcher(){
         @Override
         public void process(WatchedEvent watchedEvent) {
-            System.out.println("change in nodes");
+            logger.debug("change in nodes");
             //System.out.println(watchedEvent.getState());
 
             try {
@@ -132,10 +132,10 @@ public class ECSClient implements IECSClient, Watcher {
 
 
                 }else if(attendance.size()==activeServers.size()){
-                    System.out.println("Normal number of servers found");
+                    logger.debug("Normal number of servers found");
                     zk.getChildren("/keeper", nodeWatch);
                 }else{
-                    System.out.println("Too many servers found");
+                    logger.debug("Too many servers found");
                     zk.getChildren("/keeper", nodeWatch);
                 }
             }catch(Exception e){
