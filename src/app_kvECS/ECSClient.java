@@ -664,10 +664,7 @@ public class ECSClient implements IECSClient, Watcher {
             }
         }
         activeServers.add(node);
-        if(UpdateAllNodesMeta()){
-                System.out.println("Update nodes successful");
-                PropagateAllNodes();
-        }
+        UpdateAllNodesMeta();
 
         inode = (IECSNode) node;
         return inode;
@@ -855,6 +852,7 @@ public class ECSClient implements IECSClient, Watcher {
                 successful=false;
             }
         }
+        PropagateAllNodes();
         return successful;
     }
     private boolean PropagateAllNodes(){
@@ -947,10 +945,7 @@ public class ECSClient implements IECSClient, Watcher {
                         replyMsg = (KVAdminMsg) clientComm.receiveMsg();
                         System.out.println("Replied: " + replyMsg.getStatus());
                     }
-                    if(UpdateAllNodesMeta()){
-                        System.out.println("Update nodes successful");
-                        PropagateAllNodes();
-                    }
+                    UpdateAllNodesMeta();
 //                    this.clientComm.sendAdminMsg(null, SHUTDOWN, null, null);
 //                    replyMsg = (KVAdminMsg) clientComm.receiveMsg();
 //
