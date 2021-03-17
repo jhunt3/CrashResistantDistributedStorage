@@ -38,10 +38,8 @@ public class KVMsg implements KVMessage, Serializable {
     }
 
     // Constructor overloading for when it is necessary to send host and port info from the server to KVStore
-    public KVMsg(StatusType status, String key, String value, String hostPort, JSONObject obj) {
+    public KVMsg(StatusType status, String hostPort, JSONObject obj) {
         this.status = status;
-        this.key = key;
-        this.value = value;
         this.hostPort = hostPort; // "host:port" -> of coordinator
         this.obj = obj; // updated key values
     }

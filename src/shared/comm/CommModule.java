@@ -153,6 +153,17 @@ public class CommModule implements ICommModule, Runnable {
         }
     }
 
+    public void sendPropagateMsg(StatusType status, String hostPort, JSONObject obj) throws IOException {
+        KVMsg msg = new KVMsg(status, hostPort, obj);
+        this.output.writeObject(msg);
+        this.output.flush();
+        if (this.server != null) {
+            logger.info("Message sent by server ->" + " Status: " + msg.getStatus());
+        } else {
+            logger.info("Message sent by client ->" + " Status: " + msg.getStatus());
+        }
+    }
+
     /**
      * Send input message to the Server for processing (calls the appropriate server methods),
      * and build reply message.

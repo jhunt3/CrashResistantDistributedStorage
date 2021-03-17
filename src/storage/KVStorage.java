@@ -264,5 +264,29 @@ public class KVStorage {
         }
         return new JSONObject();
     }
+
+    public synchronized void mergeReplica(String replicaName) throws Exception {
+        JSONObject replicaObject = this.getReplicaObject(replicaName);
+        for (Object key : replicaObject.keySet()){
+            String keyStr = key.toString();
+            String valStr = replicaObject.get(key).toString();
+            this.put(keyStr, valStr);
+        }
+    }
+
+    public synchronized void flushReplicas(){
+        try (FileWriter file = new FileWriter(fileNameReplica_1)) {
+            file.write("{}");
+            file.flush();
+        } catch (IOException e) {
+            logger.error("Unable to clear database");
+        }
+        try (FileWriter file = new FileWriter(fileNameReplica_2)) {
+            file.write("{}");
+            file.flush();
+        } catch (IOException e) {
+            logger.error("Unable to clear database");
+        }
+    }
 }
 
