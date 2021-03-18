@@ -56,8 +56,8 @@ public class KVServer extends Thread implements IKVServer{
 	 *           currently not contained in the cache. Options are "FIFO", "LRU",
 	 *           and "LFU".
 	 */
-	public KVServer(int port, int cacheSize, String strategy, String name) {
-		this.hostname = "127.0.0.1";
+	public KVServer(int port, int cacheSize, String strategy, String name, String hostName) {
+		this.hostname = hostName;
 		this.port = port;
 		this.cacheSize = cacheSize;
 		// Storage
@@ -381,6 +381,8 @@ public class KVServer extends Thread implements IKVServer{
 			ZooKeeper zk = new ZooKeeper("localhost:2181", 3000, new Watcher() {
 				@Override
 				public void process(WatchedEvent event) {
+					logger.debug("ZK event: ");
+					logger.debug(event);
 					if (event.getState() == Event.KeeperState.SyncConnected) {
 						isConnected.countDown();
 					}
@@ -510,8 +512,13 @@ public class KVServer extends Thread implements IKVServer{
 
 		for (Object key : obj.keySet()){
 			String keyStr = key.toString();
-			String valStr = obj.get(key).toString();
-			this.storage.replicaPutKV(keyStr, valStr, replicaName);
+			if (obj.get(key)!=null) {
+				String valStr = obj.get(key).toString();
+				this.storage.replicaPutKV(keyStr, valStr, replicaName);
+			}else{
+				this.storage.replicaPutKV(keyStr, null, replicaName);
+			}
+
 		}
 	}
 
@@ -568,7 +575,8 @@ public class KVServer extends Thread implements IKVServer{
 				int cacheSize = Integer.parseInt(args[1]);
 				String strategy = args[2];
 				String name = args[3];
-				KVServer kvServer = new KVServer(port, cacheSize, strategy, name);
+				String host = args[4];
+				KVServer kvServer = new KVServer(port, cacheSize, strategy, name, host);
 				kvServer.setStop();
 				kvServer.start(); // begin thread
 			}

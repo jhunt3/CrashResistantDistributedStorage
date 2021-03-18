@@ -81,7 +81,7 @@ public class ECSClient implements IECSClient, Watcher {
         }
         //Look at zookeeper to intialize contructors
         try {
-            List<String> attendance = zk.getChildren("/keeper", nodeWatch);
+            List<String> attendance = zk.getChildren("/keeper", false);
             for (int i = 0; i< attendance.size();i++){
                 System.out.println("Found: "+attendance.get(i));
                 byte[] locData = zk.getData("/keeper/"+attendance.get(i),false, null);
@@ -100,6 +100,7 @@ public class ECSClient implements IECSClient, Watcher {
 
             }
             calc_metadata(activeServers);
+            zk.getChildren("/keeper", nodeWatch);
         }catch (InterruptedException e){
             e.printStackTrace();
         }
@@ -266,9 +267,9 @@ public class ECSClient implements IECSClient, Watcher {
 
         calc_metadata(activeServers);
         UpdateAllNodesMeta();
-//        for(int i=0;i<crashedServers.size();i++) {
-//            addNode("FIFO", 10);
-//        }
+        for(int i=0;i<crashedServers.size();i++) {
+            addNode("FIFO", 10);
+        }
         zk.getChildren("/keeper", nodeWatch);
 
 
@@ -589,7 +590,7 @@ public class ECSClient implements IECSClient, Watcher {
         String scriptPath = System.getProperty("user.dir")+"/src/app_kvECS/startnode.sh";
         String serverPath = System.getProperty("user.dir")+"/m3-server.jar";
 
-        String[] cmd = {"sh", scriptPath, node.getNodeHost(),serverPath,String.valueOf(node.getNodePort()),name};
+        String[] cmd = {"sh", scriptPath, node.getNodeHost(),serverPath,String.valueOf(node.getNodePort()),name,host};
         for (int j = 0; j<6;j++) {
             System.out.println(cmd[j]);
         }

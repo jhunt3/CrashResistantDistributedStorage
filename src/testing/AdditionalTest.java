@@ -487,7 +487,7 @@ public class AdditionalTest extends TestCase {
 		System.out.println(response);
 		activeServers=ecsClient.activeServers.size();
 		assertEquals(0,activeServers);
-	}
+	}*/
 	@Test
 	public void testStorageIntegrityOnAdd() throws Exception {
 		String response;
@@ -561,7 +561,7 @@ public class AdditionalTest extends TestCase {
 		ecsClient.handleCommand("shutDown");
 
 	}
-
+/*
 	public void testMoveData() throws Exception {
 		String response;
 
