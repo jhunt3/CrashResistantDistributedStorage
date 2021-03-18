@@ -638,6 +638,7 @@ public class AdditionalTest extends TestCase {
 	}*/
 
 	// Milestone 3
+
 	@Test
 	public void testMetadata() throws Exception {
 
@@ -650,10 +651,10 @@ public class AdditionalTest extends TestCase {
 		readMetadataGolden.put("127.0.0.1:50003", "b3638a32c297f43aa37e63bbd839fc7f:a98109598267087dfc364fae4cf24578");
 
 		HashMap<String, String> writeMetadataGolden = new HashMap<String, String>();
-		readMetadataGolden.put("127.0.0.1:50000", "dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2");
-		readMetadataGolden.put("127.0.0.1:50001", "b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709");
-		readMetadataGolden.put("127.0.0.1:50002", "a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e");
-		readMetadataGolden.put("127.0.0.1:50003", "358343938402ebb5110716c6e836f5a3:a98109598267087dfc364fae4cf24578");
+		writeMetadataGolden.put("127.0.0.1:50000", "dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2");
+		writeMetadataGolden.put("127.0.0.1:50001", "b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709");
+		writeMetadataGolden.put("127.0.0.1:50002", "a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e");
+		writeMetadataGolden.put("127.0.0.1:50003", "358343938402ebb5110716c6e836f5a3:a98109598267087dfc364fae4cf24578");
 
 		String response;
 
@@ -690,11 +691,13 @@ public class AdditionalTest extends TestCase {
 			}
 		}
 
-		response = ecsClient.handleCommand("shutDown");
-		int activeServers = ecsClient.activeServers.size();
+		response = ecsClient_metadata.handleCommand("shutDown");
+		int activeServers = ecsClient_metadata.activeServers.size();
 
 		assertEquals(0, activeServers);
 		assertTrue(success);
+
+		ecsClient_metadata.handleCommand("quit");
 	}
 
 	@Test
@@ -704,9 +707,9 @@ public class AdditionalTest extends TestCase {
 
 		List<String> hashListGolden = new ArrayList<String>();
 		hashListGolden.add("127.0.0.1:50000");
-		hashListGolden.add("127.0.0.1:50001");
-		hashListGolden.add("127.0.0.1:50002");
 		hashListGolden.add("127.0.0.1:50003");
+		hashListGolden.add("127.0.0.1:50002");
+		hashListGolden.add("127.0.0.1:50001");
 
 		String response;
 
@@ -729,12 +732,15 @@ public class AdditionalTest extends TestCase {
 				success = false;
 			}
 
-			response = ecsClient.handleCommand("shutDown");
-			int activeServers = ecsClient.activeServers.size();
-
-			assertEquals(0, activeServers);
-			assertTrue(success);
 		}
+
+		response = ecsClient_metadata.handleCommand("shutDown");
+		int activeServers = ecsClient_metadata.activeServers.size();
+
+		assertEquals(0, activeServers);
+		assertTrue(success);
+
+		ecsClient_metadata.handleCommand("quit");
 
 	}
 }
