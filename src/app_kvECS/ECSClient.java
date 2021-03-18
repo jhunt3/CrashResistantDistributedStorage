@@ -44,8 +44,8 @@ public class ECSClient implements IECSClient, Watcher {
     final ZooKeeper zk = new ZooKeeper("localhost:2181", 3000, this);
     private Socket clientSocket;
     private CommModule clientComm;
-    private List<HashMap<String, String>> metadata = new ArrayList<HashMap<String,String>>();
-    private List<String> hashList = new ArrayList<String>();
+    public List<HashMap<String, String>> metadata = new ArrayList<HashMap<String,String>>();
+    public List<String> hashList = new ArrayList<String>();
     public ECSClient(String configfile) throws KeeperException, IOException{
         try {
             System.out.println("Config File Name:");
@@ -1199,9 +1199,9 @@ public class ECSClient implements IECSClient, Watcher {
 
         this.metadata = Arrays.asList(newReadMetadata, newWriteMetadata);
 
-	System.out.println("New write metadata:");
-	this.metadata.get(1).entrySet().forEach(entry->{System.out.println(entry.getKey() + " " + entry.getValue());});
-	System.out.println("New sorted server list:");
+	    System.out.println("New write metadata:");
+	    this.metadata.get(1).entrySet().forEach(entry->{System.out.println(entry.getKey() + " " + entry.getValue());});
+	    System.out.println("New sorted server list:");
         System.out.println(this.hashList);
 
     }

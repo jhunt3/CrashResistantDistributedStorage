@@ -14,7 +14,11 @@ import shared.messages.KVMsg;
 import storage.KVStorage;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,7 +31,8 @@ public class AdditionalTest extends TestCase {
 
 	private int port = 50000; // as set in AllTests
 	private int port2 = 8008;
-	public void setUp() throws Exception{
+
+	public void setUp() throws Exception {
 		ecsClient = new ECSClient("ecs.config");
 		kvClient = new KVClient();
 //		try {
@@ -43,7 +48,6 @@ public class AdditionalTest extends TestCase {
 
 	/**
 	 * Check if store initialization works gracefully; if file exists, do nothing, if not, create a file
-	 *
 	 */
 //	@Test
 //	public void testStorageInit(){
@@ -280,9 +284,9 @@ public class AdditionalTest extends TestCase {
 //	}
 
 
-//Milestone 2
+	//Milestone 2
 
-	@Test
+	/*@Test
 	public void testShutDown() throws Exception {
 		String response;
 
@@ -631,5 +635,106 @@ public class AdditionalTest extends TestCase {
 
 	public void testWriteLock(){
 		assertTrue(true);
+	}*/
+
+	// Milestone 3
+	@Test
+	public void testMetadata() throws Exception {
+
+		ECSClient ecsClient_metadata = new ECSClient("ecs_metadata.config");
+
+		HashMap<String, String> readMetadataGolden = new HashMap<String, String>();
+		readMetadataGolden.put("127.0.0.1:50000", "a98109598267087dfc364fae4cf24579:358343938402ebb5110716c6e836f5a2");
+		readMetadataGolden.put("127.0.0.1:50001", "358343938402ebb5110716c6e836f5a3:dcee0277eb13b76434e8dcd31a387709");
+		readMetadataGolden.put("127.0.0.1:50002", "dcee0277eb13b76434e8dcd31a38770a:b3638a32c297f43aa37e63bbd839fc7e");
+		readMetadataGolden.put("127.0.0.1:50003", "b3638a32c297f43aa37e63bbd839fc7f:a98109598267087dfc364fae4cf24578");
+
+		HashMap<String, String> writeMetadataGolden = new HashMap<String, String>();
+		readMetadataGolden.put("127.0.0.1:50000", "dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2");
+		readMetadataGolden.put("127.0.0.1:50001", "b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709");
+		readMetadataGolden.put("127.0.0.1:50002", "a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e");
+		readMetadataGolden.put("127.0.0.1:50003", "358343938402ebb5110716c6e836f5a3:a98109598267087dfc364fae4cf24578");
+
+		String response;
+
+		// Add the 4 nodes from ecs_metadata.config
+		response = ecsClient_metadata.handleCommand("addNodes 4");
+		System.out.println(response);
+
+		HashMap<String, String> readMetadata;
+		HashMap<String, String> writeMetadata;
+		List<HashMap<String, String>> metadata = ecsClient_metadata.metadata;
+
+		// Get ECS metadata
+		readMetadata = metadata.get(0);
+		writeMetadata = metadata.get(1);
+
+		boolean success = true;
+		String range;
+		String goldenRange;
+
+		// Compare ECS metadata with golden reference
+		for (String mkey : readMetadata.keySet()) {
+			range = readMetadata.get(mkey);
+			goldenRange = readMetadataGolden.get(mkey);
+			if (!goldenRange.equals(range)) {
+				success = false;
+			}
+		}
+
+		for (String mkey : writeMetadata.keySet()) {
+			range = writeMetadata.get(mkey);
+			goldenRange = writeMetadataGolden.get(mkey);
+			if (!goldenRange.equals(range)) {
+				success = false;
+			}
+		}
+
+		response = ecsClient.handleCommand("shutDown");
+		int activeServers = ecsClient.activeServers.size();
+
+		assertEquals(0, activeServers);
+		assertTrue(success);
+	}
+
+	@Test
+	public void testHashList() throws Exception {
+
+		ECSClient ecsClient_metadata = new ECSClient("ecs_metadata.config");
+
+		List<String> hashListGolden = new ArrayList<String>();
+		hashListGolden.add("127.0.0.1:50000");
+		hashListGolden.add("127.0.0.1:50001");
+		hashListGolden.add("127.0.0.1:50002");
+		hashListGolden.add("127.0.0.1:50003");
+
+		String response;
+
+		// Add the 4 nodes from ecs_metadata.config
+		response = ecsClient_metadata.handleCommand("addNodes 4");
+		System.out.println(response);
+
+		// Get ECS hashList
+		List<String> hashList = ecsClient_metadata.hashList;
+
+		boolean success = true;
+		String server;
+		String goldenServer;
+
+		// Compare ECS hashList with golden reference
+		for (int i = 0; i < hashList.size(); i++) {
+			server = hashList.get(i);
+			goldenServer = hashListGolden.get(i);
+			if (!goldenServer.equals(server)) {
+				success = false;
+			}
+
+			response = ecsClient.handleCommand("shutDown");
+			int activeServers = ecsClient.activeServers.size();
+
+			assertEquals(0, activeServers);
+			assertTrue(success);
+		}
+
 	}
 }
