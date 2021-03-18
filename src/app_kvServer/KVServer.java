@@ -536,14 +536,15 @@ public class KVServer extends Thread implements IKVServer{
 
 		int listLength = hashList.size();
 		int replica1Index = currServerIndex - 2;
+		replica1Index=(((replica1Index%listLength)+listLength)%listLength);
 		int replica2Index = currServerIndex - 1;
-
-		if (replica1Index < 0){
-			replica1Index = (listLength) + replica1Index;
-		}
-		if (replica2Index < 0){
-			replica2Index = (listLength) + replica2Index;
-		}
+		replica2Index = (((replica2Index%listLength)+listLength)%listLength);
+//		if (replica1Index < 0){
+//			replica1Index = (listLength) + replica1Index;
+//		}
+//		if (replica2Index < 0){
+//			replica2Index = (listLength) + replica2Index;
+//		}
 
 		return Arrays.asList(this.hashList.get(replica1Index), this.hashList.get(replica2Index));
 	}
