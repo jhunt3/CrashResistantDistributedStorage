@@ -567,7 +567,7 @@ public class KVServer extends Thread implements IKVServer{
 
 		try {
 			new LogSetup("logs/server.log", Level.ALL);
-			if (args.length != 4) {
+			if (args.length != 5) {
 				System.out.println("Error! Invalid number of arguments!");
 				System.out.println("Usage: Server <port>!");
 			} else {
