@@ -1,0 +1,426 @@
+2021-03-19 10:17:15,291 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.base/java.net.SocketOutputStream.write(SocketOutputStream.java:150)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1883)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1828)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:722)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:743)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testStorageIntegrityOnAdd(AdditionalTest.java:508)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:83)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
+2021-03-19 10:17:36,684 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.base/java.net.SocketOutputStream.write(SocketOutputStream.java:150)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1883)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1828)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:722)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:743)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testStorageIntegrityOnRemove(AdditionalTest.java:547)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:83)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:157)
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)
+	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:220)
+	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:53)
+2021-03-19 10:20:44,901 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.ensureOpenAndConnected(NioSocketImpl.java:165)
+	at java.base/sun.nio.ch.NioSocketImpl.beginWrite(NioSocketImpl.java:366)
+	at java.base/sun.nio.ch.NioSocketImpl.implWrite(NioSocketImpl.java:411)
+	at java.base/sun.nio.ch.NioSocketImpl.write(NioSocketImpl.java:440)
+	at java.base/sun.nio.ch.NioSocketImpl$2.write(NioSocketImpl.java:826)
+	at java.base/java.net.Socket$SocketOutputStream.write(Socket.java:1051)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1893)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1838)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:726)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:747)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testStorageIntegrityOnAdd(AdditionalTest.java:511)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1618)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:1040)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:2163)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:854)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:99)
+	at org.apache.tools.ant.Task.perform(Task.java:350)
+	at org.apache.tools.ant.Target.execute(Target.java:449)
+	at org.apache.tools.ant.Target.performTasks(Target.java:470)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1401)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1374)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1264)
+	at org.apache.tools.ant.Main.runBuild(Main.java:827)
+	at org.apache.tools.ant.Main.startAnt(Main.java:223)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
+2021-03-19 10:21:10,339 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50004
+2021-03-19 10:21:10,339 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50004
+2021-03-19 10:21:10,339 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:10,340 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50004
+2021-03-19 10:21:10,340 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50004
+2021-03-19 10:21:10,340 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:11,105 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.ensureOpenAndConnected(NioSocketImpl.java:165)
+	at java.base/sun.nio.ch.NioSocketImpl.beginWrite(NioSocketImpl.java:366)
+	at java.base/sun.nio.ch.NioSocketImpl.implWrite(NioSocketImpl.java:411)
+	at java.base/sun.nio.ch.NioSocketImpl.write(NioSocketImpl.java:440)
+	at java.base/sun.nio.ch.NioSocketImpl$2.write(NioSocketImpl.java:826)
+	at java.base/java.net.Socket$SocketOutputStream.write(Socket.java:1051)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1893)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1838)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:726)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:747)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testStorageIntegrityOnRemove(AdditionalTest.java:550)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1618)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:1040)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:2163)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:854)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:99)
+	at org.apache.tools.ant.Task.perform(Task.java:350)
+	at org.apache.tools.ant.Target.execute(Target.java:449)
+	at org.apache.tools.ant.Target.performTasks(Target.java:470)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1401)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1374)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1264)
+	at org.apache.tools.ant.Main.runBuild(Main.java:827)
+	at org.apache.tools.ant.Main.startAnt(Main.java:223)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50049
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50049
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50049
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50049
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:18,362 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50118
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50118
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50014
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50118
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50118
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50118
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50014
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50118
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:21:18,363 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-19 10:21:36,339 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50083
+2021-03-19 10:21:36,340 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50083
+2021-03-19 10:21:36,340 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:36,340 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50083
+2021-03-19 10:21:36,340 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50083
+2021-03-19 10:21:36,340 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:48,336 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50105
+2021-03-19 10:21:48,336 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50105
+2021-03-19 10:21:48,336 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:48,336 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50114
+2021-03-19 10:21:48,336 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50105
+2021-03-19 10:21:48,336 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50105
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50105
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: crashed
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50114
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50105
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:21:48,337 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-19 10:21:48,340 ERROR [main-EventThread] root: Recovering 1 consecutive crashed server.
+2021-03-19 10:22:04,894 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.ensureOpenAndConnected(NioSocketImpl.java:165)
+	at java.base/sun.nio.ch.NioSocketImpl.beginWrite(NioSocketImpl.java:366)
+	at java.base/sun.nio.ch.NioSocketImpl.implWrite(NioSocketImpl.java:411)
+	at java.base/sun.nio.ch.NioSocketImpl.write(NioSocketImpl.java:440)
+	at java.base/sun.nio.ch.NioSocketImpl$2.write(NioSocketImpl.java:826)
+	at java.base/java.net.Socket$SocketOutputStream.write(Socket.java:1051)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1893)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1838)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:726)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:747)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testStorageIntegrityOnAdd(AdditionalTest.java:511)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1618)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:1040)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:2163)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:854)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:99)
+	at org.apache.tools.ant.Task.perform(Task.java:350)
+	at org.apache.tools.ant.Target.execute(Target.java:449)
+	at org.apache.tools.ant.Target.performTasks(Target.java:470)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1401)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1374)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1264)
+	at org.apache.tools.ant.Main.runBuild(Main.java:827)
+	at org.apache.tools.ant.Main.startAnt(Main.java:223)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
+2021-03-19 10:22:30,340 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50110
+2021-03-19 10:22:30,340 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50110
+2021-03-19 10:22:30,340 ERROR [main-EventThread] root: crashed
+2021-03-19 10:22:30,340 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50110
+2021-03-19 10:22:30,340 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50110
+2021-03-19 10:22:30,340 ERROR [main-EventThread] root: crashed
+2021-03-19 10:22:31,046 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.ensureOpenAndConnected(NioSocketImpl.java:165)
+	at java.base/sun.nio.ch.NioSocketImpl.beginWrite(NioSocketImpl.java:366)
+	at java.base/sun.nio.ch.NioSocketImpl.implWrite(NioSocketImpl.java:411)
+	at java.base/sun.nio.ch.NioSocketImpl.write(NioSocketImpl.java:440)
+	at java.base/sun.nio.ch.NioSocketImpl$2.write(NioSocketImpl.java:826)
+	at java.base/java.net.Socket$SocketOutputStream.write(Socket.java:1051)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1893)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1838)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:726)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:747)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testStorageIntegrityOnRemove(AdditionalTest.java:550)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1618)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:1040)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:2163)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:854)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:99)
+	at org.apache.tools.ant.Task.perform(Task.java:350)
+	at org.apache.tools.ant.Target.execute(Target.java:449)
+	at org.apache.tools.ant.Target.performTasks(Target.java:470)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1401)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1374)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1264)
+	at org.apache.tools.ant.Main.runBuild(Main.java:827)
+	at org.apache.tools.ant.Main.startAnt(Main.java:223)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
+2021-03-19 10:22:56,346 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50121
+2021-03-19 10:22:56,346 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50121
+2021-03-19 10:22:56,346 ERROR [main-EventThread] root: crashed
+2021-03-19 10:22:56,346 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50121
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50121
+2021-03-19 10:22:56,346 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50049
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: crashed
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50049
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: crashed
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50122
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50049
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50049
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50049
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: crashed
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50122
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50049
+2021-03-19 10:22:56,347 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:22:56,348 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-19 10:22:57,091 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/sun.nio.ch.NioSocketImpl.ensureOpenAndConnected(NioSocketImpl.java:165)
+	at java.base/sun.nio.ch.NioSocketImpl.beginWrite(NioSocketImpl.java:366)
+	at java.base/sun.nio.ch.NioSocketImpl.implWrite(NioSocketImpl.java:411)
+	at java.base/sun.nio.ch.NioSocketImpl.write(NioSocketImpl.java:440)
+	at java.base/sun.nio.ch.NioSocketImpl$2.write(NioSocketImpl.java:826)
+	at java.base/java.net.Socket$SocketOutputStream.write(Socket.java:1051)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1893)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1838)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:726)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:747)
+	at shared.comm.CommModule.closeConnection(CommModule.java:403)
+	at client.KVStore.disconnect(KVStore.java:83)
+	at client.KVStore.connRandomServer(KVStore.java:267)
+	at client.KVStore.put(KVStore.java:132)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at testing.AdditionalTest.testMoveData(AdditionalTest.java:592)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at junit.framework.TestCase.runTest(TestCase.java:168)
+	at junit.framework.TestCase.runBare(TestCase.java:134)
+	at junit.framework.TestResult$1.protect(TestResult.java:110)
+	at junit.framework.TestResult.runProtected(TestResult.java:128)
+	at junit.framework.TestResult.run(TestResult.java:113)
+	at junit.framework.TestCase.run(TestCase.java:124)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at junit.framework.TestSuite.runTest(TestSuite.java:243)
+	at junit.framework.TestSuite.run(TestSuite.java:238)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner.run(JUnitTestRunner.java:535)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeInVM(JUnitTask.java:1618)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:1040)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.executeOrQueue(JUnitTask.java:2163)
+	at org.apache.tools.ant.taskdefs.optional.junit.JUnitTask.execute(JUnitTask.java:854)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:292)
+	at jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:99)
+	at org.apache.tools.ant.Task.perform(Task.java:350)
+	at org.apache.tools.ant.Target.execute(Target.java:449)
+	at org.apache.tools.ant.Target.performTasks(Target.java:470)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1401)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1374)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1264)
+	at org.apache.tools.ant.Main.runBuild(Main.java:827)
+	at org.apache.tools.ant.Main.startAnt(Main.java:223)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:284)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:101)
+2021-03-19 10:23:22,368 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50131
+2021-03-19 10:23:22,368 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50148
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50148
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: crashed
+2021-03-19 10:23:22,368 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50131
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: crashed
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50027
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50131
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50131
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50131
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: crashed
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50027
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50131
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Not crashed
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50148
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50148
+2021-03-19 10:23:22,370 ERROR [main-EventThread] root: crashed

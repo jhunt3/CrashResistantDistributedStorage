@@ -13,7 +13,9 @@ import junit.framework.TestCase;
 
 import shared.comm.CommModule;
 import shared.messages.KVAdminMsg;
-import shared.messages.KVMessage;
+import shared.messages.KVMessage.StatusType.*;
+import static shared.messages.KVMessage.StatusType;
+import static shared.messages.KVMessage.StatusType.*;
 import shared.messages.KVMsg;
 import storage.KVStorage;
 
@@ -35,6 +37,9 @@ public class AdditionalTest extends TestCase {
 	public void setUp() throws Exception {
 		ecsClient = new ECSClient("ecs.config");
 		kvClient = new KVClient();
+		ecsClient.handleCommand("shutDown");
+		int activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
 //		try {
 //			kvStore.connect();
 //		} catch (Exception e) {
@@ -715,7 +720,7 @@ public class AdditionalTest extends TestCase {
 		ecsClient_metadata.handleCommand("quit");
 
 	}
-/*
+
 	// Test connection failure (kill server client is connected to)
 	@Test
 	public void testNewServerOnServerCrash() throws Exception {
@@ -807,7 +812,7 @@ public class AdditionalTest extends TestCase {
 		activeServers = ecsClient.activeServers.size();
 		assertEquals(0, activeServers);
 	}
-*/
+
 	// Test KVStorage.replicaPutKV
 	@Test
 	public void testReplicaPutKV() throws Exception {
