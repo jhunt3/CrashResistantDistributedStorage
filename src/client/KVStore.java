@@ -3,6 +3,7 @@ package client;
 import org.apache.log4j.Logger;
 import shared.comm.CommModule;
 import shared.messages.KVMsg;
+import shared.messages.KVMessage;
 
 import java.io.IOException;
 import java.math.BigInteger;
