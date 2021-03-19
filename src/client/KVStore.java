@@ -34,13 +34,13 @@ public class KVStore extends Thread implements KVCommInterface {
 	public KVStore(String address, int port) {
 		this.address = address;
 		this.port = port;
-//		this.metadata = new ArrayList<>();
-//		HashMap<String,String> read_metadata = new HashMap<String,String>();
-//		HashMap<String,String> write_metadata = new HashMap<String,String>();
-//		read_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
-//		write_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
-//		this.metadata.add(read_metadata);
-//		this.metadata.add(write_metadata);
+		this.metadata = new ArrayList<>();
+		HashMap<String,String> read_metadata = new HashMap<String,String>();
+		HashMap<String,String> write_metadata = new HashMap<String,String>();
+		read_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+		write_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+		this.metadata.add(read_metadata);
+		this.metadata.add(write_metadata);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public KVMsg put(String key, String value) throws Exception {
-		//System.out.println("Start PUT -> " + this.address + ":" + String.valueOf(this.port));
+		System.out.println("Start PUT -> " + this.address + ":" + String.valueOf(this.port));
 
 		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
@@ -117,7 +117,7 @@ public class KVStore extends Thread implements KVCommInterface {
 						replyMsg = (KVMsg) clientComm.receiveMsg();
 					}
 
-					//System.out.println("End PUT -> " + this.address + ":" + String.valueOf(this.port));
+					System.out.println("End PUT -> " + this.address + ":" + String.valueOf(this.port));
 
 					return replyMsg;
 				} else {
@@ -144,7 +144,7 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public KVMsg get(String key) throws Exception {
-		//System.out.println("Start GET -> " + this.address + ":" + String.valueOf(this.port));
+		System.out.println("Start GET -> " + this.address + ":" + String.valueOf(this.port));
 
 		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
@@ -168,7 +168,7 @@ public class KVStore extends Thread implements KVCommInterface {
 						replyMsg = (KVMsg) clientComm.receiveMsg();
 					}
 
-					//System.out.println("End GET -> " + this.address + ":" + String.valueOf(this.port));
+					System.out.println("End GET -> " + this.address + ":" + String.valueOf(this.port));
 
 					return replyMsg;
 				} else {
@@ -242,7 +242,7 @@ public class KVStore extends Thread implements KVCommInterface {
 					this.disconnect();
 					this.address = address;
 					this.port = port;
-					System.out.println(address);
+					//System.out.println(address);
 					try {
 						this.connect();
 					} catch (Exception e) {
