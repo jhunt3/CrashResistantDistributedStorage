@@ -95,6 +95,8 @@ public class KVStore extends Thread implements KVCommInterface {
 	public KVMsg put(String key, String value) throws Exception {
 		System.out.println("Start PUT -> " + this.address + ":" + String.valueOf(this.port));
 
+		connectCorrServer(key, "put");
+
 		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
 		long t = System.currentTimeMillis();
@@ -145,6 +147,8 @@ public class KVStore extends Thread implements KVCommInterface {
 	@Override
 	public KVMsg get(String key) throws Exception {
 		System.out.println("Start GET -> " + this.address + ":" + String.valueOf(this.port));
+
+		connectCorrServer(key, "get");
 
 		// 1. Forward request to server
 		long timeout = 20000; // timeout = 20 s
@@ -246,7 +250,7 @@ public class KVStore extends Thread implements KVCommInterface {
 					try {
 						this.connect();
 					} catch (Exception e) {
-						e.printStackTrace();
+						this.connRandomServer(this.address, this.port);
 					}
 				}
 				break;
