@@ -37,9 +37,6 @@ public class AdditionalTest extends TestCase {
 	public void setUp() throws Exception {
 		ecsClient = new ECSClient("ecs.config");
 		kvClient = new KVClient();
-		ecsClient.handleCommand("shutDown");
-		int activeServers = ecsClient.activeServers.size();
-		assertEquals(0, activeServers);
 //		try {
 //			kvStore.connect();
 //		} catch (Exception e) {
