@@ -1,0 +1,873 @@
+2021-03-19 10:28:12,085 INFO  [Thread-0] root: Initialize server ...
+2021-03-19 10:28:12,104 INFO  [Thread-0] root: Server listening on port: 50003
+2021-03-19 10:28:12,130 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:zookeeper.version=3.6.2--803c7f1a12f85978cb049af5e4ef23bd8b688715, built on 09/04/2020 12:44 GMT
+2021-03-19 10:28:12,130 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:host.name=localhost
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.version=11.0.10
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.vendor=Azul Systems, Inc.
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.home=/Users/steve/Library/Java/JavaVirtualMachines/azul-11.0.10/Contents/Home
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.class.path=/Users/steve/Desktop/UofT/year4/winter2021/ECE419/milestone3/m3-server.jar
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.library.path=/Users/steve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/var/folders/kz/3gb57nkn6ks6_07_dtt5lqvr0000gn/T/
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.name=Mac OS X
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.arch=x86_64
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.version=10.16
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.name=steve
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.home=/Users/steve
+2021-03-19 10:28:12,131 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.dir=/Users/steve
+2021-03-19 10:28:12,132 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.free=249MB
+2021-03-19 10:28:12,132 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.max=4096MB
+2021-03-19 10:28:12,132 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.total=256MB
+2021-03-19 10:28:12,135 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Initiating client connection, connectString=localhost:2181 sessionTimeout=3000 watcher=app_kvServer.KVServer$1@7a8d20e7
+2021-03-19 10:28:12,139 INFO  [Thread-0] org.apache.zookeeper.common.X509Util: Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+2021-03-19 10:28:12,150 INFO  [Thread-0] org.apache.zookeeper.ClientCnxnSocket: jute.maxbuffer value is 1048575 Bytes
+2021-03-19 10:28:12,158 INFO  [Thread-0] org.apache.zookeeper.ClientCnxn: zookeeper.request.timeout value is 0. feature enabled=false
+2021-03-19 10:28:12,168 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.SaslServerPrincipal: Canonicalized address to localhost
+2021-03-19 10:28:12,169 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181.
+2021-03-19 10:28:12,169 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2021-03-19 10:28:12,185 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Socket connection established, initiating session, client: /0:0:0:0:0:0:0:1:55234, server: localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:28:12,186 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment request sent on localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:28:12,215 TRACE [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxnSocket: readConnectResult 37 0x[0,0,0,0,0,0,f,ffffffa0,1,0,14,ffffffbd,52,70,1,18,0,0,0,10,ffffffaf,ffffffad,15,2e,52,ffffffff,ffffffe5,72,2b,fffffff3,59,25,2a,ffffff95,ffffffce,ffffffe7,0,]
+2021-03-19 10:28:12,217 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, session id = 0x10014bd52700118, negotiated timeout = 4000
+2021-03-19 10:28:12,221 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:28:12,221 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:None path:null
+2021-03-19 10:28:12,248 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700118, packet:: clientPath:null serverPath:null finished:false header:: 1,1  replyHeader:: 1,892,0  request:: '/keeper/server4,,v{s{31,s{'world,'anyone}}},1  response:: '/keeper/server4 
+2021-03-19 10:28:12,252 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700118, packet:: clientPath:null serverPath:null finished:false header:: 2,3  replyHeader:: 2,892,0  request:: '/keeper/server4,T  response:: s{892,892,1616164092221,1616164092221,0,0,0,72080397402374424,0,0,892} 
+2021-03-19 10:28:12,278 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got notification session id: 0x10014bd52700118
+2021-03-19 10:28:12,280 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4 for session id 0x10014bd52700118
+2021-03-19 10:28:12,281 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:28:12,281 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4
+2021-03-19 10:28:12,282 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700118, packet:: clientPath:null serverPath:null finished:false header:: 3,5  replyHeader:: 3,893,0  request:: '/keeper/server4,#3132372e302e302e313a3530303033,0  response:: s{892,893,1616164092221,1616164092253,1,0,0,72080397402374424,15,0,892} 
+2021-03-19 10:28:12,282 INFO  [Thread-0] root: Node created at: /keeper/server4
+Starting commModule
+2021-03-19 10:28:12,290 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,291 INFO  [Thread-0] root: Connected to localhost on port 55235
+2021-03-19 10:28:12,300 INFO  [Thread-1] root: Message received by server -> Status: INIT_SERVER
+received adminmsg
+2021-03-19 10:28:12,300 INFO  [Thread-1] root: Message sent by server -> Status: INIT_SERVER_SUCCESS
+2021-03-19 10:28:12,301 INFO  [Thread-1] root: Message received by server -> Status: START
+received adminmsg
+2021-03-19 10:28:12,301 INFO  [Thread-1] root: Message sent by server -> Status: START_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,312 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,313 INFO  [Thread-0] root: Connected to localhost on port 55240
+Starting commModule
+2021-03-19 10:28:12,316 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,316 INFO  [Thread-0] root: Connected to localhost on port 55242
+Starting commModule
+2021-03-19 10:28:12,319 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,320 INFO  [Thread-0] root: Connected to localhost on port 55245
+Starting commModule
+2021-03-19 10:28:12,326 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,327 INFO  [Thread-0] root: Connected to localhost on port 55248
+2021-03-19 10:28:12,328 INFO  [Thread-5] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:12,331 INFO  [Thread-5] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,335 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,336 INFO  [Thread-0] root: Connected to localhost on port 55251
+Starting commModule
+2021-03-19 10:28:12,339 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,340 INFO  [Thread-0] root: Connected to localhost on port 55253
+Starting commModule
+2021-03-19 10:28:12,341 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,341 INFO  [Thread-0] root: Connected to localhost on port 55255
+2021-03-19 10:28:12,342 INFO  [Thread-8] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:12,348 DEBUG [Thread-8] root: Getting successors
+2021-03-19 10:28:12,348 DEBUG [Thread-8] root: Got successors
+2021-03-19 10:28:12,348 DEBUG [Thread-8] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:12,350 INFO  [Thread-8] root: Client communication module connected
+2021-03-19 10:28:12,351 INFO  [Thread-8] root: Client communication module connected
+2021-03-19 10:28:12,351 DEBUG [Thread-8] root: {}
+2021-03-19 10:28:12,351 INFO  [Thread-8] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,944 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,944 INFO  [Thread-0] root: Connected to localhost on port 55265
+2021-03-19 10:28:12,945 INFO  [Thread-9] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:12,946 INFO  [Thread-9] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,953 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,954 INFO  [Thread-0] root: Connected to localhost on port 55271
+Starting commModule
+2021-03-19 10:28:12,955 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,955 INFO  [Thread-0] root: Connected to localhost on port 55272
+2021-03-19 10:28:12,956 INFO  [Thread-11] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:12,956 DEBUG [Thread-11] root: Getting successors
+2021-03-19 10:28:12,956 DEBUG [Thread-11] root: Got successors
+2021-03-19 10:28:12,956 DEBUG [Thread-11] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:12,957 INFO  [Thread-11] root: Client communication module connected
+2021-03-19 10:28:12,957 INFO  [Thread-11] root: Client communication module connected
+2021-03-19 10:28:12,957 DEBUG [Thread-11] root: {}
+2021-03-19 10:28:12,958 INFO  [Thread-11] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,958 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,959 INFO  [Thread-0] root: Connected to localhost on port 55275
+2021-03-19 10:28:12,959 INFO  [Thread-12] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:28:12,959 DEBUG [Thread-12] root: Input data: 
+2021-03-19 10:28:12,960 DEBUG [Thread-12] root: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:28:12,960 DEBUG [Thread-12] root: 127.0.0.1:50000
+2021-03-19 10:28:12,960 INFO  [Thread-12] root: Client communication module connected
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Host: 127.0.0.1
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Port: 50000
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Range: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Starting flush data
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Finished flush data
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Closing conn
+2021-03-19 10:28:12,961 INFO  [Thread-12] root: Connection closed!
+2021-03-19 10:28:12,961 DEBUG [Thread-12] root: Closed conn
+2021-03-19 10:28:12,962 INFO  [Thread-12] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,969 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,970 INFO  [Thread-0] root: Connected to localhost on port 55280
+2021-03-19 10:28:12,971 INFO  [Thread-13] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:12,972 INFO  [Thread-13] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:12,984 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,985 INFO  [Thread-0] root: Connected to localhost on port 55287
+Starting commModule
+2021-03-19 10:28:12,985 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:12,986 INFO  [Thread-0] root: Connected to localhost on port 55288
+2021-03-19 10:28:12,987 INFO  [Thread-15] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:12,987 DEBUG [Thread-15] root: Getting successors
+2021-03-19 10:28:12,987 DEBUG [Thread-15] root: Got successors
+2021-03-19 10:28:12,987 DEBUG [Thread-15] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:12,988 INFO  [Thread-15] root: Client communication module connected
+2021-03-19 10:28:12,988 INFO  [Thread-15] root: Client communication module connected
+2021-03-19 10:28:12,988 DEBUG [Thread-15] root: {}
+2021-03-19 10:28:12,989 INFO  [Thread-15] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:13,000 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:13,000 INFO  [Thread-0] root: Connected to localhost on port 55292
+Starting commModule
+2021-03-19 10:28:13,006 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:13,007 INFO  [Thread-17] root: Message received by server -> Status: SHUTDOWN
+received adminmsg
+2021-03-19 10:28:13,007 INFO  [Thread-0] root: Connected to localhost on port 55296
+2021-03-19 10:28:13,007 DEBUG [Thread-17] root: Closing the program
+2021-03-19 10:28:13,008 INFO  [Thread-17] root: Message sent by server -> Status: SHUTDOWN_SUCCESS
+2021-03-19 10:28:13,008 ERROR [Thread-0] root: Error! Unable to establish connection. 
+
+java.net.SocketException: Socket closed
+	at java.base/java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:458)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:565)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:533)
+	at app_kvServer.KVServer.run(KVServer.java:408)
+2021-03-19 10:28:13,010 INFO  [Thread-0] root: Server stopped.
+2021-03-19 10:28:13,010 INFO  [Thread-0] root: Clearing KV Storage...
+2021-03-19 10:28:34,806 INFO  [Thread-0] root: Initialize server ...
+2021-03-19 10:28:34,821 INFO  [Thread-0] root: Server listening on port: 50003
+2021-03-19 10:28:34,844 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:zookeeper.version=3.6.2--803c7f1a12f85978cb049af5e4ef23bd8b688715, built on 09/04/2020 12:44 GMT
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:host.name=localhost
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.version=11.0.10
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.vendor=Azul Systems, Inc.
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.home=/Users/steve/Library/Java/JavaVirtualMachines/azul-11.0.10/Contents/Home
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.class.path=/Users/steve/Desktop/UofT/year4/winter2021/ECE419/milestone3/m3-server.jar
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.library.path=/Users/steve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/var/folders/kz/3gb57nkn6ks6_07_dtt5lqvr0000gn/T/
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.name=Mac OS X
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.arch=x86_64
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.version=10.16
+2021-03-19 10:28:34,845 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.name=steve
+2021-03-19 10:28:34,846 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.home=/Users/steve
+2021-03-19 10:28:34,846 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.dir=/Users/steve
+2021-03-19 10:28:34,846 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.free=249MB
+2021-03-19 10:28:34,846 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.max=4096MB
+2021-03-19 10:28:34,846 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.total=256MB
+2021-03-19 10:28:34,849 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Initiating client connection, connectString=localhost:2181 sessionTimeout=3000 watcher=app_kvServer.KVServer$1@7a8d20e7
+2021-03-19 10:28:34,853 INFO  [Thread-0] org.apache.zookeeper.common.X509Util: Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+2021-03-19 10:28:34,865 INFO  [Thread-0] org.apache.zookeeper.ClientCnxnSocket: jute.maxbuffer value is 1048575 Bytes
+2021-03-19 10:28:34,874 INFO  [Thread-0] org.apache.zookeeper.ClientCnxn: zookeeper.request.timeout value is 0. feature enabled=false
+2021-03-19 10:28:34,884 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.SaslServerPrincipal: Canonicalized address to localhost
+2021-03-19 10:28:34,885 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181.
+2021-03-19 10:28:34,885 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2021-03-19 10:28:34,904 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Socket connection established, initiating session, client: /0:0:0:0:0:0:0:1:55417, server: localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:28:34,905 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment request sent on localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:28:34,935 TRACE [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxnSocket: readConnectResult 37 0x[0,0,0,0,0,0,f,ffffffa0,1,0,14,ffffffbd,52,70,1,22,0,0,0,10,ffffff85,ffffff96,36,2d,10,39,b,ffffffac,ffffff92,ffffffe3,ffffffad,ffffff96,ffffff94,ffffffe4,ffffffda,58,0,]
+2021-03-19 10:28:34,937 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, session id = 0x10014bd52700122, negotiated timeout = 4000
+2021-03-19 10:28:34,940 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:28:34,940 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:None path:null
+2021-03-19 10:28:34,969 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700122, packet:: clientPath:null serverPath:null finished:false header:: 1,1  replyHeader:: 1,922,0  request:: '/keeper/server4,,v{s{31,s{'world,'anyone}}},1  response:: '/keeper/server4 
+2021-03-19 10:28:34,973 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700122, packet:: clientPath:null serverPath:null finished:false header:: 2,3  replyHeader:: 2,922,0  request:: '/keeper/server4,T  response:: s{922,922,1616164114940,1616164114940,0,0,0,72080397402374434,0,0,922} 
+2021-03-19 10:28:35,000 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got notification session id: 0x10014bd52700122
+2021-03-19 10:28:35,002 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4 for session id 0x10014bd52700122
+2021-03-19 10:28:35,003 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:28:35,003 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4
+2021-03-19 10:28:35,004 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700122, packet:: clientPath:null serverPath:null finished:false header:: 3,5  replyHeader:: 3,923,0  request:: '/keeper/server4,#3132372e302e302e313a3530303033,0  response:: s{922,923,1616164114940,1616164114974,1,0,0,72080397402374434,15,0,922} 
+2021-03-19 10:28:35,004 INFO  [Thread-0] root: Node created at: /keeper/server4
+Starting commModule
+2021-03-19 10:28:35,012 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,013 INFO  [Thread-0] root: Connected to localhost on port 55418
+2021-03-19 10:28:35,021 INFO  [Thread-1] root: Message received by server -> Status: INIT_SERVER
+received adminmsg
+2021-03-19 10:28:35,022 INFO  [Thread-1] root: Message sent by server -> Status: INIT_SERVER_SUCCESS
+2021-03-19 10:28:35,022 INFO  [Thread-1] root: Message received by server -> Status: START
+received adminmsg
+2021-03-19 10:28:35,023 INFO  [Thread-1] root: Message sent by server -> Status: START_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,023 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,024 INFO  [Thread-0] root: Connected to localhost on port 55419
+2021-03-19 10:28:35,025 INFO  [Thread-2] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:35,026 INFO  [Thread-2] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,027 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,028 INFO  [Thread-0] root: Connected to localhost on port 55420
+2021-03-19 10:28:35,028 INFO  [Thread-3] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:35,034 DEBUG [Thread-3] root: Getting successors
+2021-03-19 10:28:35,034 DEBUG [Thread-3] root: Got successors
+2021-03-19 10:28:35,035 DEBUG [Thread-3] root: Propagating to: 127.0.0.1:50003 127.0.0.1:50003
+Starting commModule
+2021-03-19 10:28:35,038 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,038 INFO  [Thread-3] root: Client communication module connected
+2021-03-19 10:28:35,039 INFO  [Thread-0] root: Connected to localhost on port 55421
+Starting commModule
+2021-03-19 10:28:35,039 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,039 INFO  [Thread-3] root: Client communication module connected
+2021-03-19 10:28:35,039 DEBUG [Thread-3] root: {}
+2021-03-19 10:28:35,040 INFO  [Thread-0] root: Connected to localhost on port 55422
+2021-03-19 10:28:35,040 INFO  [Thread-3] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,626 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,626 INFO  [Thread-0] root: Connected to localhost on port 55426
+2021-03-19 10:28:35,627 INFO  [Thread-6] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:35,628 INFO  [Thread-6] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,628 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,629 INFO  [Thread-0] root: Connected to localhost on port 55427
+2021-03-19 10:28:35,630 INFO  [Thread-7] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:35,630 DEBUG [Thread-7] root: Getting successors
+2021-03-19 10:28:35,630 DEBUG [Thread-7] root: Got successors
+2021-03-19 10:28:35,630 DEBUG [Thread-7] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50003
+2021-03-19 10:28:35,630 INFO  [Thread-7] root: Client communication module connected
+Starting commModule
+2021-03-19 10:28:35,631 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,631 INFO  [Thread-7] root: Client communication module connected
+2021-03-19 10:28:35,631 DEBUG [Thread-7] root: {}
+2021-03-19 10:28:35,631 INFO  [Thread-0] root: Connected to localhost on port 55429
+2021-03-19 10:28:35,631 INFO  [Thread-7] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,632 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,632 INFO  [Thread-0] root: Connected to localhost on port 55430
+2021-03-19 10:28:35,633 INFO  [Thread-9] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:28:35,633 DEBUG [Thread-9] root: Input data: 
+2021-03-19 10:28:35,633 DEBUG [Thread-9] root: a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e
+2021-03-19 10:28:35,633 DEBUG [Thread-9] root: 127.0.0.1:50002
+2021-03-19 10:28:35,633 INFO  [Thread-9] root: Client communication module connected
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Host: 127.0.0.1
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Port: 50002
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Range: a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Starting flush data
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Finished flush data
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Closing conn
+2021-03-19 10:28:35,634 INFO  [Thread-9] root: Connection closed!
+2021-03-19 10:28:35,634 DEBUG [Thread-9] root: Closed conn
+2021-03-19 10:28:35,634 INFO  [Thread-9] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,635 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,636 INFO  [Thread-0] root: Connected to localhost on port 55432
+2021-03-19 10:28:35,636 INFO  [Thread-10] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:35,637 INFO  [Thread-10] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:35,641 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,641 INFO  [Thread-0] root: Connected to localhost on port 55434
+2021-03-19 10:28:35,642 INFO  [Thread-11] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:35,642 DEBUG [Thread-11] root: Getting successors
+2021-03-19 10:28:35,642 DEBUG [Thread-11] root: Got successors
+2021-03-19 10:28:35,642 DEBUG [Thread-11] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50003
+2021-03-19 10:28:35,643 INFO  [Thread-11] root: Client communication module connected
+Starting commModule
+2021-03-19 10:28:35,643 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,643 INFO  [Thread-11] root: Client communication module connected
+2021-03-19 10:28:35,643 DEBUG [Thread-11] root: {}
+2021-03-19 10:28:35,644 INFO  [Thread-11] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+2021-03-19 10:28:35,644 INFO  [Thread-0] root: Connected to localhost on port 55436
+Starting commModule
+2021-03-19 10:28:35,653 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:35,654 INFO  [Thread-0] root: Connected to localhost on port 55438
+Starting commModule
+2021-03-19 10:28:36,300 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,300 INFO  [Thread-0] root: Connected to localhost on port 55443
+2021-03-19 10:28:36,302 INFO  [Thread-14] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:36,303 INFO  [Thread-14] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:36,307 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,308 INFO  [Thread-0] root: Connected to localhost on port 55445
+2021-03-19 10:28:36,309 INFO  [Thread-15] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:36,309 DEBUG [Thread-15] root: Getting successors
+2021-03-19 10:28:36,309 DEBUG [Thread-15] root: Got successors
+2021-03-19 10:28:36,309 DEBUG [Thread-15] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:36,310 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got ping response for session id: 0x10014bd52700122 after 0ms.
+2021-03-19 10:28:36,310 INFO  [Thread-15] root: Client communication module connected
+2021-03-19 10:28:36,311 INFO  [Thread-15] root: Client communication module connected
+2021-03-19 10:28:36,311 DEBUG [Thread-15] root: {}
+2021-03-19 10:28:36,311 INFO  [Thread-15] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:36,315 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,316 INFO  [Thread-0] root: Connected to localhost on port 55450
+Starting commModule
+2021-03-19 10:28:36,317 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,317 INFO  [Thread-0] root: Connected to localhost on port 55451
+2021-03-19 10:28:36,318 INFO  [Thread-17] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:28:36,318 DEBUG [Thread-17] root: Input data: 
+2021-03-19 10:28:36,318 DEBUG [Thread-17] root: b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709
+2021-03-19 10:28:36,318 DEBUG [Thread-17] root: 127.0.0.1:50001
+2021-03-19 10:28:36,319 INFO  [Thread-17] root: Client communication module connected
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Host: 127.0.0.1
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Port: 50001
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Range: b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Starting flush data
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Finished flush data
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Closing conn
+2021-03-19 10:28:36,319 INFO  [Thread-17] root: Connection closed!
+2021-03-19 10:28:36,319 DEBUG [Thread-17] root: Closed conn
+2021-03-19 10:28:36,319 INFO  [Thread-17] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:28:36,320 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,321 INFO  [Thread-0] root: Connected to localhost on port 55453
+2021-03-19 10:28:36,322 INFO  [Thread-18] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:36,322 INFO  [Thread-18] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:36,330 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,331 INFO  [Thread-0] root: Connected to localhost on port 55456
+2021-03-19 10:28:36,331 INFO  [Thread-19] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:36,332 DEBUG [Thread-19] root: Getting successors
+2021-03-19 10:28:36,332 DEBUG [Thread-19] root: Got successors
+2021-03-19 10:28:36,332 DEBUG [Thread-19] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:36,332 INFO  [Thread-19] root: Client communication module connected
+2021-03-19 10:28:36,333 INFO  [Thread-19] root: Client communication module connected
+2021-03-19 10:28:36,333 DEBUG [Thread-19] root: {}
+2021-03-19 10:28:36,333 INFO  [Thread-19] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:36,336 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,337 INFO  [Thread-0] root: Connected to localhost on port 55461
+Starting commModule
+2021-03-19 10:28:36,347 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:36,348 INFO  [Thread-0] root: Connected to localhost on port 55463
+Starting commModule
+2021-03-19 10:28:37,008 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,009 INFO  [Thread-0] root: Connected to localhost on port 55468
+2021-03-19 10:28:37,010 INFO  [Thread-22] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:37,010 INFO  [Thread-22] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:37,017 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,018 INFO  [Thread-0] root: Connected to localhost on port 55471
+2021-03-19 10:28:37,019 INFO  [Thread-23] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:37,019 DEBUG [Thread-23] root: Getting successors
+2021-03-19 10:28:37,019 DEBUG [Thread-23] root: Got successors
+2021-03-19 10:28:37,019 DEBUG [Thread-23] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:37,020 INFO  [Thread-23] root: Client communication module connected
+2021-03-19 10:28:37,020 INFO  [Thread-23] root: Client communication module connected
+2021-03-19 10:28:37,020 DEBUG [Thread-23] root: {}
+2021-03-19 10:28:37,020 INFO  [Thread-23] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:37,027 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,028 INFO  [Thread-0] root: Connected to localhost on port 55479
+Starting commModule
+2021-03-19 10:28:37,028 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,028 INFO  [Thread-0] root: Connected to localhost on port 55480
+2021-03-19 10:28:37,029 INFO  [Thread-25] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:28:37,029 DEBUG [Thread-25] root: Input data: 
+2021-03-19 10:28:37,029 DEBUG [Thread-25] root: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:28:37,029 DEBUG [Thread-25] root: 127.0.0.1:50000
+2021-03-19 10:28:37,029 INFO  [Thread-25] root: Client communication module connected
+2021-03-19 10:28:37,029 DEBUG [Thread-25] root: Host: 127.0.0.1
+2021-03-19 10:28:37,029 DEBUG [Thread-25] root: Port: 50000
+2021-03-19 10:28:37,030 DEBUG [Thread-25] root: Range: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:28:37,030 DEBUG [Thread-25] root: Starting flush data
+2021-03-19 10:28:37,030 DEBUG [Thread-25] root: Finished flush data
+2021-03-19 10:28:37,030 DEBUG [Thread-25] root: Closing conn
+2021-03-19 10:28:37,030 INFO  [Thread-25] root: Connection closed!
+2021-03-19 10:28:37,030 DEBUG [Thread-25] root: Closed conn
+2021-03-19 10:28:37,030 INFO  [Thread-25] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:28:37,031 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,032 INFO  [Thread-0] root: Connected to localhost on port 55482
+2021-03-19 10:28:37,032 INFO  [Thread-26] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:28:37,033 INFO  [Thread-26] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:37,042 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,042 INFO  [Thread-0] root: Connected to localhost on port 55486
+2021-03-19 10:28:37,043 INFO  [Thread-27] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:28:37,043 DEBUG [Thread-27] root: Getting successors
+2021-03-19 10:28:37,043 DEBUG [Thread-27] root: Got successors
+2021-03-19 10:28:37,043 DEBUG [Thread-27] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:28:37,044 INFO  [Thread-27] root: Client communication module connected
+2021-03-19 10:28:37,044 INFO  [Thread-27] root: Client communication module connected
+2021-03-19 10:28:37,044 DEBUG [Thread-27] root: {}
+2021-03-19 10:28:37,044 INFO  [Thread-27] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:28:37,053 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,054 INFO  [Thread-0] root: Connected to localhost on port 55494
+Starting commModule
+2021-03-19 10:28:37,065 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,066 INFO  [Thread-0] root: Connected to localhost on port 55496
+Starting commModule
+2021-03-19 10:28:37,067 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:28:37,068 INFO  [Thread-0] root: Connected to localhost on port 55498
+2021-03-19 10:28:37,068 INFO  [Thread-30] root: Message received by server -> Status: SHUTDOWN
+received adminmsg
+2021-03-19 10:28:37,068 DEBUG [Thread-30] root: Closing the program
+2021-03-19 10:28:37,069 INFO  [Thread-30] root: Message sent by server -> Status: SHUTDOWN_SUCCESS
+2021-03-19 10:28:37,069 ERROR [Thread-0] root: Error! Unable to establish connection. 
+
+java.net.SocketException: Socket closed
+	at java.base/java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:458)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:565)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:533)
+	at app_kvServer.KVServer.run(KVServer.java:408)
+2021-03-19 10:28:37,071 INFO  [Thread-0] root: Server stopped.
+2021-03-19 10:28:37,071 INFO  [Thread-0] root: Clearing KV Storage...
+2021-03-19 10:35:07,450 INFO  [Thread-0] root: Initialize server ...
+2021-03-19 10:35:07,461 INFO  [Thread-0] root: Server listening on port: 50003
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:zookeeper.version=3.6.2--803c7f1a12f85978cb049af5e4ef23bd8b688715, built on 09/04/2020 12:44 GMT
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:host.name=localhost
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.version=11.0.10
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.vendor=Azul Systems, Inc.
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.home=/Users/steve/Library/Java/JavaVirtualMachines/azul-11.0.10/Contents/Home
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.class.path=/Users/steve/Desktop/UofT/year4/winter2021/ECE419/milestone3/m3-server.jar
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.library.path=/Users/steve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/var/folders/kz/3gb57nkn6ks6_07_dtt5lqvr0000gn/T/
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.name=Mac OS X
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.arch=x86_64
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.version=10.16
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.name=steve
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.home=/Users/steve
+2021-03-19 10:35:07,480 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.dir=/Users/steve
+2021-03-19 10:35:07,481 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.free=249MB
+2021-03-19 10:35:07,481 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.max=4096MB
+2021-03-19 10:35:07,481 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.total=256MB
+2021-03-19 10:35:07,483 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Initiating client connection, connectString=localhost:2181 sessionTimeout=3000 watcher=app_kvServer.KVServer$1@7a8d20e7
+2021-03-19 10:35:07,486 INFO  [Thread-0] org.apache.zookeeper.common.X509Util: Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+2021-03-19 10:35:07,496 INFO  [Thread-0] org.apache.zookeeper.ClientCnxnSocket: jute.maxbuffer value is 1048575 Bytes
+2021-03-19 10:35:07,502 INFO  [Thread-0] org.apache.zookeeper.ClientCnxn: zookeeper.request.timeout value is 0. feature enabled=false
+2021-03-19 10:35:07,510 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.SaslServerPrincipal: Canonicalized address to localhost
+2021-03-19 10:35:07,511 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181.
+2021-03-19 10:35:07,511 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2021-03-19 10:35:07,525 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Socket connection established, initiating session, client: /0:0:0:0:0:0:0:1:55723, server: localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:35:07,526 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment request sent on localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:35:07,555 TRACE [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxnSocket: readConnectResult 37 0x[0,0,0,0,0,0,f,ffffffa0,1,0,14,ffffffbd,52,70,1,32,0,0,0,10,54,ffffff85,ffffff94,2d,11,7f,16,5e,3e,ffffffb4,39,ffffffe0,5a,57,ffffff92,ffffff87,0,]
+2021-03-19 10:35:07,557 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, session id = 0x10014bd52700132, negotiated timeout = 4000
+2021-03-19 10:35:07,560 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:35:07,561 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:None path:null
+2021-03-19 10:35:07,588 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700132, packet:: clientPath:null serverPath:null finished:false header:: 1,1  replyHeader:: 1,983,0  request:: '/keeper/server4,,v{s{31,s{'world,'anyone}}},1  response:: '/keeper/server4 
+2021-03-19 10:35:07,592 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700132, packet:: clientPath:null serverPath:null finished:false header:: 2,3  replyHeader:: 2,983,0  request:: '/keeper/server4,T  response:: s{983,983,1616164507561,1616164507561,0,0,0,72080397402374450,0,0,983} 
+2021-03-19 10:35:07,619 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got notification session id: 0x10014bd52700132
+2021-03-19 10:35:07,621 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4 for session id 0x10014bd52700132
+2021-03-19 10:35:07,622 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:35:07,622 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4
+2021-03-19 10:35:07,623 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700132, packet:: clientPath:null serverPath:null finished:false header:: 3,5  replyHeader:: 3,984,0  request:: '/keeper/server4,#3132372e302e302e313a3530303033,0  response:: s{983,984,1616164507561,1616164507593,1,0,0,72080397402374450,15,0,983} 
+2021-03-19 10:35:07,623 INFO  [Thread-0] root: Node created at: /keeper/server4
+Starting commModule
+2021-03-19 10:35:07,631 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,632 INFO  [Thread-0] root: Connected to localhost on port 55724
+2021-03-19 10:35:07,641 INFO  [Thread-1] root: Message received by server -> Status: INIT_SERVER
+received adminmsg
+2021-03-19 10:35:07,642 INFO  [Thread-1] root: Message sent by server -> Status: INIT_SERVER_SUCCESS
+2021-03-19 10:35:07,643 INFO  [Thread-1] root: Message received by server -> Status: START
+received adminmsg
+2021-03-19 10:35:07,643 INFO  [Thread-1] root: Message sent by server -> Status: START_SUCCESS
+Starting commModule
+2021-03-19 10:35:07,650 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,651 INFO  [Thread-0] root: Connected to localhost on port 55727
+Starting commModule
+2021-03-19 10:35:07,654 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,655 INFO  [Thread-0] root: Connected to localhost on port 55730
+Starting commModule
+2021-03-19 10:35:07,659 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,660 INFO  [Thread-0] root: Connected to localhost on port 55732
+2021-03-19 10:35:07,661 INFO  [Thread-4] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:07,662 INFO  [Thread-4] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:07,666 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,667 INFO  [Thread-0] root: Connected to localhost on port 55734
+Starting commModule
+2021-03-19 10:35:07,669 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,670 INFO  [Thread-0] root: Connected to localhost on port 55736
+2021-03-19 10:35:07,670 INFO  [Thread-6] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:07,676 DEBUG [Thread-6] root: Getting successors
+2021-03-19 10:35:07,676 DEBUG [Thread-6] root: Got successors
+2021-03-19 10:35:07,676 DEBUG [Thread-6] root: Propagating to: 127.0.0.1:50001 127.0.0.1:50003
+2021-03-19 10:35:07,679 INFO  [Thread-6] root: Client communication module connected
+Starting commModule
+2021-03-19 10:35:07,679 INFO  [Thread-6] root: Client communication module connected
+2021-03-19 10:35:07,679 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:07,680 DEBUG [Thread-6] root: {}
+2021-03-19 10:35:07,681 INFO  [Thread-6] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+2021-03-19 10:35:07,681 INFO  [Thread-0] root: Connected to localhost on port 55738
+Starting commModule
+2021-03-19 10:35:08,306 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,307 INFO  [Thread-0] root: Connected to localhost on port 55743
+2021-03-19 10:35:08,308 INFO  [Thread-8] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:08,308 INFO  [Thread-8] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,311 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,312 INFO  [Thread-0] root: Connected to localhost on port 55745
+Starting commModule
+2021-03-19 10:35:08,312 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,313 INFO  [Thread-0] root: Connected to localhost on port 55747
+2021-03-19 10:35:08,314 INFO  [Thread-10] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:08,314 DEBUG [Thread-10] root: Getting successors
+2021-03-19 10:35:08,314 DEBUG [Thread-10] root: Got successors
+2021-03-19 10:35:08,314 DEBUG [Thread-10] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:08,314 INFO  [Thread-10] root: Client communication module connected
+2021-03-19 10:35:08,315 INFO  [Thread-10] root: Client communication module connected
+2021-03-19 10:35:08,315 DEBUG [Thread-10] root: {}
+2021-03-19 10:35:08,315 INFO  [Thread-10] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,321 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,322 INFO  [Thread-0] root: Connected to localhost on port 55753
+2021-03-19 10:35:08,322 INFO  [Thread-11] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:08,323 INFO  [Thread-11] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,329 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,330 INFO  [Thread-0] root: Connected to localhost on port 55756
+Starting commModule
+2021-03-19 10:35:08,331 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,331 INFO  [Thread-0] root: Connected to localhost on port 55758
+2021-03-19 10:35:08,332 INFO  [Thread-13] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:08,332 DEBUG [Thread-13] root: Getting successors
+2021-03-19 10:35:08,332 DEBUG [Thread-13] root: Got successors
+2021-03-19 10:35:08,332 DEBUG [Thread-13] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:08,333 INFO  [Thread-13] root: Client communication module connected
+2021-03-19 10:35:08,333 INFO  [Thread-13] root: Client communication module connected
+2021-03-19 10:35:08,333 DEBUG [Thread-13] root: {}
+2021-03-19 10:35:08,333 INFO  [Thread-13] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,344 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,345 INFO  [Thread-0] root: Connected to localhost on port 55763
+Starting commModule
+2021-03-19 10:35:08,874 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,875 INFO  [Thread-0] root: Connected to localhost on port 55768
+2021-03-19 10:35:08,876 INFO  [Thread-15] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:08,876 INFO  [Thread-15] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,883 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,883 INFO  [Thread-0] root: Connected to localhost on port 55772
+Starting commModule
+2021-03-19 10:35:08,884 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,885 INFO  [Thread-0] root: Connected to localhost on port 55773
+2021-03-19 10:35:08,885 INFO  [Thread-17] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:08,886 DEBUG [Thread-17] root: Getting successors
+2021-03-19 10:35:08,886 DEBUG [Thread-17] root: Got successors
+2021-03-19 10:35:08,886 DEBUG [Thread-17] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:08,886 INFO  [Thread-17] root: Client communication module connected
+2021-03-19 10:35:08,887 INFO  [Thread-17] root: Client communication module connected
+2021-03-19 10:35:08,888 DEBUG [Thread-17] root: {}
+2021-03-19 10:35:08,888 INFO  [Thread-17] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,892 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,893 INFO  [Thread-0] root: Connected to localhost on port 55779
+2021-03-19 10:35:08,893 INFO  [Thread-18] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:35:08,893 DEBUG [Thread-18] root: Input data: 
+2021-03-19 10:35:08,893 DEBUG [Thread-18] root: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:35:08,893 DEBUG [Thread-18] root: 127.0.0.1:50000
+2021-03-19 10:35:08,894 INFO  [Thread-18] root: Client communication module connected
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Host: 127.0.0.1
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Port: 50000
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Range: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Starting flush data
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Finished flush data
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Closing conn
+2021-03-19 10:35:08,894 INFO  [Thread-18] root: Connection closed!
+2021-03-19 10:35:08,894 DEBUG [Thread-18] root: Closed conn
+2021-03-19 10:35:08,894 INFO  [Thread-18] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,898 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,899 INFO  [Thread-0] root: Connected to localhost on port 55782
+2021-03-19 10:35:08,899 INFO  [Thread-19] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:08,900 INFO  [Thread-19] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,911 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,912 INFO  [Thread-0] root: Connected to localhost on port 55787
+Starting commModule
+2021-03-19 10:35:08,912 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,913 INFO  [Thread-0] root: Connected to localhost on port 55788
+2021-03-19 10:35:08,914 INFO  [Thread-21] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:08,914 DEBUG [Thread-21] root: Getting successors
+2021-03-19 10:35:08,914 DEBUG [Thread-21] root: Got successors
+2021-03-19 10:35:08,914 DEBUG [Thread-21] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:08,915 INFO  [Thread-21] root: Client communication module connected
+2021-03-19 10:35:08,915 INFO  [Thread-21] root: Client communication module connected
+2021-03-19 10:35:08,915 DEBUG [Thread-21] root: {}
+2021-03-19 10:35:08,915 INFO  [Thread-21] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:08,930 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,931 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got ping response for session id: 0x10014bd52700132 after 0ms.
+2021-03-19 10:35:08,931 INFO  [Thread-0] root: Connected to localhost on port 55795
+Starting commModule
+2021-03-19 10:35:08,934 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:08,935 INFO  [Thread-23] root: Message received by server -> Status: SHUTDOWN
+received adminmsg
+2021-03-19 10:35:08,935 INFO  [Thread-0] root: Connected to localhost on port 55798
+2021-03-19 10:35:08,936 DEBUG [Thread-23] root: Closing the program
+2021-03-19 10:35:08,937 INFO  [Thread-23] root: Message sent by server -> Status: SHUTDOWN_SUCCESS
+2021-03-19 10:35:08,937 ERROR [Thread-0] root: Error! Unable to establish connection. 
+
+java.net.SocketException: Socket closed
+	at java.base/java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:458)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:565)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:533)
+	at app_kvServer.KVServer.run(KVServer.java:408)
+2021-03-19 10:35:08,940 INFO  [Thread-0] root: Server stopped.
+2021-03-19 10:35:08,940 INFO  [Thread-0] root: Clearing KV Storage...
+2021-03-19 10:35:15,249 INFO  [Thread-0] root: Initialize server ...
+2021-03-19 10:35:15,261 INFO  [Thread-0] root: Server listening on port: 50003
+2021-03-19 10:35:15,279 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:zookeeper.version=3.6.2--803c7f1a12f85978cb049af5e4ef23bd8b688715, built on 09/04/2020 12:44 GMT
+2021-03-19 10:35:15,279 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:host.name=localhost
+2021-03-19 10:35:15,279 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.version=11.0.10
+2021-03-19 10:35:15,279 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.vendor=Azul Systems, Inc.
+2021-03-19 10:35:15,279 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.home=/Users/steve/Library/Java/JavaVirtualMachines/azul-11.0.10/Contents/Home
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.class.path=/Users/steve/Desktop/UofT/year4/winter2021/ECE419/milestone3/m3-server.jar
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.library.path=/Users/steve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/var/folders/kz/3gb57nkn6ks6_07_dtt5lqvr0000gn/T/
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.name=Mac OS X
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.arch=x86_64
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.version=10.16
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.name=steve
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.home=/Users/steve
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.dir=/Users/steve
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.free=249MB
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.max=4096MB
+2021-03-19 10:35:15,280 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.total=256MB
+2021-03-19 10:35:15,283 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Initiating client connection, connectString=localhost:2181 sessionTimeout=3000 watcher=app_kvServer.KVServer$1@7a8d20e7
+2021-03-19 10:35:15,286 INFO  [Thread-0] org.apache.zookeeper.common.X509Util: Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+2021-03-19 10:35:15,296 INFO  [Thread-0] org.apache.zookeeper.ClientCnxnSocket: jute.maxbuffer value is 1048575 Bytes
+2021-03-19 10:35:15,302 INFO  [Thread-0] org.apache.zookeeper.ClientCnxn: zookeeper.request.timeout value is 0. feature enabled=false
+2021-03-19 10:35:15,313 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.SaslServerPrincipal: Canonicalized address to localhost
+2021-03-19 10:35:15,315 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181.
+2021-03-19 10:35:15,315 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2021-03-19 10:35:15,336 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Socket connection established, initiating session, client: /0:0:0:0:0:0:0:1:55811, server: localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:35:15,337 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment request sent on localhost/0:0:0:0:0:0:0:1:2181
+2021-03-19 10:35:15,367 TRACE [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxnSocket: readConnectResult 37 0x[0,0,0,0,0,0,f,ffffffa0,1,0,14,ffffffbd,52,70,1,38,0,0,0,10,13,ffffffd0,59,2d,51,73,ffffffcf,e,ffffffd2,51,42,ffffff92,ffffff9e,ffffffaf,5f,ffffff8a,0,]
+2021-03-19 10:35:15,369 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, session id = 0x10014bd52700138, negotiated timeout = 4000
+2021-03-19 10:35:15,372 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:35:15,372 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:None path:null
+2021-03-19 10:35:15,399 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700138, packet:: clientPath:null serverPath:null finished:false header:: 1,1  replyHeader:: 1,1001,0  request:: '/keeper/server4,,v{s{31,s{'world,'anyone}}},1  response:: '/keeper/server4 
+2021-03-19 10:35:15,403 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700138, packet:: clientPath:null serverPath:null finished:false header:: 2,3  replyHeader:: 2,1001,0  request:: '/keeper/server4,T  response:: s{1001,1001,1616164515373,1616164515373,0,0,0,72080397402374456,0,0,1001} 
+2021-03-19 10:35:15,428 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got notification session id: 0x10014bd52700138
+2021-03-19 10:35:15,430 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4 for session id 0x10014bd52700138
+2021-03-19 10:35:15,431 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-19 10:35:15,431 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server4
+2021-03-19 10:35:15,432 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700138, packet:: clientPath:null serverPath:null finished:false header:: 3,5  replyHeader:: 3,1002,0  request:: '/keeper/server4,#3132372e302e302e313a3530303033,0  response:: s{1001,1002,1616164515373,1616164515403,1,0,0,72080397402374456,15,0,1001} 
+2021-03-19 10:35:15,432 INFO  [Thread-0] root: Node created at: /keeper/server4
+Starting commModule
+2021-03-19 10:35:15,439 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,440 INFO  [Thread-0] root: Connected to localhost on port 55812
+2021-03-19 10:35:15,448 INFO  [Thread-1] root: Message received by server -> Status: INIT_SERVER
+received adminmsg
+2021-03-19 10:35:15,449 INFO  [Thread-1] root: Message sent by server -> Status: INIT_SERVER_SUCCESS
+2021-03-19 10:35:15,450 INFO  [Thread-1] root: Message received by server -> Status: START
+received adminmsg
+2021-03-19 10:35:15,450 INFO  [Thread-1] root: Message sent by server -> Status: START_SUCCESS
+Starting commModule
+2021-03-19 10:35:15,456 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,457 INFO  [Thread-0] root: Connected to localhost on port 55815
+Starting commModule
+2021-03-19 10:35:15,460 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,461 INFO  [Thread-0] root: Connected to localhost on port 55818
+Starting commModule
+2021-03-19 10:35:15,465 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,466 INFO  [Thread-0] root: Connected to localhost on port 55820
+2021-03-19 10:35:15,467 INFO  [Thread-4] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:15,468 INFO  [Thread-4] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:15,471 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,472 INFO  [Thread-0] root: Connected to localhost on port 55822
+Starting commModule
+2021-03-19 10:35:15,473 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,474 INFO  [Thread-0] root: Connected to localhost on port 55824
+2021-03-19 10:35:15,475 INFO  [Thread-6] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:15,480 DEBUG [Thread-6] root: Getting successors
+2021-03-19 10:35:15,480 DEBUG [Thread-6] root: Got successors
+2021-03-19 10:35:15,480 DEBUG [Thread-6] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50003
+2021-03-19 10:35:15,483 INFO  [Thread-6] root: Client communication module connected
+Starting commModule
+2021-03-19 10:35:15,483 INFO  [Thread-6] root: Client communication module connected
+2021-03-19 10:35:15,484 DEBUG [Thread-6] root: {}
+2021-03-19 10:35:15,483 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:15,484 INFO  [Thread-6] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+2021-03-19 10:35:15,485 INFO  [Thread-0] root: Connected to localhost on port 55826
+Starting commModule
+2021-03-19 10:35:16,021 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,022 INFO  [Thread-0] root: Connected to localhost on port 55831
+2021-03-19 10:35:16,023 INFO  [Thread-8] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:16,024 INFO  [Thread-8] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,028 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,029 INFO  [Thread-0] root: Connected to localhost on port 55834
+Starting commModule
+2021-03-19 10:35:16,029 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,030 INFO  [Thread-0] root: Connected to localhost on port 55835
+2021-03-19 10:35:16,031 INFO  [Thread-10] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:16,031 DEBUG [Thread-10] root: Getting successors
+2021-03-19 10:35:16,031 DEBUG [Thread-10] root: Got successors
+2021-03-19 10:35:16,031 DEBUG [Thread-10] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:16,032 INFO  [Thread-10] root: Client communication module connected
+2021-03-19 10:35:16,032 INFO  [Thread-10] root: Client communication module connected
+2021-03-19 10:35:16,032 DEBUG [Thread-10] root: {}
+2021-03-19 10:35:16,033 INFO  [Thread-10] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,034 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,034 INFO  [Thread-0] root: Connected to localhost on port 55838
+2021-03-19 10:35:16,035 INFO  [Thread-11] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:35:16,035 DEBUG [Thread-11] root: Input data: 
+2021-03-19 10:35:16,035 DEBUG [Thread-11] root: b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709
+2021-03-19 10:35:16,035 DEBUG [Thread-11] root: 127.0.0.1:50001
+2021-03-19 10:35:16,036 INFO  [Thread-11] root: Client communication module connected
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Host: 127.0.0.1
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Port: 50001
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Range: b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Starting flush data
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Finished flush data
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Closing conn
+2021-03-19 10:35:16,036 INFO  [Thread-11] root: Connection closed!
+2021-03-19 10:35:16,036 DEBUG [Thread-11] root: Closed conn
+2021-03-19 10:35:16,037 INFO  [Thread-11] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,040 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,041 INFO  [Thread-0] root: Connected to localhost on port 55841
+2021-03-19 10:35:16,041 INFO  [Thread-12] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:16,042 INFO  [Thread-12] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,050 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,050 INFO  [Thread-0] root: Connected to localhost on port 55845
+Starting commModule
+2021-03-19 10:35:16,051 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,051 INFO  [Thread-0] root: Connected to localhost on port 55846
+2021-03-19 10:35:16,052 INFO  [Thread-14] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:16,052 DEBUG [Thread-14] root: Getting successors
+2021-03-19 10:35:16,052 DEBUG [Thread-14] root: Got successors
+2021-03-19 10:35:16,052 DEBUG [Thread-14] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:16,053 INFO  [Thread-14] root: Client communication module connected
+2021-03-19 10:35:16,053 INFO  [Thread-14] root: Client communication module connected
+2021-03-19 10:35:16,053 DEBUG [Thread-14] root: {}
+2021-03-19 10:35:16,054 INFO  [Thread-14] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,063 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,064 INFO  [Thread-0] root: Connected to localhost on port 55850
+Starting commModule
+2021-03-19 10:35:16,591 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,592 INFO  [Thread-0] root: Connected to localhost on port 55856
+2021-03-19 10:35:16,593 INFO  [Thread-16] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:16,594 INFO  [Thread-16] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,602 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,602 INFO  [Thread-0] root: Connected to localhost on port 55861
+2021-03-19 10:35:16,603 INFO  [Thread-17] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:16,603 DEBUG [Thread-17] root: Getting successors
+2021-03-19 10:35:16,603 DEBUG [Thread-17] root: Got successors
+2021-03-19 10:35:16,603 DEBUG [Thread-17] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:16,604 INFO  [Thread-17] root: Client communication module connected
+2021-03-19 10:35:16,604 INFO  [Thread-17] root: Client communication module connected
+2021-03-19 10:35:16,604 DEBUG [Thread-17] root: {}
+2021-03-19 10:35:16,605 INFO  [Thread-17] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,608 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,610 INFO  [Thread-0] root: Connected to localhost on port 55866
+Starting commModule
+2021-03-19 10:35:16,610 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,611 INFO  [Thread-19] root: Message received by server -> Status: MOVE_DATA
+received adminmsg
+2021-03-19 10:35:16,611 INFO  [Thread-0] root: Connected to localhost on port 55867
+2021-03-19 10:35:16,611 DEBUG [Thread-19] root: Input data: 
+2021-03-19 10:35:16,612 DEBUG [Thread-19] root: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:35:16,612 DEBUG [Thread-19] root: 127.0.0.1:50000
+2021-03-19 10:35:16,612 INFO  [Thread-19] root: Client communication module connected
+2021-03-19 10:35:16,612 DEBUG [Thread-19] root: Host: 127.0.0.1
+2021-03-19 10:35:16,612 DEBUG [Thread-19] root: Port: 50000
+2021-03-19 10:35:16,612 DEBUG [Thread-19] root: Range: dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2
+2021-03-19 10:35:16,613 DEBUG [Thread-19] root: Starting flush data
+2021-03-19 10:35:16,613 DEBUG [Thread-19] root: Finished flush data
+2021-03-19 10:35:16,613 DEBUG [Thread-19] root: Closing conn
+2021-03-19 10:35:16,613 INFO  [Thread-19] root: Connection closed!
+2021-03-19 10:35:16,613 DEBUG [Thread-19] root: Closed conn
+2021-03-19 10:35:16,613 INFO  [Thread-19] root: Message sent by server -> Status: MOVE_DATA_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,617 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,617 INFO  [Thread-0] root: Connected to localhost on port 55870
+2021-03-19 10:35:16,618 INFO  [Thread-20] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-19 10:35:16,618 INFO  [Thread-20] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,631 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,631 INFO  [Thread-0] root: Connected to localhost on port 55876
+2021-03-19 10:35:16,632 INFO  [Thread-21] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-19 10:35:16,632 DEBUG [Thread-21] root: Getting successors
+2021-03-19 10:35:16,632 DEBUG [Thread-21] root: Got successors
+2021-03-19 10:35:16,632 DEBUG [Thread-21] root: Propagating to: 127.0.0.1:50002 127.0.0.1:50001
+2021-03-19 10:35:16,633 INFO  [Thread-21] root: Client communication module connected
+2021-03-19 10:35:16,633 INFO  [Thread-21] root: Client communication module connected
+2021-03-19 10:35:16,633 DEBUG [Thread-21] root: {}
+2021-03-19 10:35:16,633 INFO  [Thread-21] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+Starting commModule
+2021-03-19 10:35:16,637 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,638 INFO  [Thread-0] root: Connected to localhost on port 55881
+Starting commModule
+2021-03-19 10:35:16,648 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,649 INFO  [Thread-0] root: Connected to localhost on port 55883
+Starting commModule
+2021-03-19 10:35:16,652 INFO  [Thread-0] root: Server communication module connected
+2021-03-19 10:35:16,653 INFO  [Thread-0] root: Connected to localhost on port 55886
+2021-03-19 10:35:16,653 INFO  [Thread-24] root: Message received by server -> Status: SHUTDOWN
+received adminmsg
+2021-03-19 10:35:16,653 DEBUG [Thread-24] root: Closing the program
+2021-03-19 10:35:16,653 INFO  [Thread-24] root: Message sent by server -> Status: SHUTDOWN_SUCCESS
+2021-03-19 10:35:16,654 ERROR [Thread-0] root: Error! Unable to establish connection. 
+
+java.net.SocketException: Socket closed
+	at java.base/java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:458)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:565)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:533)
+	at app_kvServer.KVServer.run(KVServer.java:408)
+2021-03-19 10:35:16,656 INFO  [Thread-0] root: Server stopped.
+2021-03-19 10:35:16,656 INFO  [Thread-0] root: Clearing KV Storage...
