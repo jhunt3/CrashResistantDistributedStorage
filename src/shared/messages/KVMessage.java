@@ -20,6 +20,8 @@ public interface KVMessage {
 		SERVER_STOPPED, /* Server is stopped/initializing - no requests being processed */
 		SERVER_WRITE_LOCK, /* Server locked for write due to reallocation of data - only get possible */
 		SERVER_NOT_RESPONSIBLE, /* Server not responsible for key - need to update the metadata */
+		GET_METADATA,
+		GET_METADATA_SUCCESS,
 
 		// Admin Commands
 		// Atomic Commands

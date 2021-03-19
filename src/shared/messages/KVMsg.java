@@ -37,6 +37,12 @@ public class KVMsg implements KVMessage, Serializable {
         this.metadata = metadata;
     }
 
+//    public KVMsg(StatusType status, List<HashMap<String,String>> metadata) {
+//        this.status = status;
+//
+//        this.metadata = metadata;
+//    }
+
     // Constructor overloading for when it is necessary to send host and port info from the server to KVStore
     public KVMsg(StatusType status, String hostPort, JSONObject obj) {
         this.status = status;

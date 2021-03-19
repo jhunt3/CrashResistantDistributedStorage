@@ -268,6 +268,12 @@ public class CommModule implements ICommModule, Runnable {
                         out_status = PROPAGATE_SUCCESS;
 
                         break;
+                    case GET_METADATA:
+                        logger.debug("Case GET_METADATA");
+                        List<HashMap<String,String>> out_metadata = this.server.getMetadata();
+
+                        out_status = GET_METADATA_SUCCESS;
+                        return new KVMsg(out_status,"nothing","nothing", out_metadata);
 
                     default:
                         break;

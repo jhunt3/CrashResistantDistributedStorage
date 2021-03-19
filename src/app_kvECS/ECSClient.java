@@ -6,7 +6,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import ecs.IECSNode;
 import ecs.ECSNode;
 
@@ -27,12 +26,11 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
-import shared.messages.KVMsg;
 
 
 public class ECSClient implements IECSClient, Watcher {
     private Logger logger = Logger.getRootLogger();
-    private static final String PROMPT = "ECSClient> ";
+    private static final String PROMPT = "app_kvECS.ECSClient> ";
     private BufferedReader stdin;
     private boolean stop = false;
     private boolean running;
@@ -591,8 +589,8 @@ public class ECSClient implements IECSClient, Watcher {
         String serverPath = System.getProperty("user.dir")+"/m3-server.jar";
 
         String[] cmd = {"sh", scriptPath, node.getNodeHost(),serverPath,String.valueOf(node.getNodePort()),name,host};
-        for (int j = 0; j<6;j++) {
-            System.out.println(cmd[j]);
+        for (int j = 0; j<7;j++) {
+            System.out.println(String.valueOf(j)+": "+cmd[j]);
         }
         Runtime run = Runtime.getRuntime();
         try{
@@ -1239,10 +1237,10 @@ public class ECSClient implements IECSClient, Watcher {
             new LogSetup("logs/ecs.log", Level.ERROR);
             if(args.length != 1) {
                 System.out.println("Error! Invalid number of arguments!");
-                System.out.println("Usage: ECSClient <ecs.config>!");
+                System.out.println("Usage: app_kvECS.ECSClient <ecs.config>!");
             }else {
                 String configfile = args[0];
-                //new ECSClient(configfile);
+                //new app_kvECS.ECSClient(configfile);
                 ECSClient app = new ECSClient(configfile);
                 app.run();
 

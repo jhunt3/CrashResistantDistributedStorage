@@ -558,6 +558,9 @@ public class KVServer extends Thread implements IKVServer{
 	public void flushReplicas(){
 		this.storage.flushReplicas();
 	}
+	public void returnMetadata(){
+
+	}
 
 	/**
 	 * Main entry point for the KVServer application.

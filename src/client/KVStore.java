@@ -34,13 +34,13 @@ public class KVStore extends Thread implements KVCommInterface {
 	public KVStore(String address, int port) {
 		this.address = address;
 		this.port = port;
-		this.metadata = new ArrayList<>();
-		HashMap<String,String> read_metadata = new HashMap<String,String>();
-		HashMap<String,String> write_metadata = new HashMap<String,String>();
-		read_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
-		write_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
-		this.metadata.add(read_metadata);
-		this.metadata.add(write_metadata);
+//		this.metadata = new ArrayList<>();
+//		HashMap<String,String> read_metadata = new HashMap<String,String>();
+//		HashMap<String,String> write_metadata = new HashMap<String,String>();
+//		read_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+//		write_metadata.put(address + ":" + String.valueOf(port), "00000000000000000000000000000000:ffffffffffffffffffffffffffffffff");
+//		this.metadata.add(read_metadata);
+//		this.metadata.add(write_metadata);
 	}
 
 	/**
@@ -49,8 +49,28 @@ public class KVStore extends Thread implements KVCommInterface {
 	 */
 	@Override
 	public void connect() throws Exception {
+
 		this.clientSocket = new Socket(this.address, this.port);
 		this.clientComm = new CommModule(this.clientSocket, null);
+		try {
+			this.clientComm.sendMsg(GET_METADATA, "nothing","nothing",this.metadata);
+			KVMsg replyMsg = (KVMsg) clientComm.receiveMsg();
+
+			if (replyMsg != null) {
+
+				this.metadata = replyMsg.getMetadata();
+
+			} else {
+				System.out.println("Server did not reply to GET_METADATA! Trying to connect to a different server");
+				throw new Exception("Server did not reply to GET_METADATA! Trying to connect to a different server");
+			}
+
+		} catch (Exception e) { // Server failed. Try connecting to another server in the metadata
+			System.out.println("Server " + this.address + ":" + String.valueOf(this.port) + " did not reply to GET_METADATA! Trying to connect to new server");
+//			this.connRandomServer(this.address, this.port);
+//			System.out.println("PUT to new server -> " + this.address + ":" + String.valueOf(this.port));
+		}
+
 	}
 
 	/**
@@ -222,6 +242,7 @@ public class KVStore extends Thread implements KVCommInterface {
 					this.disconnect();
 					this.address = address;
 					this.port = port;
+					System.out.println(address);
 					try {
 						this.connect();
 					} catch (Exception e) {
