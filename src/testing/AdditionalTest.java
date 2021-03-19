@@ -2,10 +2,27 @@ package testing;
 
 import app_kvClient.KVClient;
 import app_kvECS.ECSClient;
+
+import app_kvServer.KVServer;
+import client.KVStore;
+import ecs.ECSNode;
+import org.json.simple.JSONObject;
+
 import org.junit.Test;
 import junit.framework.TestCase;
 
+import shared.comm.CommModule;
+import shared.messages.KVAdminMsg;
+import shared.messages.KVMessage;
+import shared.messages.KVMsg;
+import storage.KVStorage;
+
+import java.io.IOException;
+import java.math.BigInteger;
+import java.net.Socket;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdditionalTest extends TestCase {
@@ -471,6 +488,9 @@ public class AdditionalTest extends TestCase {
 		activeServers=ecsClient.activeServers.size();
 		assertEquals(0,activeServers);
 	}*/
+
+
+	// Milestone 3
 	@Test
 	public void testStorageIntegrityOnAdd() throws Exception {
 		String response;
@@ -570,8 +590,8 @@ public class AdditionalTest extends TestCase {
 		kvClient.handleCommand("put k4 v4");
 
 		System.out.println("Removing Node");
-        response = ecsClient.handleCommand("removeNode " + name);
-        System.out.println("Remove node response: " + response);
+		response = ecsClient.handleCommand("removeNode " + name);
+		System.out.println("Remove node response: " + response);
 
 		assertEquals(kvClient.handleCommand("get k1"), "v1");
 		assertEquals(kvClient.handleCommand("get k2"), "v2");
@@ -589,99 +609,68 @@ public class AdditionalTest extends TestCase {
 		assertEquals(0,activeServers);
 	}
 
-	public void testFlushData() throws Exception {
 
-//        int port = 60000;
-//        int cachSize = 100;
-//        String serverName = "testServer";
-//
-//        KVServer server = new KVServer(port, cachSize, "FIFO", serverName);
-//        server.start();
+	@Test
+	public void testMetadata() throws Exception {
 
-//        client.handleCommand("connect localhost 60000");
-//        client.handleCommand("put k1 v1");
-//        server.dataToFlush.add((Object) "k1");
-//        client.handleCommand("put k2 v2");
-//        server.dataToFlush.add((Object) "k2");
-//        server.flushData();
-//
-//        assertNull(server.getKV("k1"));
-//        assertNull(server.getKV("k2"));
+		ECSClient ecsClient_metadata = new ECSClient("ecs_metadata.config");
 
+		HashMap<String, String> readMetadataGolden = new HashMap<String, String>();
+		readMetadataGolden.put("127.0.0.1:50000", "a98109598267087dfc364fae4cf24579:358343938402ebb5110716c6e836f5a2");
+		readMetadataGolden.put("127.0.0.1:50001", "358343938402ebb5110716c6e836f5a3:dcee0277eb13b76434e8dcd31a387709");
+		readMetadataGolden.put("127.0.0.1:50002", "dcee0277eb13b76434e8dcd31a38770a:b3638a32c297f43aa37e63bbd839fc7e");
+		readMetadataGolden.put("127.0.0.1:50003", "b3638a32c297f43aa37e63bbd839fc7f:a98109598267087dfc364fae4cf24578");
 
-//        System.out.println("Shutting Down");
-//        ecsClient.handleCommand("shutDown");
-//        int activeServers= ecsClient.activeServers.size();
-//        assertEquals(0,activeServers);
-		assertTrue(true);
+		HashMap<String, String> writeMetadataGolden = new HashMap<String, String>();
+		writeMetadataGolden.put("127.0.0.1:50000", "dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2");
+		writeMetadataGolden.put("127.0.0.1:50001", "b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709");
+		writeMetadataGolden.put("127.0.0.1:50002", "a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e");
+		writeMetadataGolden.put("127.0.0.1:50003", "358343938402ebb5110716c6e836f5a3:a98109598267087dfc364fae4cf24578");
+
+		String response;
+
+		// Add the 4 nodes from ecs_metadata.config
+		response = ecsClient_metadata.handleCommand("addNodes 4");
+		System.out.println(response);
+
+		HashMap<String, String> readMetadata;
+		HashMap<String, String> writeMetadata;
+		List<HashMap<String, String>> metadata = ecsClient_metadata.metadata;
+
+		// Get ECS metadata
+		readMetadata = metadata.get(0);
+		writeMetadata = metadata.get(1);
+
+		boolean success = true;
+		String range;
+		String goldenRange;
+
+		// Compare ECS metadata with golden reference
+		for (String mkey : readMetadata.keySet()) {
+			range = readMetadata.get(mkey);
+			goldenRange = readMetadataGolden.get(mkey);
+			if (!goldenRange.equals(range)) {
+				success = false;
+			}
+		}
+
+		for (String mkey : writeMetadata.keySet()) {
+			range = writeMetadata.get(mkey);
+			goldenRange = writeMetadataGolden.get(mkey);
+			if (!goldenRange.equals(range)) {
+				success = false;
+			}
+		}
+
+		response = ecsClient_metadata.handleCommand("shutDown");
+		int activeServers = ecsClient_metadata.activeServers.size();
+
+		assertEquals(0, activeServers);
+		assertTrue(success);
+
+		ecsClient_metadata.handleCommand("quit");
 	}
 
-	public void testWriteLock(){
-		assertTrue(true);
-	}
-
-	// Milestone 3
-
-//	@Test
-//	public void testMetadata() throws Exception {
-//
-//		app_kvECS.ECSClient ecsClient_metadata = new app_kvECS.ECSClient("ecs_metadata.config");
-//
-//		HashMap<String, String> readMetadataGolden = new HashMap<String, String>();
-//		readMetadataGolden.put("127.0.0.1:50000", "a98109598267087dfc364fae4cf24579:358343938402ebb5110716c6e836f5a2");
-//		readMetadataGolden.put("127.0.0.1:50001", "358343938402ebb5110716c6e836f5a3:dcee0277eb13b76434e8dcd31a387709");
-//		readMetadataGolden.put("127.0.0.1:50002", "dcee0277eb13b76434e8dcd31a38770a:b3638a32c297f43aa37e63bbd839fc7e");
-//		readMetadataGolden.put("127.0.0.1:50003", "b3638a32c297f43aa37e63bbd839fc7f:a98109598267087dfc364fae4cf24578");
-//
-//		HashMap<String, String> writeMetadataGolden = new HashMap<String, String>();
-//		writeMetadataGolden.put("127.0.0.1:50000", "dcee0277eb13b76434e8dcd31a38770a:358343938402ebb5110716c6e836f5a2");
-//		writeMetadataGolden.put("127.0.0.1:50001", "b3638a32c297f43aa37e63bbd839fc7f:dcee0277eb13b76434e8dcd31a387709");
-//		writeMetadataGolden.put("127.0.0.1:50002", "a98109598267087dfc364fae4cf24579:b3638a32c297f43aa37e63bbd839fc7e");
-//		writeMetadataGolden.put("127.0.0.1:50003", "358343938402ebb5110716c6e836f5a3:a98109598267087dfc364fae4cf24578");
-//
-//		String response;
-//
-//		// Add the 4 nodes from ecs_metadata.config
-//		response = ecsClient_metadata.handleCommand("addNodes 4");
-//		System.out.println(response);
-//
-//		HashMap<String, String> readMetadata;
-//		HashMap<String, String> writeMetadata;
-//		List<HashMap<String, String>> metadata = ecsClient_metadata.metadata;
-//
-//		// Get ECS metadata
-//		readMetadata = metadata.get(0);
-//		writeMetadata = metadata.get(1);
-//
-//		boolean success = true;
-//		String range;
-//		String goldenRange;
-//
-//		// Compare ECS metadata with golden reference
-//		for (String mkey : readMetadata.keySet()) {
-//			range = readMetadata.get(mkey);
-//			goldenRange = readMetadataGolden.get(mkey);
-//			if (!goldenRange.equals(range)) {
-//				success = false;
-//			}
-//		}
-//
-//		for (String mkey : writeMetadata.keySet()) {
-//			range = writeMetadata.get(mkey);
-//			goldenRange = writeMetadataGolden.get(mkey);
-//			if (!goldenRange.equals(range)) {
-//				success = false;
-//			}
-//		}
-//
-//		response = ecsClient_metadata.handleCommand("shutDown");
-//		int activeServers = ecsClient_metadata.activeServers.size();
-//
-//		assertEquals(0, activeServers);
-//		assertTrue(success);
-//
-//		ecsClient_metadata.handleCommand("quit");
-//	}
 
 	@Test
 	public void testHashList() throws Exception {
@@ -725,5 +714,154 @@ public class AdditionalTest extends TestCase {
 
 		ecsClient_metadata.handleCommand("quit");
 
+	}
+/*
+	// Test connection failure (kill server client is connected to)
+	@Test
+	public void testNewServerOnServerCrash() throws Exception {
+		String response;
+
+		ecsClient.handleCommand("shutDown");
+		int activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
+
+		response=ecsClient.handleCommand("addNodes 2");
+		String[] addrs=response.split(" ");
+		System.out.println(response);
+
+		String host1= addrs[1].split(":")[0];
+		int port1 = Integer.parseInt(addrs[1].split(":")[1]);
+
+		int currNumServers = ecsClient.activeServers.size();
+
+		Socket socket = new Socket(host1, port1);
+		CommModule serverComm = new CommModule(socket, null);
+
+		serverComm.sendAdminMsg(null, STOP, null, null, null);
+
+		KVAdminMsg replyMsg = (KVAdminMsg) serverComm.receiveMsg();
+		if (replyMsg.getStatus() != STOP_SUCCESS) {
+			System.out.println("Server Crashing failed");
+		}
+
+		Thread.sleep(10000);
+
+		List<ECSNode> runningNodes =  ecsClient.activeServers;
+
+		assertEquals(currNumServers, runningNodes.size());
+
+		// shutdown
+		ecsClient.handleCommand("shutDown");
+		activeServers = ecsClient.activeServers.size();
+
+		assertEquals(0, activeServers);
+	}
+
+//	@Test
+//	public void testClientConnectNewServerOnServerCrash(){
+//
+//	}
+
+	// Test if data is replicated AND we can get from replication nodes
+	@Test
+	public void testGetReplication() throws Exception {
+		String response;
+		boolean success = true;
+		ecsClient.handleCommand("shutDown");
+		int activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
+
+		response=ecsClient.handleCommand("addNodes 3");
+		String[] addrs=response.split(" ");
+		System.out.println(response);
+
+		String[] hosts=new String[4];
+		int[] ports=new int[4];
+		for (int i = 1;i<addrs.length;i++) {
+			hosts[i]=addrs[i].split(":")[0];
+			ports[i]=Integer.parseInt(addrs[i].split(":")[1]);
+		}
+
+		Thread.sleep(5000);
+
+		Socket socket;
+		CommModule serverComm;
+
+		kvClient.handleCommand("connect " + hosts[1] + " "+String.valueOf(ports[1]));
+		kvClient.handleCommand("put 1 1");
+
+		for (int i = 1; i < 4; i++){
+			socket = new Socket(hosts[i], ports[i]);
+			serverComm = new CommModule(socket, null);
+
+			serverComm.sendMsg(GET, "1", null, null);
+
+			KVMsg replyMsg = (KVMsg) serverComm.receiveMsg();
+			if (replyMsg.getStatus() != GET_SUCCESS) {
+				success = false;
+			}
+		}
+
+		assertTrue(success);
+		ecsClient.handleCommand("shutDown");
+		activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
+	}
+*/
+	// Test KVStorage.replicaPutKV
+	@Test
+	public void testReplicaPutKV() throws Exception {
+		KVStorage storage = new KVStorage("FIFO", 100, "testServer");
+		storage.replicaPutKV("1", "1", "replica_1");
+		JSONObject obj = storage.getReplicaObject("replica_1");
+		assertTrue(obj.containsKey("1"));
+		storage.clearKVStorage();
+		storage.flushReplicas();
+	}
+
+	// Tests KVStorage.get() -> see if put data on coord service and replicas can be fetched
+	@Test
+	public void testKVStorageGet() throws Exception {
+		KVStorage storage = new KVStorage("FIFO", 100, "testServer");
+		storage.replicaPutKV("1", "1", "replica_2");
+		storage.replicaPutKV("2", "2", "replica_1");
+		storage.put("3", "3");
+		assertEquals(storage.get("1"), "1");
+		assertEquals(storage.get("2"), "2");
+		assertEquals(storage.get("3"), "3");
+		storage.clearKVStorage();
+		storage.flushReplicas();
+	}
+
+	// Test KVStorage.mergeReplica
+	@Test
+	public void testMergeReplica() throws Exception {
+		KVStorage storage = new KVStorage("FIFO", 100, "testServer");
+		storage.put("1", "1");
+		storage.replicaPutKV("2","2", "replica_2");
+		storage.mergeReplica("replica_2");
+
+		JSONObject coordObj = storage.getKVObject();
+
+		assertEquals(coordObj.get("1"), "1");
+		assertEquals(coordObj.get("2"), "2");
+		storage.clearKVStorage();
+		storage.flushReplicas();
+	}
+
+	// Test KVStorage.flushreplica
+	@Test
+	public void testFlushReplica() throws Exception {
+		KVStorage storage =  new KVStorage("FIFO", 100, "testServer");
+		storage.replicaPutKV("1", "1", "replica_1");
+		storage.replicaPutKV("2", "2", "replica_2");
+
+		assertEquals(storage.get("1"), "1");
+		assertEquals(storage.get("2"), "2");
+
+		storage.flushReplicas();
+
+		assertNull(storage.get("1"));
+		assertNull(storage.get("2"));
 	}
 }
