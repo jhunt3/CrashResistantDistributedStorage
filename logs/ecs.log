@@ -1,0 +1,48 @@
+2021-03-18 21:18:20,043 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50053
+2021-03-18 21:18:20,044 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50053
+2021-03-18 21:18:20,044 ERROR [main-EventThread] root: crashed
+2021-03-18 21:18:20,044 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50053
+2021-03-18 21:18:20,044 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50053
+2021-03-18 21:18:20,044 ERROR [main-EventThread] root: crashed
+2021-03-18 21:23:28,079 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50121
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50121
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: crashed
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50063
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50121
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Not crashed
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50121
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50121
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: crashed
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50063
+2021-03-18 21:23:28,080 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50121
+2021-03-18 21:23:28,081 ERROR [main-EventThread] root: Not crashed
+2021-03-18 21:23:28,081 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-18 21:23:28,081 ERROR [main-EventThread] root: Recovering 1 consecutive crashed server.
+2021-03-18 21:37:20,107 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50087
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50111
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Not crashed
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50111
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50111
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: crashed
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50087
+2021-03-18 21:37:20,109 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50111
+2021-03-18 21:37:20,110 ERROR [main-EventThread] root: Not crashed
+2021-03-18 21:37:20,110 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-18 21:37:20,130 ERROR [main-EventThread] root: Recovering 1 consecutive crashed server.
+2021-03-18 21:40:40,091 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50080
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50080
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: crashed
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50072
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50080
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: Not crashed
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: Found first uncrashed server
+2021-03-18 21:40:40,092 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50080
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50080
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: crashed
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: Looking at: 127.0.0.1:50072
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: Compare to: 127.0.0.1:50080
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: Not crashed
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: Entering recovery stage
+2021-03-18 21:40:40,093 ERROR [main-EventThread] root: Recovering 1 consecutive crashed server.

@@ -4,11 +4,13 @@ import app_kvClient.KVClient;
 import app_kvECS.ECSClient;
 import app_kvServer.KVServer;
 import client.KVStore;
+import org.json.simple.JSONObject;
 import org.junit.Test;
 import ecs.IECSNode;
 import ecs.ECSNode;
 import junit.framework.TestCase;
 import shared.comm.CommModule;
+import shared.messages.KVAdminMsg;
 import shared.messages.KVMessage;
 import shared.messages.KVMsg;
 import storage.KVStorage;
@@ -488,6 +490,9 @@ public class AdditionalTest extends TestCase {
 		activeServers=ecsClient.activeServers.size();
 		assertEquals(0,activeServers);
 	}*/
+
+
+	// Milestone 3
 	@Test
 	public void testStorageIntegrityOnAdd() throws Exception {
 		String response;
@@ -561,7 +566,6 @@ public class AdditionalTest extends TestCase {
 		ecsClient.handleCommand("shutDown");
 
 	}
-/*
 	public void testMoveData() throws Exception {
 		String response;
 
@@ -587,8 +591,8 @@ public class AdditionalTest extends TestCase {
 		kvClient.handleCommand("put k4 v4");
 
 		System.out.println("Removing Node");
-        response = ecsClient.handleCommand("removeNode " + name);
-        System.out.println("Remove node response: " + response);
+		response = ecsClient.handleCommand("removeNode " + name);
+		System.out.println("Remove node response: " + response);
 
 		assertEquals(kvClient.handleCommand("get k1"), "v1");
 		assertEquals(kvClient.handleCommand("get k2"), "v2");
@@ -605,39 +609,6 @@ public class AdditionalTest extends TestCase {
 		int activeServers= ecsClient.activeServers.size();
 		assertEquals(0,activeServers);
 	}
-
-	public void testFlushData() throws Exception {
-
-//        int port = 60000;
-//        int cachSize = 100;
-//        String serverName = "testServer";
-//
-//        KVServer server = new KVServer(port, cachSize, "FIFO", serverName);
-//        server.start();
-
-//        client.handleCommand("connect localhost 60000");
-//        client.handleCommand("put k1 v1");
-//        server.dataToFlush.add((Object) "k1");
-//        client.handleCommand("put k2 v2");
-//        server.dataToFlush.add((Object) "k2");
-//        server.flushData();
-//
-//        assertNull(server.getKV("k1"));
-//        assertNull(server.getKV("k2"));
-
-
-//        System.out.println("Shutting Down");
-//        ecsClient.handleCommand("shutDown");
-//        int activeServers= ecsClient.activeServers.size();
-//        assertEquals(0,activeServers);
-		assertTrue(true);
-	}
-
-	public void testWriteLock(){
-		assertTrue(true);
-	}*/
-
-	// Milestone 3
 
 	@Test
 	public void testMetadata() throws Exception {
@@ -742,5 +713,154 @@ public class AdditionalTest extends TestCase {
 
 		ecsClient_metadata.handleCommand("quit");
 
+	}
+
+	// Test connection failure (kill server client is connected to)
+	@Test
+	public void testNewServerOnServerCrash() throws Exception {
+		String response;
+
+		ecsClient.handleCommand("shutDown");
+		int activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
+
+		response=ecsClient.handleCommand("addNodes 2");
+		String[] addrs=response.split(" ");
+		System.out.println(response);
+
+		String host1= addrs[1].split(":")[0];
+		int port1 = Integer.parseInt(addrs[1].split(":")[1]);
+
+		int currNumServers = ecsClient.activeServers.size();
+
+		Socket socket = new Socket(host1, port1);
+		CommModule serverComm = new CommModule(socket, null);
+
+		serverComm.sendAdminMsg(null, STOP, null, null, null);
+
+		KVAdminMsg replyMsg = (KVAdminMsg) serverComm.receiveMsg();
+		if (replyMsg.getStatus() != STOP_SUCCESS) {
+			System.out.println("Server Crashing failed");
+		}
+
+		Thread.sleep(10000);
+
+		List<ECSNode> runningNodes =  ecsClient.activeServers;
+
+		assertEquals(currNumServers, runningNodes.size());
+
+		// shutdown
+		ecsClient.handleCommand("shutDown");
+		activeServers = ecsClient.activeServers.size();
+
+		assertEquals(0, activeServers);
+	}
+
+//	@Test
+//	public void testClientConnectNewServerOnServerCrash(){
+//
+//	}
+
+	// Test if data is replicated AND we can get from replication nodes
+	@Test
+	public void testGetReplication() throws Exception {
+		String response;
+		boolean success = true;
+		ecsClient.handleCommand("shutDown");
+		int activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
+
+		response=ecsClient.handleCommand("addNodes 3");
+		String[] addrs=response.split(" ");
+		System.out.println(response);
+
+		String[] hosts=new String[4];
+		int[] ports=new int[4];
+		for (int i = 1;i<addrs.length;i++) {
+			hosts[i]=addrs[i].split(":")[0];
+			ports[i]=Integer.parseInt(addrs[i].split(":")[1]);
+		}
+
+		Thread.sleep(5000);
+
+		Socket socket;
+		CommModule serverComm;
+
+		kvClient.handleCommand("connect " + hosts[1] + " "+String.valueOf(ports[1]));
+		kvClient.handleCommand("put 1 1");
+
+		for (int i = 1; i < 4; i++){
+			socket = new Socket(hosts[i], ports[i]);
+			serverComm = new CommModule(socket, null);
+
+			serverComm.sendMsg(GET, "1", null, null);
+
+			KVMsg replyMsg = (KVMsg) serverComm.receiveMsg();
+			if (replyMsg.getStatus() != GET_SUCCESS) {
+				success = false;
+			}
+		}
+
+		assertTrue(success);
+		ecsClient.handleCommand("shutDown");
+		activeServers = ecsClient.activeServers.size();
+		assertEquals(0, activeServers);
+	}
+
+	// Test KVStorage.replicaPutKV
+	@Test
+	public void testReplicaPutKV() throws Exception {
+		KVStorage storage = new KVStorage("FIFO", 100, "testServer");
+		storage.replicaPutKV("1", "1", "replica_1");
+		JSONObject obj = storage.getReplicaObject("replica_1");
+		assertTrue(obj.containsKey("1"));
+		storage.clearKVStorage();
+		storage.flushReplicas();
+	}
+
+	// Tests KVStorage.get() -> see if put data on coord service and replicas can be fetched
+	@Test
+	public void testKVStorageGet() throws Exception {
+		KVStorage storage = new KVStorage("FIFO", 100, "testServer");
+		storage.replicaPutKV("1", "1", "replica_2");
+		storage.replicaPutKV("2", "2", "replica_1");
+		storage.put("3", "3");
+		assertEquals(storage.get("1"), "1");
+		assertEquals(storage.get("2"), "2");
+		assertEquals(storage.get("3"), "3");
+		storage.clearKVStorage();
+		storage.flushReplicas();
+	}
+
+	// Test KVStorage.mergeReplica
+	@Test
+	public void testMergeReplica() throws Exception {
+		KVStorage storage = new KVStorage("FIFO", 100, "testServer");
+		storage.put("1", "1");
+		storage.replicaPutKV("2","2", "replica_2");
+		storage.mergeReplica("replica_2");
+
+		JSONObject coordObj = storage.getKVObject();
+
+		assertEquals(coordObj.get("1"), "1");
+		assertEquals(coordObj.get("2"), "2");
+		storage.clearKVStorage();
+		storage.flushReplicas();
+	}
+
+	// Test KVStorage.flushreplica
+	@Test
+	public void testFlushReplica() throws Exception {
+		KVStorage storage =  new KVStorage("FIFO", 100, "testServer");
+		storage.replicaPutKV("1", "1", "replica_1");
+		storage.replicaPutKV("2", "2", "replica_2");
+
+		assertEquals(storage.get("1"), "1");
+		assertEquals(storage.get("2"), "2");
+
+		storage.flushReplicas();
+
+		assertNull(storage.get("1"));
+		assertNull(storage.get("2"));
 	}
 }

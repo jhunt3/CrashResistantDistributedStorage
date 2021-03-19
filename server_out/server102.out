@@ -1,0 +1,665 @@
+2021-03-18 22:44:49,041 INFO  [main] root: Creating Storage Files
+2021-03-18 22:44:49,042 INFO  [main] root: File created: server102.json
+2021-03-18 22:44:49,042 INFO  [main] root: File created: server102_replica_1.json
+2021-03-18 22:44:49,042 INFO  [main] root: File created: server102_replica_2.json
+2021-03-18 22:44:49,042 INFO  [Thread-0] root: Initialize server ...
+2021-03-18 22:44:49,053 INFO  [Thread-0] root: Server listening on port: 50101
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:zookeeper.version=3.6.2--803c7f1a12f85978cb049af5e4ef23bd8b688715, built on 09/04/2020 12:44 GMT
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:host.name=localhost
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.version=11.0.10
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.vendor=Azul Systems, Inc.
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.home=/Users/steve/Library/Java/JavaVirtualMachines/azul-11.0.10/Contents/Home
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.class.path=/Users/steve/Desktop/UofT/year4/winter2021/ECE419/milestone3/m3-server.jar
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.library.path=/Users/steve/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.io.tmpdir=/var/folders/kz/3gb57nkn6ks6_07_dtt5lqvr0000gn/T/
+2021-03-18 22:44:49,072 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:java.compiler=<NA>
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.name=Mac OS X
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.arch=x86_64
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.version=10.16
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.name=steve
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.home=/Users/steve
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:user.dir=/Users/steve
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.free=249MB
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.max=4096MB
+2021-03-18 22:44:49,073 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Client environment:os.memory.total=256MB
+2021-03-18 22:44:49,076 INFO  [Thread-0] org.apache.zookeeper.ZooKeeper: Initiating client connection, connectString=localhost:2181 sessionTimeout=3000 watcher=app_kvServer.KVServer$1@707618dc
+2021-03-18 22:44:49,079 INFO  [Thread-0] org.apache.zookeeper.common.X509Util: Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+2021-03-18 22:44:49,088 INFO  [Thread-0] org.apache.zookeeper.ClientCnxnSocket: jute.maxbuffer value is 1048575 Bytes
+2021-03-18 22:44:49,094 INFO  [Thread-0] org.apache.zookeeper.ClientCnxn: zookeeper.request.timeout value is 0. feature enabled=false
+2021-03-18 22:44:49,102 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.SaslServerPrincipal: Canonicalized address to localhost
+2021-03-18 22:44:49,103 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Opening socket connection to server localhost/0:0:0:0:0:0:0:1:2181.
+2021-03-18 22:44:49,103 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2021-03-18 22:44:49,116 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Socket connection established, initiating session, client: /0:0:0:0:0:0:0:1:52917, server: localhost/0:0:0:0:0:0:0:1:2181
+2021-03-18 22:44:49,117 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment request sent on localhost/0:0:0:0:0:0:0:1:2181
+2021-03-18 22:44:49,147 TRACE [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxnSocket: readConnectResult 37 0x[0,0,0,0,0,0,f,ffffffa0,1,0,14,ffffffbd,52,70,0,ffffff83,0,0,0,10,ffffffc2,1e,fffffffd,2a,ffffffac,ffffffe0,ffffffa6,ffffffc4,7d,42,ffffffce,8,ffffffc4,ffffffbc,ffffffa2,d,0,]
+2021-03-18 22:44:49,149 INFO  [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Session establishment complete on server localhost/0:0:0:0:0:0:0:1:2181, session id = 0x10014bd52700083, negotiated timeout = 4000
+2021-03-18 22:44:49,152 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-18 22:44:49,152 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:None path:null
+2021-03-18 22:44:49,180 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700083, packet:: clientPath:null serverPath:null finished:false header:: 1,1  replyHeader:: 1,442,0  request:: '/keeper/server102,,v{s{31,s{'world,'anyone}}},1  response:: '/keeper/server102 
+2021-03-18 22:44:49,185 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700083, packet:: clientPath:null serverPath:null finished:false header:: 2,3  replyHeader:: 2,442,0  request:: '/keeper/server102,T  response:: s{442,442,1616121889152,1616121889152,0,0,0,72080397402374275,0,0,442} 
+2021-03-18 22:44:49,211 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got notification session id: 0x10014bd52700083
+2021-03-18 22:44:49,212 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server102 for session id 0x10014bd52700083
+2021-03-18 22:44:49,213 DEBUG [Thread-0-EventThread] root: ZK event: 
+2021-03-18 22:44:49,213 DEBUG [Thread-0-EventThread] root: WatchedEvent state:SyncConnected type:NodeDataChanged path:/keeper/server102
+2021-03-18 22:44:49,214 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Reading reply session id: 0x10014bd52700083, packet:: clientPath:null serverPath:null finished:false header:: 3,5  replyHeader:: 3,443,0  request:: '/keeper/server102,#3132372e302e302e313a3530313031,0  response:: s{442,443,1616121889152,1616121889186,1,0,0,72080397402374275,15,0,442} 
+2021-03-18 22:44:49,214 INFO  [Thread-0] root: Node created at: /keeper/server102
+Starting commModule
+2021-03-18 22:44:49,221 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,221 INFO  [Thread-0] root: Connected to localhost on port 52918
+2021-03-18 22:44:49,229 INFO  [Thread-1] root: Message received by server -> Status: INIT_SERVER
+received adminmsg
+2021-03-18 22:44:49,229 INFO  [Thread-1] root: Message sent by server -> Status: INIT_SERVER_SUCCESS
+2021-03-18 22:44:49,230 INFO  [Thread-1] root: Message received by server -> Status: START
+received adminmsg
+2021-03-18 22:44:49,230 INFO  [Thread-1] root: Message sent by server -> Status: START_SUCCESS
+Starting commModule
+2021-03-18 22:44:49,237 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,238 INFO  [Thread-0] root: Connected to localhost on port 52921
+Starting commModule
+2021-03-18 22:44:49,240 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,241 INFO  [Thread-0] root: Connected to localhost on port 52924
+Starting commModule
+2021-03-18 22:44:49,247 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,247 INFO  [Thread-0] root: Connected to localhost on port 52926
+2021-03-18 22:44:49,248 INFO  [Thread-4] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-18 22:44:49,249 INFO  [Thread-4] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-18 22:44:49,252 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,253 INFO  [Thread-0] root: Connected to localhost on port 52928
+Starting commModule
+2021-03-18 22:44:49,254 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,254 INFO  [Thread-0] root: Connected to localhost on port 52930
+2021-03-18 22:44:49,255 INFO  [Thread-6] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-18 22:44:49,260 DEBUG [Thread-6] root: Getting successors
+2021-03-18 22:44:49,260 DEBUG [Thread-6] root: Got successors
+2021-03-18 22:44:49,261 DEBUG [Thread-6] root: Propagating to: 127.0.0.1:50139 127.0.0.1:50101
+2021-03-18 22:44:49,263 INFO  [Thread-6] root: Client communication module connected
+Starting commModule
+2021-03-18 22:44:49,263 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,263 INFO  [Thread-6] root: Client communication module connected
+2021-03-18 22:44:49,263 DEBUG [Thread-6] root: {}
+2021-03-18 22:44:49,264 INFO  [Thread-6] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+2021-03-18 22:44:49,264 INFO  [Thread-0] root: Connected to localhost on port 52932
+Starting commModule
+2021-03-18 22:44:49,277 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,278 INFO  [Thread-0] root: Connected to localhost on port 52934
+2021-03-18 22:44:49,279 INFO  [Thread-8] root: Message received by server -> Status: PUT Key: 1 Value: SIR1
+2021-03-18 22:44:49,279 DEBUG [Thread-8] root: In serve
+2021-03-18 22:44:49,279 DEBUG [Thread-8] root: Checking if stopped or write locked
+2021-03-18 22:44:49,279 DEBUG [Thread-8] root: PUT request being served
+2021-03-18 22:44:49,279 DEBUG [Thread-8] root: Checking if it's in range
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: Got metadata range: ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: 127.0.0.1:50139 -> f3d928c22c4187bc407f070c47719bc4:ffea52f7f08a4f6f6b2e16c759924cf7
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: 127.0.0.1:50101 -> ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: Got range big ints
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: Range end < range start
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: Done with range check in server
+2021-03-18 22:44:49,286 DEBUG [Thread-8] root: In range
+2021-03-18 22:44:49,287 INFO  [Thread-8] root: Put: key = 1, value = SIR1
+2021-03-18 22:44:49,288 DEBUG [Thread-8] root: Getting successors
+2021-03-18 22:44:49,288 DEBUG [Thread-8] root: Got successors
+2021-03-18 22:44:49,288 DEBUG [Thread-8] root: Propagating to: 127.0.0.1:50139 127.0.0.1:50101
+2021-03-18 22:44:49,288 INFO  [Thread-8] root: Client communication module connected
+Starting commModule
+2021-03-18 22:44:49,289 INFO  [Thread-8] root: Client communication module connected
+2021-03-18 22:44:49,289 DEBUG [Thread-8] root: {"1":"SIR1"}
+2021-03-18 22:44:49,289 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,289 INFO  [Thread-0] root: Connected to localhost on port 52936
+2021-03-18 22:44:49,291 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,291 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,291 INFO  [Thread-9] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: In serve
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Checking if stopped or write locked
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Case propagate
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Passing to server
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Getting Predecessors
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Predecessors:
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Index of predecessor: 0
+2021-03-18 22:44:49,292 DEBUG [Thread-9] root: Server Stuff
+2021-03-18 22:44:49,293 INFO  [Thread-9] root: Put: key = 1, value = SIR1
+2021-03-18 22:44:49,293 INFO  [Thread-9] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,293 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,294 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,294 INFO  [Thread-8] root: Message sent by server -> Status: PUT_SUCCESS Key: 1 Value: SIR1
+2021-03-18 22:44:49,295 INFO  [Thread-8] root: Message received by server -> Status: PUT Key: 2 Value: SIR2
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: In serve
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Checking if stopped or write locked
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: PUT request being served
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Checking if it's in range
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Got metadata range: ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: 127.0.0.1:50139 -> f3d928c22c4187bc407f070c47719bc4:ffea52f7f08a4f6f6b2e16c759924cf7
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: 127.0.0.1:50101 -> ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Got range big ints
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Range end < range start
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: Done with range check in server
+2021-03-18 22:44:49,295 DEBUG [Thread-8] root: In range
+2021-03-18 22:44:49,296 INFO  [Thread-8] root: Put: key = 2, value = SIR2
+2021-03-18 22:44:49,296 DEBUG [Thread-8] root: Getting successors
+2021-03-18 22:44:49,296 DEBUG [Thread-8] root: Got successors
+2021-03-18 22:44:49,296 DEBUG [Thread-8] root: Propagating to: 127.0.0.1:50139 127.0.0.1:50101
+2021-03-18 22:44:49,297 INFO  [Thread-8] root: Client communication module connected
+Starting commModule
+2021-03-18 22:44:49,297 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,297 INFO  [Thread-8] root: Client communication module connected
+2021-03-18 22:44:49,297 DEBUG [Thread-8] root: {"2":"SIR2"}
+2021-03-18 22:44:49,298 INFO  [Thread-0] root: Connected to localhost on port 52938
+2021-03-18 22:44:49,298 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,298 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,298 INFO  [Thread-10] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: In serve
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Checking if stopped or write locked
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Case propagate
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Passing to server
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Getting Predecessors
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Predecessors:
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Index of predecessor: 0
+2021-03-18 22:44:49,299 DEBUG [Thread-10] root: Server Stuff
+2021-03-18 22:44:49,299 INFO  [Thread-10] root: Put: key = 2, value = SIR2
+2021-03-18 22:44:49,300 INFO  [Thread-10] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,300 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,301 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,301 INFO  [Thread-8] root: Message sent by server -> Status: PUT_SUCCESS Key: 2 Value: SIR2
+2021-03-18 22:44:49,301 INFO  [Thread-8] root: Message received by server -> Status: PUT Key: 3 Value: SIR3
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: In serve
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: Checking if stopped or write locked
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: PUT request being served
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: Checking if it's in range
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: Got metadata range: ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,301 DEBUG [Thread-8] root: 127.0.0.1:50139 -> f3d928c22c4187bc407f070c47719bc4:ffea52f7f08a4f6f6b2e16c759924cf7
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: 127.0.0.1:50101 -> ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: Got range big ints
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: Range end < range start
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: Done with range check in server
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: In range
+2021-03-18 22:44:49,302 INFO  [Thread-8] root: Put: key = 3, value = SIR3
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: Getting successors
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: Got successors
+2021-03-18 22:44:49,302 DEBUG [Thread-8] root: Propagating to: 127.0.0.1:50139 127.0.0.1:50101
+2021-03-18 22:44:49,303 INFO  [Thread-8] root: Client communication module connected
+Starting commModule
+2021-03-18 22:44:49,303 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,303 INFO  [Thread-8] root: Client communication module connected
+2021-03-18 22:44:49,303 DEBUG [Thread-8] root: {"3":"SIR3"}
+2021-03-18 22:44:49,304 INFO  [Thread-0] root: Connected to localhost on port 52940
+2021-03-18 22:44:49,304 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,304 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,304 INFO  [Thread-11] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:49,304 DEBUG [Thread-11] root: In serve
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Checking if stopped or write locked
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Case propagate
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Passing to server
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Getting Predecessors
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Predecessors:
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Index of predecessor: 0
+2021-03-18 22:44:49,305 DEBUG [Thread-11] root: Server Stuff
+2021-03-18 22:44:49,305 INFO  [Thread-11] root: Put: key = 3, value = SIR3
+2021-03-18 22:44:49,305 INFO  [Thread-11] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,306 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,306 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,306 INFO  [Thread-8] root: Message sent by server -> Status: PUT_SUCCESS Key: 3 Value: SIR3
+2021-03-18 22:44:49,306 INFO  [Thread-8] root: Message received by server -> Status: PUT Key: 4 Value: SIR4
+2021-03-18 22:44:49,306 DEBUG [Thread-8] root: In serve
+2021-03-18 22:44:49,306 DEBUG [Thread-8] root: Checking if stopped or write locked
+2021-03-18 22:44:49,306 DEBUG [Thread-8] root: PUT request being served
+2021-03-18 22:44:49,306 DEBUG [Thread-8] root: Checking if it's in range
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Got metadata range: ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: 127.0.0.1:50139 -> f3d928c22c4187bc407f070c47719bc4:ffea52f7f08a4f6f6b2e16c759924cf7
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: 127.0.0.1:50101 -> ffea52f7f08a4f6f6b2e16c759924cf8:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Got range big ints
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Range end < range start
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Done with range check in server
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: In range
+2021-03-18 22:44:49,307 INFO  [Thread-8] root: Put: key = 4, value = SIR4
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Getting successors
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Got successors
+2021-03-18 22:44:49,307 DEBUG [Thread-8] root: Propagating to: 127.0.0.1:50139 127.0.0.1:50101
+2021-03-18 22:44:49,308 INFO  [Thread-8] root: Client communication module connected
+Starting commModule
+2021-03-18 22:44:49,308 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,308 INFO  [Thread-8] root: Client communication module connected
+2021-03-18 22:44:49,308 DEBUG [Thread-8] root: {"4":"SIR4"}
+2021-03-18 22:44:49,308 INFO  [Thread-0] root: Connected to localhost on port 52942
+2021-03-18 22:44:49,308 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,309 INFO  [Thread-8] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,310 INFO  [Thread-12] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: In serve
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Checking if stopped or write locked
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Case propagate
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Passing to server
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Getting Predecessors
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Predecessors:
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: [127.0.0.1:50101, 127.0.0.1:50139]
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,310 DEBUG [Thread-12] root: Index of predecessor: 0
+2021-03-18 22:44:49,311 DEBUG [Thread-12] root: Server Stuff
+2021-03-18 22:44:49,311 INFO  [Thread-12] root: Put: key = 4, value = SIR4
+2021-03-18 22:44:49,311 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,311 INFO  [Thread-12] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,312 INFO  [Thread-8] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,312 INFO  [Thread-8] root: Message sent by server -> Status: PUT_SUCCESS Key: 4 Value: SIR4
+Starting commModule
+2021-03-18 22:44:49,313 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,314 INFO  [Thread-0] root: Connected to localhost on port 52943
+2021-03-18 22:44:49,314 INFO  [Thread-13] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-18 22:44:49,315 INFO  [Thread-13] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-18 22:44:49,317 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,318 INFO  [Thread-0] root: Connected to localhost on port 52945
+Starting commModule
+2021-03-18 22:44:49,320 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,321 INFO  [Thread-0] root: Connected to localhost on port 52947
+2021-03-18 22:44:49,321 INFO  [Thread-15] root: Message received by server -> Status: UPDATE
+received adminmsg
+2021-03-18 22:44:49,322 INFO  [Thread-15] root: Message sent by server -> Status: UPDATE_SUCCESS
+Starting commModule
+2021-03-18 22:44:49,325 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,325 INFO  [Thread-0] root: Connected to localhost on port 52949
+Starting commModule
+2021-03-18 22:44:49,325 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,326 INFO  [Thread-0] root: Connected to localhost on port 52950
+Starting commModule
+2021-03-18 22:44:49,326 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,327 INFO  [Thread-0] root: Connected to localhost on port 52951
+2021-03-18 22:44:49,327 INFO  [Thread-18] root: Message received by server -> Status: PROPAGATE_ADMIN
+received adminmsg
+2021-03-18 22:44:49,328 DEBUG [Thread-18] root: Getting successors
+2021-03-18 22:44:49,328 DEBUG [Thread-18] root: Got successors
+2021-03-18 22:44:49,328 DEBUG [Thread-18] root: Propagating to: 127.0.0.1:50101 127.0.0.1:50101
+Starting commModule
+2021-03-18 22:44:49,328 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,328 INFO  [Thread-18] root: Client communication module connected
+2021-03-18 22:44:49,329 INFO  [Thread-0] root: Connected to localhost on port 52952
+Starting commModule
+2021-03-18 22:44:49,329 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:49,329 INFO  [Thread-18] root: Client communication module connected
+2021-03-18 22:44:49,329 DEBUG [Thread-18] root: {"1":"SIR1","2":"SIR2","3":"SIR3","4":"SIR4"}
+2021-03-18 22:44:49,329 INFO  [Thread-0] root: Connected to localhost on port 52953
+2021-03-18 22:44:49,330 INFO  [Thread-18] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,330 INFO  [Thread-18] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:49,330 INFO  [Thread-19] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: In serve
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Checking if stopped or write locked
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Case propagate
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Passing to server
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Getting Predecessors
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: [127.0.0.1:50101]
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Predecessors:
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,330 INFO  [Thread-20] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:49,330 DEBUG [Thread-20] root: In serve
+2021-03-18 22:44:49,330 DEBUG [Thread-20] root: Checking if stopped or write locked
+2021-03-18 22:44:49,330 DEBUG [Thread-20] root: Case propagate
+2021-03-18 22:44:49,330 DEBUG [Thread-20] root: Passing to server
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: Getting Predecessors
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: [127.0.0.1:50101]
+2021-03-18 22:44:49,330 DEBUG [Thread-19] root: Index of predecessor: 0
+2021-03-18 22:44:49,331 DEBUG [Thread-19] root: Server Stuff
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: Predecessors:
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: Index of predecessor: 0
+2021-03-18 22:44:49,331 DEBUG [Thread-20] root: Server Stuff
+2021-03-18 22:44:49,331 INFO  [Thread-19] root: Put: key = 1, value = SIR1
+2021-03-18 22:44:49,331 INFO  [Thread-19] root: Put: key = 2, value = SIR2
+2021-03-18 22:44:49,332 INFO  [Thread-19] root: Put: key = 3, value = SIR3
+2021-03-18 22:44:49,332 INFO  [Thread-19] root: Put: key = 4, value = SIR4
+2021-03-18 22:44:49,332 INFO  [Thread-19] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,332 INFO  [Thread-20] root: Put: key = 1, value = SIR1
+2021-03-18 22:44:49,333 INFO  [Thread-18] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,333 INFO  [Thread-20] root: Put: key = 2, value = SIR2
+2021-03-18 22:44:49,333 INFO  [Thread-20] root: Put: key = 3, value = SIR3
+2021-03-18 22:44:49,334 INFO  [Thread-20] root: Put: key = 4, value = SIR4
+2021-03-18 22:44:49,334 INFO  [Thread-20] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,334 INFO  [Thread-18] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:49,334 INFO  [Thread-18] root: Message sent by server -> Status: PROPAGATE_SUCCESS
+2021-03-18 22:44:50,520 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got ping response for session id: 0x10014bd52700083 after 0ms.
+2021-03-18 22:44:51,857 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got ping response for session id: 0x10014bd52700083 after 0ms.
+2021-03-18 22:44:53,193 DEBUG [Thread-0-SendThread(localhost:2181)] org.apache.zookeeper.ClientCnxn: Got ping response for session id: 0x10014bd52700083 after 0ms.
+Starting commModule
+2021-03-18 22:44:54,150 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,151 INFO  [Thread-0] root: Connected to localhost on port 52956
+2021-03-18 22:44:54,151 INFO  [Thread-21] root: Message received by server -> Status: GET Key: 1 Value: 
+2021-03-18 22:44:54,151 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,151 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,151 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,152 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,152 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,152 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,152 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,152 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,152 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,152 INFO  [Thread-21] root: Get: key = 1
+2021-03-18 22:44:54,153 INFO  [Thread-21] root: Message sent by server -> Status: GET_SUCCESS Key: 1 Value: SIR1
+2021-03-18 22:44:54,154 INFO  [Thread-21] root: Message received by server -> Status: GET Key: 2 Value: 
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,154 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,154 INFO  [Thread-21] root: Get: key = 2
+2021-03-18 22:44:54,155 INFO  [Thread-21] root: Message sent by server -> Status: GET_SUCCESS Key: 2 Value: SIR2
+2021-03-18 22:44:54,156 INFO  [Thread-21] root: Message received by server -> Status: GET Key: 3 Value: 
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,156 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,156 INFO  [Thread-21] root: Get: key = 3
+2021-03-18 22:44:54,157 INFO  [Thread-21] root: Message sent by server -> Status: GET_SUCCESS Key: 3 Value: SIR3
+2021-03-18 22:44:54,157 INFO  [Thread-21] root: Message received by server -> Status: GET Key: 4 Value: 
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,157 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,158 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,158 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,158 INFO  [Thread-21] root: Get: key = 4
+2021-03-18 22:44:54,158 INFO  [Thread-21] root: Message sent by server -> Status: GET_SUCCESS Key: 4 Value: SIR4
+2021-03-18 22:44:54,158 INFO  [Thread-21] root: Message received by server -> Status: PUT Key: 1 Value: null
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: PUT request being served
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,159 DEBUG [Thread-21] root: In range
+2021-03-18 22:44:54,159 INFO  [Thread-21] root: Delete: key = 1
+2021-03-18 22:44:54,159 INFO  [Thread-21] root: Updating storage
+2021-03-18 22:44:54,160 DEBUG [Thread-21] root: Getting successors
+2021-03-18 22:44:54,160 DEBUG [Thread-21] root: Got successors
+2021-03-18 22:44:54,160 DEBUG [Thread-21] root: Propagating to: 127.0.0.1:50101 127.0.0.1:50101
+Starting commModule
+2021-03-18 22:44:54,160 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,160 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,161 INFO  [Thread-0] root: Connected to localhost on port 52957
+Starting commModule
+2021-03-18 22:44:54,161 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,161 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,161 DEBUG [Thread-21] root: {"1":null}
+2021-03-18 22:44:54,161 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,161 INFO  [Thread-0] root: Connected to localhost on port 52958
+2021-03-18 22:44:54,162 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,162 INFO  [Thread-22] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: In serve
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Checking if stopped or write locked
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Case propagate
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Passing to server
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Getting Predecessors
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Predecessors:
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Index of predecessor: 0
+2021-03-18 22:44:54,162 DEBUG [Thread-22] root: Server Stuff
+2021-03-18 22:44:54,162 INFO  [Thread-23] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: In serve
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Checking if stopped or write locked
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Case propagate
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Passing to server
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Getting Predecessors
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,162 INFO  [Thread-22] root: Delete: key = 1
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Predecessors:
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Index of predecessor: 0
+2021-03-18 22:44:54,162 DEBUG [Thread-23] root: Server Stuff
+2021-03-18 22:44:54,162 INFO  [Thread-22] root: Updating storage
+2021-03-18 22:44:54,163 INFO  [Thread-22] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,163 INFO  [Thread-23] root: Delete: key = 1
+2021-03-18 22:44:54,163 ERROR [Thread-23] root: Key does not exist.
+2021-03-18 22:44:54,163 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,163 INFO  [Thread-23] root: Updating storage
+2021-03-18 22:44:54,163 INFO  [Thread-23] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,164 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,164 INFO  [Thread-21] root: Message sent by server -> Status: DELETE_SUCCESS Key: 1 Value: null
+2021-03-18 22:44:54,164 INFO  [Thread-21] root: Message received by server -> Status: PUT Key: 2 Value: null
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: PUT request being served
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,164 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: In range
+2021-03-18 22:44:54,165 INFO  [Thread-21] root: Delete: key = 2
+2021-03-18 22:44:54,165 INFO  [Thread-21] root: Updating storage
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: Getting successors
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: Got successors
+2021-03-18 22:44:54,165 DEBUG [Thread-21] root: Propagating to: 127.0.0.1:50101 127.0.0.1:50101
+Starting commModule
+2021-03-18 22:44:54,166 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,166 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,166 INFO  [Thread-0] root: Connected to localhost on port 52959
+Starting commModule
+2021-03-18 22:44:54,166 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,166 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,166 DEBUG [Thread-21] root: {"2":null}
+2021-03-18 22:44:54,167 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,167 INFO  [Thread-0] root: Connected to localhost on port 52960
+2021-03-18 22:44:54,167 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,167 INFO  [Thread-24] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: In serve
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Checking if stopped or write locked
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Case propagate
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Passing to server
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Getting Predecessors
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Predecessors:
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,167 INFO  [Thread-25] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,167 DEBUG [Thread-25] root: In serve
+2021-03-18 22:44:54,167 DEBUG [Thread-25] root: Checking if stopped or write locked
+2021-03-18 22:44:54,167 DEBUG [Thread-25] root: Case propagate
+2021-03-18 22:44:54,167 DEBUG [Thread-25] root: Passing to server
+2021-03-18 22:44:54,167 DEBUG [Thread-25] root: Getting Predecessors
+2021-03-18 22:44:54,167 DEBUG [Thread-24] root: Index of predecessor: 0
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,168 DEBUG [Thread-24] root: Server Stuff
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: Predecessors:
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: Index of predecessor: 0
+2021-03-18 22:44:54,168 DEBUG [Thread-25] root: Server Stuff
+2021-03-18 22:44:54,168 INFO  [Thread-24] root: Delete: key = 2
+2021-03-18 22:44:54,168 INFO  [Thread-24] root: Updating storage
+2021-03-18 22:44:54,168 INFO  [Thread-25] root: Delete: key = 2
+2021-03-18 22:44:54,168 ERROR [Thread-25] root: Key does not exist.
+2021-03-18 22:44:54,168 INFO  [Thread-24] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,168 INFO  [Thread-25] root: Updating storage
+2021-03-18 22:44:54,168 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,169 INFO  [Thread-25] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,169 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,169 INFO  [Thread-21] root: Message sent by server -> Status: DELETE_SUCCESS Key: 2 Value: null
+2021-03-18 22:44:54,169 INFO  [Thread-21] root: Message received by server -> Status: PUT Key: 3 Value: null
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: PUT request being served
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,169 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,170 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,170 DEBUG [Thread-21] root: In range
+2021-03-18 22:44:54,170 INFO  [Thread-21] root: Delete: key = 3
+2021-03-18 22:44:54,170 INFO  [Thread-21] root: Updating storage
+2021-03-18 22:44:54,170 DEBUG [Thread-21] root: Getting successors
+2021-03-18 22:44:54,170 DEBUG [Thread-21] root: Got successors
+2021-03-18 22:44:54,170 DEBUG [Thread-21] root: Propagating to: 127.0.0.1:50101 127.0.0.1:50101
+Starting commModule
+2021-03-18 22:44:54,170 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,170 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,171 INFO  [Thread-0] root: Connected to localhost on port 52961
+Starting commModule
+2021-03-18 22:44:54,171 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,171 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,171 DEBUG [Thread-21] root: {"3":null}
+2021-03-18 22:44:54,172 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,172 INFO  [Thread-0] root: Connected to localhost on port 52962
+2021-03-18 22:44:54,172 INFO  [Thread-26] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: In serve
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: Checking if stopped or write locked
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: Case propagate
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: Passing to server
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: Getting Predecessors
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,172 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: Predecessors:
+2021-03-18 22:44:54,172 DEBUG [Thread-26] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,173 DEBUG [Thread-26] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,172 INFO  [Thread-27] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: In serve
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Checking if stopped or write locked
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Case propagate
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Passing to server
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Getting Predecessors
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Predecessors:
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Index of predecessor: 0
+2021-03-18 22:44:54,173 DEBUG [Thread-27] root: Server Stuff
+2021-03-18 22:44:54,173 DEBUG [Thread-26] root: Index of predecessor: 0
+2021-03-18 22:44:54,173 DEBUG [Thread-26] root: Server Stuff
+2021-03-18 22:44:54,173 INFO  [Thread-27] root: Delete: key = 3
+2021-03-18 22:44:54,173 INFO  [Thread-27] root: Updating storage
+2021-03-18 22:44:54,173 INFO  [Thread-27] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,173 INFO  [Thread-26] root: Delete: key = 3
+2021-03-18 22:44:54,173 ERROR [Thread-26] root: Key does not exist.
+2021-03-18 22:44:54,174 INFO  [Thread-26] root: Updating storage
+2021-03-18 22:44:54,174 INFO  [Thread-26] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,174 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,174 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,174 INFO  [Thread-21] root: Message sent by server -> Status: DELETE_SUCCESS Key: 3 Value: null
+2021-03-18 22:44:54,175 INFO  [Thread-21] root: Message received by server -> Status: PUT Key: 4 Value: null
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: In serve
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Checking if stopped or write locked
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: PUT request being served
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Checking if it's in range
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Got hostname and port -> 127.0.0.1:50101
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Got metadata range: f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: 127.0.0.1:50101 -> f3d928c22c4187bc407f070c47719bc4:f3d928c22c4187bc407f070c47719bc3
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Got range big ints
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Range end < range start
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: Done with range check in server
+2021-03-18 22:44:54,175 DEBUG [Thread-21] root: In range
+2021-03-18 22:44:54,175 INFO  [Thread-21] root: Delete: key = 4
+2021-03-18 22:44:54,175 INFO  [Thread-21] root: Updating storage
+2021-03-18 22:44:54,176 DEBUG [Thread-21] root: Getting successors
+2021-03-18 22:44:54,176 DEBUG [Thread-21] root: Got successors
+2021-03-18 22:44:54,176 DEBUG [Thread-21] root: Propagating to: 127.0.0.1:50101 127.0.0.1:50101
+Starting commModule
+2021-03-18 22:44:54,176 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,176 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,176 INFO  [Thread-0] root: Connected to localhost on port 52963
+Starting commModule
+2021-03-18 22:44:54,177 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,177 INFO  [Thread-21] root: Client communication module connected
+2021-03-18 22:44:54,177 DEBUG [Thread-21] root: {"4":null}
+2021-03-18 22:44:54,177 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,177 INFO  [Thread-0] root: Connected to localhost on port 52964
+2021-03-18 22:44:54,177 INFO  [Thread-21] root: Message sent by client -> Status: PROPAGATE
+2021-03-18 22:44:54,177 INFO  [Thread-28] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: In serve
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: Checking if stopped or write locked
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: Case propagate
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: Passing to server
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: Getting Predecessors
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,177 DEBUG [Thread-28] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,178 DEBUG [Thread-28] root: Predecessors:
+2021-03-18 22:44:54,178 DEBUG [Thread-28] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,178 DEBUG [Thread-28] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,178 INFO  [Thread-29] root: Message received by server -> Status: PROPAGATE
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: In serve
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Checking if stopped or write locked
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Case propagate
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Passing to server
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Getting Predecessors
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: [127.0.0.1:50101]
+2021-03-18 22:44:54,178 DEBUG [Thread-28] root: Index of predecessor: 0
+2021-03-18 22:44:54,178 DEBUG [Thread-28] root: Server Stuff
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Predecessors:
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: [127.0.0.1:50101, 127.0.0.1:50101]
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Looking for 127.0.0.1:50101
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Index of predecessor: 0
+2021-03-18 22:44:54,178 DEBUG [Thread-29] root: Server Stuff
+2021-03-18 22:44:54,178 INFO  [Thread-28] root: Delete: key = 4
+2021-03-18 22:44:54,178 INFO  [Thread-28] root: Updating storage
+2021-03-18 22:44:54,178 INFO  [Thread-29] root: Delete: key = 4
+2021-03-18 22:44:54,178 ERROR [Thread-29] root: Key does not exist.
+2021-03-18 22:44:54,178 INFO  [Thread-28] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,178 INFO  [Thread-29] root: Updating storage
+2021-03-18 22:44:54,179 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,179 INFO  [Thread-29] root: Message sent by server -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,179 INFO  [Thread-21] root: Message received by client -> Status: PROPAGATE_SUCCESS Key: null Value: null
+2021-03-18 22:44:54,179 INFO  [Thread-21] root: Message sent by server -> Status: DELETE_SUCCESS Key: 4 Value: null
+Starting commModule
+2021-03-18 22:44:54,180 INFO  [Thread-0] root: Server communication module connected
+2021-03-18 22:44:54,180 INFO  [Thread-0] root: Connected to localhost on port 52965
+2021-03-18 22:44:54,181 INFO  [Thread-30] root: Message received by server -> Status: SHUTDOWN
+received adminmsg
+2021-03-18 22:44:54,181 DEBUG [Thread-30] root: Closing the program
+2021-03-18 22:44:54,181 INFO  [Thread-30] root: Message sent by server -> Status: SHUTDOWN_SUCCESS
+2021-03-18 22:44:54,181 ERROR [Thread-0] root: Error! Unable to establish connection. 
+
+java.net.SocketException: Socket closed
+	at java.base/java.net.PlainSocketImpl.socketAccept(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:458)
+	at java.base/java.net.ServerSocket.implAccept(ServerSocket.java:565)
+	at java.base/java.net.ServerSocket.accept(ServerSocket.java:533)
+	at app_kvServer.KVServer.run(KVServer.java:408)
+2021-03-18 22:44:54,183 INFO  [Thread-0] root: Server stopped.
+2021-03-18 22:44:54,183 INFO  [Thread-0] root: Clearing KV Storage...

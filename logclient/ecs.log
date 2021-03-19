@@ -1,0 +1,66 @@
+2021-03-18 21:09:24,094 INFO  [main] root: Connection established
+2021-03-18 21:09:24,118 WARN  [main] root: Could not establish connection!
+java.net.ConnectException: Connection refused (Connection refused)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/java.net.Socket.<init>(Socket.java:454)
+	at java.base/java.net.Socket.<init>(Socket.java:231)
+	at client.KVStore.connect(KVStore.java:52)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:82)
+	at app_kvClient.KVClient.run(KVClient.java:41)
+	at app_kvClient.KVClient.main(KVClient.java:298)
+2021-03-18 21:17:32,058 INFO  [main] root: Connection established
+2021-03-18 21:17:32,087 INFO  [main] root: Client communication module connected
+2021-03-18 21:19:05,969 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.base/java.net.SocketOutputStream.write(SocketOutputStream.java:150)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1883)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1828)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:722)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:743)
+	at shared.comm.CommModule.closeConnection(CommModule.java:397)
+	at client.KVStore.disconnect(KVStore.java:63)
+	at client.KVStore.connRandomServer(KVStore.java:242)
+	at client.KVStore.put(KVStore.java:110)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:130)
+	at app_kvClient.KVClient.run(KVClient.java:41)
+	at app_kvClient.KVClient.main(KVClient.java:298)
+2021-03-18 21:19:05,972 INFO  [main] root: Connection closed!
+2021-03-18 21:20:05,109 INFO  [main] root: Connection established
+2021-03-18 21:20:05,137 INFO  [main] root: Client communication module connected
+2021-03-18 21:23:09,473 INFO  [main] root: Message sent by client -> Status: PUT Key: 1 Value: 1
+2021-03-18 21:23:09,505 INFO  [main] root: Message received by client -> Status: PUT_SUCCESS Key: 1 Value: 1
+2021-03-18 21:23:29,466 INFO  [main] root: Message sent by client -> Status: PUT Key: 2 Value: 2
+2021-03-18 21:23:29,467 INFO  [main] root: Connection closed!
+2021-03-18 21:33:41,526 INFO  [main] root: Connection established
+2021-03-18 21:33:41,560 INFO  [main] root: Client communication module connected
+2021-03-18 21:35:50,027 INFO  [main] root: Message sent by client -> Status: PUT Key: 1 Value: 1
+2021-03-18 21:35:50,033 INFO  [main] root: Message received by client -> Status: SERVER_STOPPED Key: 1 Value: null
+2021-03-18 21:36:13,718 INFO  [main] root: Message sent by client -> Status: GET Key: 1 Value: 
+2021-03-18 21:36:13,719 INFO  [main] root: Message received by client -> Status: SERVER_STOPPED Key: 1 Value: null
+2021-03-18 21:37:27,730 INFO  [main] root: Message sent by client -> Status: PUT Key: 1 Value: null
+2021-03-18 21:37:27,731 INFO  [main] root: Connection closed!
+2021-03-18 21:39:41,216 INFO  [main] root: Connection established
+2021-03-18 21:39:41,250 INFO  [main] root: Client communication module connected
+2021-03-18 21:40:45,410 ERROR [main] root: Error! Unable to tear down connection!
+java.net.SocketException: Socket closed
+	at java.base/java.net.SocketOutputStream.socketWrite(SocketOutputStream.java:113)
+	at java.base/java.net.SocketOutputStream.write(SocketOutputStream.java:150)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.drain(ObjectOutputStream.java:1883)
+	at java.base/java.io.ObjectOutputStream$BlockDataOutputStream.flush(ObjectOutputStream.java:1828)
+	at java.base/java.io.ObjectOutputStream.flush(ObjectOutputStream.java:722)
+	at java.base/java.io.ObjectOutputStream.close(ObjectOutputStream.java:743)
+	at shared.comm.CommModule.closeConnection(CommModule.java:397)
+	at client.KVStore.disconnect(KVStore.java:63)
+	at client.KVStore.connRandomServer(KVStore.java:242)
+	at client.KVStore.put(KVStore.java:110)
+	at app_kvClient.KVClient.handleCommand(KVClient.java:148)
+	at app_kvClient.KVClient.run(KVClient.java:41)
+	at app_kvClient.KVClient.main(KVClient.java:298)
+2021-03-18 21:40:45,413 INFO  [main] root: Connection closed!
