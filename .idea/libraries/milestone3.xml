@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="milestone3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/m3-server.jar!/" />
+      <root url="jar://$PROJECT_DIR$/m3-client.jar!/" />
+      <root url="jar://$PROJECT_DIR$/m3-ecs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

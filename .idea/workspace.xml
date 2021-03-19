@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d4b12225-fa08-440d-84f1-f4acd3bcc33b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/apache-zookeeper-3.6.2-bin/logs/zookeeper-jeremy-server-jeremy-DT-linux.out" beforeDir="false" afterPath="$PROJECT_DIR$/apache-zookeeper-3.6.2-bin/logs/zookeeper-jeremy-server-jeremy-DT-linux.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/testing/test.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/testing/test.log" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1pyxWFpRGKZkQImjsdbiN542cbm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager" selected="JUnit.AdditionalTest">
+    <configuration name="ECSClient" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="app_kvECS.ECSClient" />
+      <module name="milestone3" />
+      <option name="PROGRAM_PARAMETERS" value="ecs.config" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="app_kvECS.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdditionalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="milestone3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testing" />
+      <option name="MAIN_CLASS_NAME" value="testing.AdditionalTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdditionalTest.testGetMultiCrash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="milestone3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testing" />
+      <option name="MAIN_CLASS_NAME" value="testing.AdditionalTest" />
+      <option name="METHOD_NAME" value="testGetMultiCrash" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdditionalTest.testGetReplication" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="milestone3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testing" />
+      <option name="MAIN_CLASS_NAME" value="testing.AdditionalTest" />
+      <option name="METHOD_NAME" value="testGetReplication" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdditionalTest.testMultiCrash" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="milestone3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testing" />
+      <option name="MAIN_CLASS_NAME" value="testing.AdditionalTest" />
+      <option name="METHOD_NAME" value="testMultiCrash" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdditionalTest.testMultiNodeServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="milestone3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="testing" />
+      <option name="MAIN_CLASS_NAME" value="testing.AdditionalTest" />
+      <option name="METHOD_NAME" value="testMultiNodeServer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AdditionalTest" />
+        <item itemvalue="JUnit.AdditionalTest.testGetMultiCrash" />
+        <item itemvalue="JUnit.AdditionalTest.testMultiCrash" />
+        <item itemvalue="JUnit.AdditionalTest.testMultiNodeServer" />
+        <item itemvalue="JUnit.AdditionalTest.testGetReplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4b12225-fa08-440d-84f1-f4acd3bcc33b" name="Default Changelist" comment="" />
+      <created>1616169162280</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616169162280</updated>
+    </task>
+    <servers />
+  </component>
+</project>
