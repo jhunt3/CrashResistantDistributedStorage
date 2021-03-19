@@ -8,6 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="library" name="milestone3" level="project" />
     <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

@@ -310,7 +310,7 @@ public class AdditionalTest extends TestCase {
 		assertEquals(0,activeServers);
 
 
-	}
+	}*/
 	@Test
 	public void testMultiNodeServer() throws Exception {
 		String response;
@@ -376,6 +376,7 @@ public class AdditionalTest extends TestCase {
 		ecsClient.handleCommand("shutDown");
 
 	}
+	/*
 	@Test
 	public void testNodeAddition() throws Exception {
 		String response;
@@ -865,5 +866,279 @@ public class AdditionalTest extends TestCase {
 
 		assertNull(storage.get("1"));
 		assertNull(storage.get("2"));
+	}
+
+	@Test
+	public void testGetMultiCrash() throws Exception{
+		String response;
+
+		response=ecsClient.handleCommand("addNodes 4");
+		String[] addrs=response.split(" ");
+		String[] hosts=new String[9];
+		int[] ports=new int[9];
+		String[] names=new String[9];
+		for(int i = 1;i<addrs.length;i++) {
+			hosts[i]=addrs[i].split(":")[0];
+			ports[i]=Integer.parseInt(addrs[i].split(":")[1]);
+			names[i]=addrs[i].split(":")[2];
+
+		}
+		Thread.sleep(5000);
+
+		//ecsClient.handleCommand("addNodes 2");
+		System.out.println("connect "+hosts[1]+" "+String.valueOf(ports[1]));
+		kvClient.handleCommand("connect "+hosts[1]+" "+String.valueOf(ports[1]));
+		kvClient.handleCommand("put 1 MNS1");
+		kvClient.handleCommand("put 2 MNS2");
+		kvClient.handleCommand("put 3 MNS3");
+		kvClient.handleCommand("put 4 MNS4");
+		kvClient.handleCommand("put 5 MNS5");
+		kvClient.handleCommand("put 6 MNS6");
+		kvClient.handleCommand("put 7 MNS7");
+		kvClient.handleCommand("put 8 MNS8");
+		kvClient.handleCommand("put 9 MNS9");
+		kvClient.handleCommand("put 10 MNS10");
+
+		Socket socket1 = new Socket(hosts[1], ports[1]);
+		CommModule serverComm1 = new CommModule(socket1, null);
+		Socket socket2 = new Socket(hosts[2], ports[2]);
+		CommModule serverComm2 = new CommModule(socket2, null);
+		serverComm1.sendAdminMsg(null, SHUTDOWN, null, null, null);
+		Thread.sleep(5000);
+		serverComm2.sendAdminMsg(null, SHUTDOWN, null, null, null);
+		Thread.sleep(5000);
+		response=kvClient.handleCommand("get 1");
+		assertEquals("MNS1",response);
+		response=kvClient.handleCommand("get 2");
+		assertEquals("MNS2",response);
+		response=kvClient.handleCommand("get 3");
+		assertEquals("MNS3",response);
+		response=kvClient.handleCommand("get 4");
+		assertEquals("MNS4",response);
+		response=kvClient.handleCommand("get 5");
+		assertEquals("MNS5",response);
+		response=kvClient.handleCommand("get 6");
+		assertEquals("MNS6",response);
+		response=kvClient.handleCommand("get 7");
+		assertEquals("MNS7",response);
+		response=kvClient.handleCommand("get 8");
+		assertEquals("MNS8",response);
+		response=kvClient.handleCommand("get 9");
+		assertEquals("MNS9",response);
+		response=kvClient.handleCommand("get 10");
+		assertEquals("MNS10",response);
+
+		kvClient.handleCommand("put 1");
+		kvClient.handleCommand("put 2");
+		kvClient.handleCommand("put 3");
+		kvClient.handleCommand("put 4");
+		kvClient.handleCommand("put 5");
+		kvClient.handleCommand("put 6");
+		kvClient.handleCommand("put 7");
+		kvClient.handleCommand("put 8");
+		kvClient.handleCommand("put 9");
+		kvClient.handleCommand("put 10");
+		ecsClient.handleCommand("shutDown");
+
+	}
+	@Test
+	public void testPutMultiCrash() throws Exception{
+		String response;
+
+		response=ecsClient.handleCommand("addNodes 4");
+		String[] addrs=response.split(" ");
+		String[] hosts=new String[9];
+		int[] ports=new int[9];
+		String[] names=new String[9];
+		for(int i = 1;i<addrs.length;i++) {
+			hosts[i]=addrs[i].split(":")[0];
+			ports[i]=Integer.parseInt(addrs[i].split(":")[1]);
+			names[i]=addrs[i].split(":")[2];
+
+		}
+		Thread.sleep(5000);
+
+		//ecsClient.handleCommand("addNodes 2");
+		System.out.println("connect "+hosts[1]+" "+String.valueOf(ports[1]));
+		kvClient.handleCommand("connect "+hosts[1]+" "+String.valueOf(ports[1]));
+		kvClient.handleCommand("put 1 MNS1");
+		kvClient.handleCommand("put 2 MNS2");
+		kvClient.handleCommand("put 3 MNS3");
+		kvClient.handleCommand("put 4 MNS4");
+		kvClient.handleCommand("put 5 MNS5");
+		kvClient.handleCommand("put 6 MNS6");
+		kvClient.handleCommand("put 7 MNS7");
+		kvClient.handleCommand("put 8 MNS8");
+		kvClient.handleCommand("put 9 MNS9");
+		kvClient.handleCommand("put 10 MNS10");
+
+		Socket socket1 = new Socket(hosts[1], ports[1]);
+		CommModule serverComm1 = new CommModule(socket1, null);
+		Socket socket2 = new Socket(hosts[2], ports[2]);
+		CommModule serverComm2 = new CommModule(socket2, null);
+		serverComm1.sendAdminMsg(null, SHUTDOWN, null, null, null);
+		Thread.sleep(5000);
+		serverComm2.sendAdminMsg(null, SHUTDOWN, null, null, null);
+		Thread.sleep(5000);
+		response=kvClient.handleCommand("get 1");
+		assertEquals("MNS1",response);
+		response=kvClient.handleCommand("get 2");
+		assertEquals("MNS2",response);
+		response=kvClient.handleCommand("get 3");
+		assertEquals("MNS3",response);
+		response=kvClient.handleCommand("get 4");
+		assertEquals("MNS4",response);
+		response=kvClient.handleCommand("get 5");
+		assertEquals("MNS5",response);
+		response=kvClient.handleCommand("get 6");
+		assertEquals("MNS6",response);
+		response=kvClient.handleCommand("get 7");
+		assertEquals("MNS7",response);
+		response=kvClient.handleCommand("get 8");
+		assertEquals("MNS8",response);
+		response=kvClient.handleCommand("get 9");
+		assertEquals("MNS9",response);
+		response=kvClient.handleCommand("get 10");
+		assertEquals("MNS10",response);
+
+		kvClient.handleCommand("put 1 MGC1");
+		kvClient.handleCommand("put 2 MGC2");
+		kvClient.handleCommand("put 3 MGC3");
+		kvClient.handleCommand("put 4 MGC4");
+		kvClient.handleCommand("put 5 MGC5");
+		kvClient.handleCommand("put 6 MGC6");
+		kvClient.handleCommand("put 7 MGC7");
+		kvClient.handleCommand("put 8 MGC8");
+		kvClient.handleCommand("put 9 MGC9");
+		kvClient.handleCommand("put 10 MGC10");
+		response=kvClient.handleCommand("get 1");
+		assertEquals("MGC1",response);
+		response=kvClient.handleCommand("get 2");
+		assertEquals("MGC2",response);
+		response=kvClient.handleCommand("get 3");
+		assertEquals("MGC3",response);
+		response=kvClient.handleCommand("get 4");
+		assertEquals("MGC4",response);
+		response=kvClient.handleCommand("get 5");
+		assertEquals("MGC5",response);
+		response=kvClient.handleCommand("get 6");
+		assertEquals("MGC6",response);
+		response=kvClient.handleCommand("get 7");
+		assertEquals("MGC7",response);
+		response=kvClient.handleCommand("get 8");
+		assertEquals("MGC8",response);
+		response=kvClient.handleCommand("get 9");
+		assertEquals("MGC9",response);
+		response=kvClient.handleCommand("get 10");
+		assertEquals("MGC10",response);
+
+		kvClient.handleCommand("put 1");
+		kvClient.handleCommand("put 2");
+		kvClient.handleCommand("put 3");
+		kvClient.handleCommand("put 4");
+		kvClient.handleCommand("put 5");
+		kvClient.handleCommand("put 6");
+		kvClient.handleCommand("put 7");
+		kvClient.handleCommand("put 8");
+		kvClient.handleCommand("put 9");
+		kvClient.handleCommand("put 10");
+		ecsClient.handleCommand("shutDown");
+
+	}
+	@Test
+	public void testDeleteMultiCrash() throws Exception{
+		String response;
+
+		response=ecsClient.handleCommand("addNodes 4");
+		String[] addrs=response.split(" ");
+		String[] hosts=new String[9];
+		int[] ports=new int[9];
+		String[] names=new String[9];
+		for(int i = 1;i<addrs.length;i++) {
+			hosts[i]=addrs[i].split(":")[0];
+			ports[i]=Integer.parseInt(addrs[i].split(":")[1]);
+			names[i]=addrs[i].split(":")[2];
+
+		}
+		Thread.sleep(5000);
+
+		//ecsClient.handleCommand("addNodes 2");
+		System.out.println("connect "+hosts[1]+" "+String.valueOf(ports[1]));
+		kvClient.handleCommand("connect "+hosts[1]+" "+String.valueOf(ports[1]));
+		kvClient.handleCommand("put 1 MNS1");
+		kvClient.handleCommand("put 2 MNS2");
+		kvClient.handleCommand("put 3 MNS3");
+		kvClient.handleCommand("put 4 MNS4");
+		kvClient.handleCommand("put 5 MNS5");
+		kvClient.handleCommand("put 6 MNS6");
+		kvClient.handleCommand("put 7 MNS7");
+		kvClient.handleCommand("put 8 MNS8");
+		kvClient.handleCommand("put 9 MNS9");
+		kvClient.handleCommand("put 10 MNS10");
+		response=kvClient.handleCommand("get 1");
+		assertEquals("MNS1",response);
+		response=kvClient.handleCommand("get 2");
+		assertEquals("MNS2",response);
+		response=kvClient.handleCommand("get 3");
+		assertEquals("MNS3",response);
+		response=kvClient.handleCommand("get 4");
+		assertEquals("MNS4",response);
+		response=kvClient.handleCommand("get 5");
+		assertEquals("MNS5",response);
+		response=kvClient.handleCommand("get 6");
+		assertEquals("MNS6",response);
+		response=kvClient.handleCommand("get 7");
+		assertEquals("MNS7",response);
+		response=kvClient.handleCommand("get 8");
+		assertEquals("MNS8",response);
+		response=kvClient.handleCommand("get 9");
+		assertEquals("MNS9",response);
+		response=kvClient.handleCommand("get 10");
+		assertEquals("MNS10",response);
+
+		kvClient.handleCommand("put 1");
+		kvClient.handleCommand("put 2");
+		kvClient.handleCommand("put 3");
+		kvClient.handleCommand("put 4");
+		kvClient.handleCommand("put 5");
+		kvClient.handleCommand("put 6");
+		kvClient.handleCommand("put 7");
+		kvClient.handleCommand("put 8");
+		kvClient.handleCommand("put 9");
+		kvClient.handleCommand("put 10");
+		Socket socket1 = new Socket(hosts[1], ports[1]);
+		CommModule serverComm1 = new CommModule(socket1, null);
+		Socket socket2 = new Socket(hosts[2], ports[2]);
+		CommModule serverComm2 = new CommModule(socket2, null);
+		serverComm1.sendAdminMsg(null, SHUTDOWN, null, null, null);
+		Thread.sleep(5000);
+		serverComm2.sendAdminMsg(null, SHUTDOWN, null, null, null);
+		Thread.sleep(5000);
+
+
+		response=kvClient.handleCommand("get 1");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 2");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 3");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 4");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 5");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 6");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 7");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 8");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 9");
+		assertEquals("GET ERROR - no corresponding value",response);
+		response=kvClient.handleCommand("get 10");
+		assertEquals("GET ERROR - no corresponding value",response);
+
+
+		ecsClient.handleCommand("shutDown");
+
 	}
 }

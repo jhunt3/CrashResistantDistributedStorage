@@ -132,11 +132,12 @@ public class ECSClient implements IECSClient, Watcher {
 
                 }else if(attendance.size()==activeServers.size()){
                     logger.debug("Normal number of servers found");
-                    zk.getChildren("/keeper", nodeWatch);
+
                 }else{
                     logger.debug("Too many servers found");
-                    zk.getChildren("/keeper", nodeWatch);
+
                 }
+                zk.getChildren("/keeper", nodeWatch);
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -144,6 +145,11 @@ public class ECSClient implements IECSClient, Watcher {
     };
     public void handleCrash() throws Exception {
         List<String> attendance=zk.getChildren("/keeper", false);
+        if(attendance.size()>=activeServers.size()) {
+            logger.debug("Normal number of servers found");
+            return;
+        }
+
         List<ECSNode> crashedServers=new ArrayList<ECSNode>();
         //Get list of unexpectedly missing nodes
         for (int i = 0; i<activeServers.size();i++) {
@@ -268,7 +274,7 @@ public class ECSClient implements IECSClient, Watcher {
         for(int i=0;i<crashedServers.size();i++) {
             addNode("FIFO", 10);
         }
-        zk.getChildren("/keeper", nodeWatch);
+        handleCrash();
 
 
     }
